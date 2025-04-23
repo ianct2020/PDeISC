@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Link de Font Awesome -->
+</head>
+<body>
+   <!-- Este es el botón para abrir el menú -->
+<div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+
+<!-- Menú lateral desplegable -->
+<div class="menu">
+    <span class="menu-close" onclick="toggleMenu()">&#10006;</span>
+    
+    <!-- Título del menú -->
+    <h2 class="menu-title">Menú</h2>
+    
+    <ul>
+            <li><a href="prueba111.html">Criptomonedas</a></li>
+            <li><a href="prueba.html"> Inteligencia Artificial</a></li>
+            <li><a href="snake.html">Snake</a></li>
+            <li><a href="sobremi.html">Sobre mi</a></li>
+    </ul>
+</div>
+
+
+    <!-- Contenedor de bienvenida con el ícono y el mensaje -->
+    <div class="welcome-panel">
+        <i class="fa-solid fa-horse-head fa-beat"></i>
+        <h1>Bienvenido a mi página</h1>
+        <p>En la izquierda podras encontrar el menú. Apretando el boton "☰" podras navegar por mi página.</p>
+    </div>
+    <section id="footer" class="footer-panel">
+        <h2 style="color: #ffffff;">Contacto y Más</h2>
+        <p>Las criptomonedas están revolucionando industrias como la salud, educación y más. Para más información sobre su impacto y futuro, no dudes en <a href="sobremi.html" class="contact-text">contactarme</a>.</p>
+        <p>© 2024 jared's work. Todos los derechos reservados.</p>
+    </section>
+    <script src="home.js"></script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    padding: 20px;
+    color: #fff; /* Color de texto blanco */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.content {
+    margin-left: 270px; /* Espacio para la barra lateral */
+    width: calc(100% - 270px); /* Ancho ajustado a la barra lateral */
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    background-color: #000; /* Fondo negro para el panel de encabezado */
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.header p {
+    font-size: 1.2rem;
+    color: #fff; /* Color de subtítulo en blanco */
+}
+
+.content-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    width: 100%;
+    max-width: 1200px;
+}
+
+.grid-item {
+    background-color: #000; /* Fondo negro */
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.grid-item:hover {
+    transform: translateY(-5px); /* Efecto de movimiento hacia arriba */
+}
+
+.grid-item p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #fff; /* Color de texto blanco */
+}
+
+.highlight-panel {
+    background-color: #000; /* Fondo negro */
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    transition: transform 0.3s ease;
+}
+
+.highlight-panel:hover {
+    transform: translateY(-5px);
+}
+
+.highlight-panel p {
+    color: #fff; /* Color de texto blanco */
+    font-size: 1rem;
+}
+/* Botón para abrir el menú */
+.menu-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    display: block;
+}
+
+/* Estilos para el menú desplegable */
+.menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    background-color: #000;
+    padding: 20px;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.menu-title {
+    color: #28a745;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.menu ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu li {
+    margin: 20px 0;
+}
+
+.menu a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.menu a:hover {
+    color: #28a745;
+}
+
+.menu-close {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    display: none;
+}
+
+.menu-open .menu-close {
+    display: block;
+}
+
+.menu-open .menu-toggle {
+    display: none;
+}
+
+.menu-open .menu {
+    transform: translateX(0);
+}
+
+/* Ocultar el botón de abrir cuando el menú está abierto */
+.menu-open .menu-toggle {
+    display: none;
+}
+/* Estilo para el footer */
+.footer-panel {
+    background-color: #121212; /* Fondo oscuro */
+    color: #fff;
+    padding: 40px 20px;
+    text-align: center;
+    border-radius: 8px;
+    margin-top: 50px; /* Separación con el contenido */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    grid-column: 1 / -1; /* Hace que el footer ocupe toda la fila */
+}
+
+.footer-panel h2 {
+    color: #28a745; /* Título en color dorado */
+    font-size: 1.8rem;
+}
+
+.footer-panel p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: #ccc;
+    margin-top: 20px;
+}
+
+/* Estilo para el párrafo de copyright */
+.footer-panel p:last-child {
+    font-size: 1rem;
+    color: #777;
+    margin-top: 10px;
+} 
+/* Estilos para el enlace de "Contactarnos" */
+.contact-link {
+    color: #ffffff; /* Color blanco */
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+/* Botón "Volver arriba" */
+#volver-arriba {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #FFD700; /* Color dorado */
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: none; /* Oculto por defecto */
+    transition: transform 0.3s;
+}
+#volver-arriba:hover {
+    transform: scale(1.1);
+}
+
+html, body {
+    overflow-x: hidden; /* Desactiva el desplazamiento horizontal */
+}

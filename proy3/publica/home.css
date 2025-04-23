@@ -1,0 +1,215 @@
+/* Estilos básicos y fondo */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url("fondohome.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh; /* Asegura que el body ocupe toda la altura */
+    display: flex;
+    flex-direction: column; /* Alineación vertical */
+    align-items: center;
+}
+
+/* Contenido principal */
+.contenido {
+    margin-left: 210px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Panel de bienvenida */
+.welcome-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #000; /* Fondo negro */
+    padding: 60px 30px; /* Espacio interno */
+    border-radius: 10px; /* Bordes redondeados */
+    margin: 20px auto; /* Centrado con margen */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Sombra */
+    text-align: center;
+    max-width: 600px; /* Ancho máximo */
+    width: 80%; /* Ocupa el 80% del ancho */
+    transition: transform 0.3s ease; /* Animación de agrandamiento */
+}
+
+/* Agrandamiento al pasar el mouse */
+.welcome-panel:hover {
+    transform: scale(1.05);
+}
+
+/* Estilo del ícono */
+.welcome-panel i {
+    font-size: 120px; /* Tamaño del ícono aumentado */
+    color: #fff; /* Color blanco */
+    margin-bottom: 20px; /* Espacio debajo del ícono */
+}
+
+/* Estilo del título */
+.welcome-panel h1 {
+    color: #fff; /* Texto en blanco */
+    font-size: 32px; /* Tamaño del texto */
+    margin: 0;
+}
+
+/* Estilo del texto informativo */
+.welcome-panel p {
+    color: #fff;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+/* Estilo para el footer con el mismo ancho que el welcome-panel */
+.footer-panel {
+    background-color: #121212; /* Fondo oscuro */
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    margin: 20px auto; /* Centramos el footer */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    max-width: 600px; /* Ancho máximo igual al del welcome-panel */
+    width: 80%; /* Ocupa el mismo ancho que el panel */
+}
+
+.footer-panel h2 {
+    color: #ffffff; /* Título en color dorado */
+    font-size: 1.8rem;
+}
+
+.footer-panel p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: #ccc;
+    margin-top: 10px;
+}
+
+.footer-panel p:last-child {
+    font-size: 1rem;
+    color: #777;
+    margin-top: 10px;
+}
+
+/* Estilo para el texto de "Contactarme" */
+.footer-panel .contact-text {
+    font-weight: bold; /* Negrita */
+    font-size: 1.2rem; /* Tamaño ligeramente más grande */
+    color: #fff; /* Color blanco */
+    cursor: pointer; /* Indica que se puede interactuar */
+    transition: transform 0.3s ease, color 0.3s ease; /* Animaciones */
+}
+
+/* Efecto al pasar el mouse */
+.footer-panel .contact-text:hover {
+    transform: scale(1.1); /* Agrandamiento sutil */
+    color: #333; /* Cambia a dorado */
+}
+
+/* Estilos para el menú desplegable */
+html, body {
+    overflow-x: hidden;
+}
+
+.menu {
+    position: fixed;
+    left: 0; /* Para que el menú esté en el lado izquierdo */
+    top: 0;
+    width: 200px; /* Ajuste para ocupar solo un pedacito en el costado */
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+.menu h2 {
+    color: rgb(255, 255, 255);
+}
+
+.menu ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu li {
+    margin: 20px 0;
+}
+
+.menu a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.menu a:hover {
+    color: rgb(131, 128, 111);
+}
+
+.menu-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    display: block;
+}
+
+.menu-close {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    display: none;
+}
+
+/* Mostrar el botón de cierre solo cuando el menú está abierto */
+.menu-open .menu-close {
+    display: block;
+}
+
+/* Ocultar el botón de apertura cuando el menú está abierto */
+.menu-open .menu-toggle {
+    display: none;
+}
+
+/* Mostrar el menú cuando está abierto */
+.menu-open .menu {
+    transform: translateX(0);
+}
+
+/* Estilos de los botones */
+.botones {
+    margin-top: 20px;
+}
+
+.boton {
+    display: inline-block;
+    background-color: #fff;
+    color: #000;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    margin: 0 10px;
+}
+
+.boton:hover {
+    transform: translateY(-3px) rotate(2deg);
+    background-color: #f0f0f0;
+    color: #333;
+}

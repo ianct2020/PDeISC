@@ -1,0 +1,505 @@
+/* Estilos globales */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Body y fondo */
+body {
+    display: flex;
+    padding: 20px;
+    color: #fff;
+    background-color: #121212;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: #000;
+    width: 250px;
+    height: 100vh;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.sidebar h2 {
+    color: #FFD700; /* Color dorado para el título del menú */
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+}
+
+.sidebar ul li {
+    margin: 15px 0;
+}
+
+.sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.sidebar ul li a:hover {
+    color: #FFD700; /* Cambia a dorado al pasar el mouse */
+}
+
+/* Contenido principal por defecto (cuando el menú está cerrado) */
+.content {
+    margin-left: 0; /* El contenido ocupa todo el espacio disponible */
+    width: 100%; /* El contenido ocupa el 100% del ancho */
+    transition: margin-left 0.3s ease; /* Suaviza la transición */
+}
+
+/* Cuando el menú está abierto */
+.menu-open .content {
+    margin-left: 220px; /* Mueve el contenido hacia la derecha cuando el menú se abre */
+    width: calc(100% - 220px); /* Ajusta el ancho para dar espacio al menú */
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    background-color: #000;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.header p {
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+.content-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Esto permite que los paneles se ajusten al tamaño disponible */
+    width: 100%; /* Se asegura de que ocupe todo el ancho disponible */
+    max-width: 100%; /* Elimina el límite de 1200px o ajusta según tus necesidades */
+}
+
+
+.grid-item {
+    background-color: #000;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.grid-item:hover {
+    transform: translateY(-5px);
+}
+
+.grid-item p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #fff;
+}
+
+/* Sección de precios de criptomonedas */
+#precios-cripto {
+    text-align: center;
+    margin: 20px;
+    padding: 20px;
+    background-color: #000; /* Fondo negro */
+    color: #fff; /* Texto blanco */
+    border-radius: 8px;
+    transition: transform 0.2s;
+}
+
+/* Eliminar los puntos de la lista */
+#precios-cripto ul {
+    list-style-type: none;  /* Elimina los puntos */
+    padding: 0;
+    margin: 0;
+}
+
+#precios-cripto li {
+    margin-bottom: 15px; /* Espacio entre los elementos de la lista */
+    font-size: 1.2rem;  /* Ajustar tamaño de fuente */
+}
+
+/* Iconos de criptomonedas */
+#precios-cripto li i {
+    color: #FFD43B; /* Color dorado */
+    font-size: 30px; /* Tamaño del icono */
+    margin-right: 10px; /* Espacio entre el icono y el texto */
+}
+
+/* Estilo para el botón */
+#precios-cripto .btn-precios {
+    background-color: #FFD700;
+    color: #000000; /* Color dorado */
+    font-size: 16px;
+    padding: 10px 20px;
+    margin-top: 30px; /* Añadido margen para separar el botón */
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+/* Efecto al pasar el mouse sobre el botón */
+#precios-cripto .btn-precios:hover {
+    transform: scale(1.1);
+}
+
+/* Sección de Preguntas Frecuentes (FAQs) */
+#faqs {
+    margin: 20px;
+    padding: 20px;
+    background-color: #000; /* Fondo negro */
+    color: #fff; /* Texto blanco */
+    border-radius: 8px;
+    transition: transform 0.2s;
+}
+
+#faqs:hover {
+    transform: scale(1.05);
+}
+
+#faqs h2 {
+    color: #FFD700; /* Color dorado */
+}
+
+.faq {
+    margin-bottom: 15px;
+}
+
+.faq-question {
+    font-weight: bold;
+    cursor: pointer;
+    color: #FFD700; /* Dorado */
+}
+
+.faq-answer {
+    display: none;
+    color: #fff;
+    margin-top: 5px;
+    padding-left: 15px;
+    border-left: 2px solid #FFD700;
+}
+
+.faq-answer.visible {
+    display: block;
+}
+#volver-arriba {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #FFD700; 
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: none; /* Oculto por defecto */
+    transition: transform 0.3s;
+}
+
+#volver-arriba:hover {
+    transform: scale(1.1);
+}
+
+body.scrolled #volver-arriba {
+    display: block; 
+}
+.btn-precios {
+    background-color: #000;
+    color: #FFD700; 
+    padding: 10px 20px;
+    text-decoration: none;
+    border: 2px solid #FFD700;
+    border-radius: 5px;
+    display: inline-block;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.btn-precios:hover {
+    background-color: #FFD700; 
+    color: #000; 
+    transform: scale(1.1);
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('btc.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    color: #fff;
+    margin: 0;
+}
+
+.menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Negro con 80% de opacidad */
+    padding: 20px;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+
+.menu h2 {
+    color: gold;
+}
+
+.menu ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu li {
+    margin: 20px 0;
+}
+
+.menu a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.menu a:hover {
+    color: gold;
+}
+
+.menu-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    display: block;
+}
+
+.menu-close {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    display: none;
+}
+
+.menu-open .menu-close {
+    display: block;
+}
+
+.menu-open .menu-toggle {
+    display: none;
+}
+
+.menu-open .menu {
+    transform: translateX(0);
+}
+
+.content {
+    margin-left: 220px;
+    padding: 40px;
+}
+
+header {
+    background-color: #000;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 40px; /* Espaciado para el primer panel */
+}
+
+header h1 {
+    color: gold;
+}
+
+header p {
+    color: #ccc;
+}
+
+.panels {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px; /* Aumentar el espacio entre los paneles */
+}
+
+.panel {
+    background-color: #000;
+    color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.panel:hover {
+    transform: scale(1.05);
+}
+
+.panel h3 {
+    color: gold;
+}
+
+.panel p {
+    color: #ccc;
+}
+/* Estilo para el footer */
+.footer-panel {
+    background-color: #121212; /* Fondo oscuro */
+    color: #fff;
+    padding: 40px 20px;
+    text-align: center;
+    border-radius: 8px;
+    margin-top: 50px; /* Separación con el contenido */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    grid-column: 1 / -1; /* Hace que el footer ocupe toda la fila */
+}
+
+.footer-panel h2 {
+    color: #FFD700; /* Título en color dorado */
+    font-size: 1.8rem;
+}
+
+.footer-panel p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: #ccc;
+    margin-top: 20px;
+}
+
+/* Estilo para el párrafo de copyright */
+.footer-panel p:last-child {
+    font-size: 1rem;
+    color: #777;
+    margin-top: 10px;
+}
+
+/* Ajuste para los dispositivos móviles */
+@media (max-width: 768px) {
+    .footer-panel {
+        padding: 20px;
+    }
+
+    .footer-panel h2 {
+        font-size: 1.5rem;
+    }
+
+    .footer-panel p {
+        font-size: 1rem;
+    }
+}
+
+/* Estilos para el enlace de "Contactarnos" */
+.contact-link {
+    color: #ffffff; /* Color blanco */
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.contact-link:hover {
+    color: #FFD700; /* Cambia a dorado al pasar el mouse */
+    transform: scale(1.1); /* Aumenta ligeramente el tamaño */
+}
+
+#crypto-investment {
+    grid-column: span 3; /* Haz que este panel ocupe tres columnas */
+    background-color: #000; /* Fondo negro */
+    padding: 40px 20px;
+    text-align: center;
+    color: #FFD700; /* Color dorado para el título */
+    margin: 20px 0; /* Espaciado vertical */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra */
+    border-radius: 8px;
+}
+
+#crypto-investment h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.video-container {
+    max-width: 100%; /* Abarca todo el ancho disponible */
+}
+
+.video-container iframe {
+    width: 100%;
+    height: 500px;
+    border-radius: 8px; /* Bordes redondeados */
+}
+.grid-item {
+    transition: all 0.3s ease; /* Animación fluida */
+    cursor: pointer;
+}
+
+.grid-item.expanded {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background-color: #1a1a1a; /* Fondo distinto al expandir */
+    color: white;
+    padding: 20px;
+    width: 80%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    overflow: hidden; /* Evita desbordamiento de contenido */
+}
+
+.grid-item .short-description {
+    display: none; /* No visible por defecto */
+}
+
+.grid-item:not(.expanded) .short-description {
+    display: block; /* Mostrar solo cuando el panel no está expandido */
+}
+
+.grid-item:not(.expanded) .full-description {
+    display: none; /* Ocultar descripción larga en estado colapsado */
+}
+
+.grid-item.expanded .full-description {
+    display: block; /* Mostrar la descripción larga en estado expandido */
+    margin-top: 20px;
+}
+
+.close-panel {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #FFD700;
+    font-size: 20px;
+    cursor: pointer;
+    display: none; /* Se mostrará solo cuando el panel esté expandido */
+}
+
+.grid-item.expanded .close-panel {
+    display: block; /* Mostrar el botón de cierre cuando está expandido */
+}
+
+.grid-item:hover {
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.6); /* Resalta con un borde dorado */
+}
+
+html, body {
+    overflow-x: hidden; /* Desactiva el desplazamiento horizontal */
+}
