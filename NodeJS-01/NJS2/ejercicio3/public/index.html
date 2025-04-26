@@ -1,64 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>Contador de hijos</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 30px;
-      background-color: #f0f0f0;
-    }
-
-    button {
-      margin: 10px;
-      padding: 10px 20px;
-      font-size: 16px;
-      border: none;
-      border-radius: 5px;
-      background-color: #007bff;
-      color: white;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    button:hover {
-      background-color: #0056b3;
-    }
-
-    #contenedor {
-      margin-top: 20px;
-      background-color: #ffffff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      margin-bottom: 20px;
-    }
-
-    #resultado {
-      font-size: 18px;
-      font-weight: bold;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contar Hijos</title>
 </head>
 <body>
+  <button id="botonContarHijos">Contar Hijos</button>
 
-  <h1>Contar los Hijos de un Elemento</h1>
-
-  <!-- Botón para contar los hijos -->
-  <button id="botonContar">Contar Hijos</button>
-
-  <!-- Contenedor con varios hijos -->
   <div id="contenedor">
-    <div>Hijo 1</div>
-    <div>Hijo 2</div>
-    <div>Hijo 3</div>
-    <div>Hijo 4</div>
+    <h1>Elemento hijo 1</h1>
+    <p>Elemento hijo 2</p>
+    <img src="img1.jpeg" alt="Imagen hija">
   </div>
-
-  <!-- Resultado -->
-  <div id="resultado"></div>
 
   <script src="script.js"></script>
 </body>
