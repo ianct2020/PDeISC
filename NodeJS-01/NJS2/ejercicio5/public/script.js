@@ -1,19 +1,19 @@
 const contenedor = document.getElementById('contenedor');
 
 function agregarParrafo() {
-  contenedor.innerHTML += `<p style="color:#03ffea;">Este es un párrafo agregado dinámicamente usando innerHTML.</p>`;
+  contenedor.innerHTML += `<p style="color:#03ffea;">Un párrafo se define como una unidad de sentido que da forma a un texto. Es una unidad visual puesto que es fácilmente reconocible por el lector como una porción de texto constituido por un conjunto de oraciones, pero además es una unidad de sentido porque en él se expone una idea que se desarrolla de principio a fin.</p>`;
 }
 
 function agregarImagen() {
-  contenedor.innerHTML += `<img src="https://via.placeholder.com/150" alt="Imagen dinámica" style="margin:10px;">`;
+  contenedor.innerHTML += `<img src="img1.jpeg" alt="Imagen dinámica" style="margin:10px;">`;
 }
 
 function agregarLista() {
   contenedor.innerHTML += `
     <ul style="list-style:none; padding:0;">
-      <li style="color:#03ffea;">Item 1</li>
-      <li style="color:#03ffea;">Item 2</li>
-      <li style="color:#03ffea;">Item 3</li>
+      <li style="color:#03ffea;">ronaldo</li>
+      <li style="color:#03ffea;">messi</li>
+      <li style="color:#03ffea;">neymar</li>
     </ul>
   `;
 }
@@ -25,10 +25,10 @@ function agregarTabla() {
         <th>Nombre</th><th>Edad</th>
       </tr>
       <tr>
-        <td>Ian</td><td>22</td>
+        <td>pedro</td><td>22</td>
       </tr>
       <tr>
-        <td>Juan</td><td>25</td>
+        <td>juan</td><td>25</td>
       </tr>
     </table>
   `;
@@ -36,8 +36,10 @@ function agregarTabla() {
 
 function agregarVideo() {
   contenedor.innerHTML += `
-    <iframe width="300" height="200" src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-    allowfullscreen style="margin-top:10px;"></iframe>
+    <video width="300" height="200" controls style="margin-top:10px;">
+      <source src="video.mp4" type="video/mp4">
+      Tu navegador no soporta la etiqueta de video.
+    </video>
   `;
 }
+
