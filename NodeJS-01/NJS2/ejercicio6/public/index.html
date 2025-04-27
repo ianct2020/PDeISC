@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario de Registro</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <h1>Formulario de Registro</h1>
+
+  <form id="formulario" onsubmit="mostrarDatos(event)">
+    <input type="text" id="nombre" placeholder="Nombre" required><br>
+
+    <input type="number" id="edad" placeholder="Edad" required><br>
+
+    <input type="email" id="email" placeholder="Correo Electrónico" required><br>
+
+    <label>Género:</label><br><br>
+    <div class="radio-group">
+      <input type="radio" id="masculino" name="genero" value="Masculino" required>
+      <label for="masculino">Masculino</label>
+      <input type="radio" id="femenino" name="genero" value="Femenino">
+      <label for="femenino">Femenino</label>
+    </div><br>
+
+    <label for="pais">País:</label><br><br>
+    <select id="pais" required>
+      <option value="">Seleccione</option>
+      <option value="Argentina">Argentina</option>
+      <option value="Uruguay">Uruguay</option>
+      <option value="Chile">Chile</option>
+      <option value="Paraguay">Paraguay</option>
+    </select><br><br>
+
+    <label>Intereses:</label><br><br>
+    <div class="checkbox-group">
+      <input type="checkbox" id="deporte" value="Deporte">
+      <label for="deporte">Deporte</label>
+
+      <input type="checkbox" id="musica" value="Música">
+      <label for="musica">Música</label>
+
+      <input type="checkbox" id="viajes" value="Viajes">
+      <label for="viajes">Viajes</label>
+    </div><br>
+
+    <button type="submit">Registrar</button>
+  </form>
+
+  <div id="resultado">
+    <!-- Acá se muestran los datos -->
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

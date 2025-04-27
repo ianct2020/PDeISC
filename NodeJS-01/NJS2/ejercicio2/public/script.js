@@ -60,7 +60,6 @@ function getRandomColor() {
   }
   return color;
 }
-
 let teclaGPresionada = false;
 
 document.addEventListener('keydown', function(event) {
@@ -78,29 +77,5 @@ document.addEventListener('keyup', function(event) {
 boton.addEventListener('click', function() {
   if (teclaGPresionada) {
     cambiarTamaño();
-  }
-});
-
-let intervalE;
-let coloresFondo = ["#00aaff", "#00ccff", "#3399ff", "#66b3ff", "#99ccff", "#c2e0ff"]; // Array de tonos celestes y azules
-let colorIndex = 0;
-
-document.addEventListener('keydown', function(event) {
-  if (event.key.toLowerCase() === 'e') {
-    // Solo iniciar el intervalo si no está ya activo
-    if (!intervalE) {
-      intervalE = setInterval(function() {
-        document.body.style.backgroundColor = coloresFondo[colorIndex];
-        colorIndex = (colorIndex + 1) % coloresFondo.length; // Esto asegura que ciclen los colores
-      }, 500); // Cambiar cada 500 ms
-    }
-  }
-});
-
-document.addEventListener('keyup', function(event) {
-  if (event.key.toLowerCase() === 'e') {
-    // Detener el intervalo cuando se suelte la tecla
-    clearInterval(intervalE);
-    intervalE = null; // Resetear el intervalo para poder empezar de nuevo al presionar E
   }
 });
