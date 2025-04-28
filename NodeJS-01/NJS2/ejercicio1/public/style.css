@@ -1,7 +1,7 @@
    body {
       font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 30px;
+      text-align: center; 
+      padding: 30px; 
       background: linear-gradient(to right, #0f2027, #203a43, #2c5364); /* Fondo oscuro degradado */
   color: white;
     }
