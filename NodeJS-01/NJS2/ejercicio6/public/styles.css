@@ -1,4 +1,4 @@
-/* Fondo general y tipografía */
+/* fondo general y tipografía */
 body {
   background-color: black;
   color: #00ff90;
@@ -8,14 +8,14 @@ body {
   padding: 20px;
 }
 
-/* Título principal */
+/* título principal */
 h1 {
   color: #00ff90;
   text-shadow: 0 0 10px #00ff90;
   margin-bottom: 20px;
 }
 
-/* Formulario */
+/* formulario */
 form {
   margin: 20px auto;
   width: 340px;
@@ -25,7 +25,7 @@ form {
   background-color: #000000f0;
 }
 
-/* Campos de entrada */
+/* campos de entrada */
 input, select, textarea {
   width: 90%;
   margin: 10px 0;
@@ -50,7 +50,7 @@ input:focus, select:focus, textarea:focus {
   box-shadow: 0 0 10px #00ff90;
 }
 
-/* Radio y Checkbox */
+/* radio y checkbox */
 input[type="radio"], input[type="checkbox"] {
   accent-color: #00ff90;
 }
@@ -74,7 +74,7 @@ button:hover {
   transform: scale(1.1);
 }
 
-/* Agrupar radio y checkbox */
+/* radio y checkbox */
 .radio-group, .checkbox-group {
   display: flex;
   justify-content: center;
@@ -82,13 +82,13 @@ button:hover {
   margin-bottom: 10px;
 }
 
-/* Etiquetas */
+/* etiquetas */
 label {
   font-size: 16px;
   color: #00ff90;
 }
 
-/* Resultado mostrado */
+/* resultado mostrado */
 #resultado {
   margin-top: 30px;
   padding: 25px;
