@@ -4,7 +4,7 @@ const colorOriginal = "white";
 const imagenOriginal = "img1.jpeg";
 const imagenAlternativa = "img2.jpeg";
 const tamañoOriginal = 300;
-const tamañoAlternativo = 150;
+const tamañoAlternativo = 150; // no pongo comentarios porq es el mismo codigo que el punto 2
 
 const boton = document.getElementById("botonUnico");
 
@@ -81,7 +81,7 @@ boton.addEventListener('click', function() {
   }
 });
 
-// NUEVA FUNCIÓN para el botón "Contar hijos"
+//"Contar hijos"
 document.getElementById('contarHijos').addEventListener('click', () => {
   const cantidad = document.body.children.length;
   document.getElementById('resultado').textContent = `El body tiene ${cantidad} elementos hijos.`;
