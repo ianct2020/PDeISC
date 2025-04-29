@@ -1,18 +1,38 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contar Hijos</title>
+  <meta charset="UTF-8" />
+  <title>Eventos DHTML - Botón único</title> 
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <button id="botonContarHijos">Contar Hijos</button>
 
-  <div id="contenedor">
-    <h1>Elemento hijo 1</h1>
-    <p>Elemento hijo 2</p>
-    <img src="img1.jpeg" alt="Imagen hija">
+  <div style="
+    margin: 30px auto;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: #2507d3;
+    box-shadow: 0 0 20px #03ccb1, 0 0 30px #03ccb1;
+    color: white;
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+  ">
+    <h1>Eventos DHTML con un solo Botón</h1>
+    Click en el botón para agregar texto.<br> 
+    Doble click en el botón para cambiar el texto.<br>
+    Apoya el mouse en el botón para cambiar el color.<br>
+    Click derecho en el botón para agregar una imagen.<br>
+    Click apretando la "g" también en el botón para cambiar el tamaño de la imagen.<br>
   </div>
+
+  <button id="botonUnico">Interacción</button>
+  <button id="contarHijos">Contar hijos del body</button>
+
+  <div id="contenedor"></div>
+  <img id="imagen" src="img1.jpeg" alt="Imagen dinámica" />
+  <p id="resultado"></p>
 
   <script src="script.js"></script>
 </body>
