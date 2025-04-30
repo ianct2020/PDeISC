@@ -27,6 +27,11 @@ app.post('/enviar', (req, res) => {
     res.json({ usr: usuario.usr });
 });
 
+// Ruta para obtener todos los usuarios (GET)
+app.get('/usuarios', (req, res) => {
+    res.json(usuarios); // Devuelve la lista de usuarios como respuesta
+});
+
 // Iniciar el servidor
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
