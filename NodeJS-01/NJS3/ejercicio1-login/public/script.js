@@ -1,5 +1,5 @@
 function mostrarDatos(event) {
-  event.preventDefault(); // Evitar recargar la página
+  event.preventDefault(); // evitar recargar la página
 
   const contrasena = document.getElementById('contrasena').value;
   const email = document.getElementById('email').value;
