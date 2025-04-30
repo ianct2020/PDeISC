@@ -1,38 +1,31 @@
 const express = require('express');
 const app = express();
-const path = require('path');
-const port = 3001;
+const port = 3000;
 
-// Array para almacenar los usuarios
-const usuarios = [];
-
+app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json()); // Middleware para parsear JSON
+app.use(express.json());
 
-// Servir archivos estáticos (HTML, CSS, JS)
-app.use(express.static(path.join(__dirname, 'public')));
+// Lista temporal en memoria
+let usuarios = [];
 
-// Ruta para manejar el formulario (POST)
+// Ruta POST para agregar usuario
 app.post('/enviar', (req, res) => {
-    const usuario = {
-        usr: req.body.usr,
-        pass: req.body.pass
-    };
+  const { usr, pass } = req.body;
 
-    // Agregar el usuario al array
-    usuarios.push(usuario);
-    console.log('Nuevo usuario agregado:', usuario);
+  if (!usr || !pass) {
+    return res.json({ success: false, mensaje: 'Faltan datos' });
+  }
 
-    // Enviar la respuesta con el nuevo usuario
-    res.json({ usr: usuario.usr });
+  if (usr.length < 3 || pass.length < 6) {
+    return res.json({ success: false, mensaje: 'Usuario debe tener al menos 3 caracteres y la contraseña al menos 6.' });
+  }
+
+  usuarios.push({ usr });
+  return res.json({ success: true, mensaje: 'Usuario registrado correctamente', personas: usuarios });
 });
 
-// Ruta para obtener todos los usuarios (GET)
-app.get('/usuarios', (req, res) => {
-    res.json(usuarios); // Devuelve la lista de usuarios como respuesta
-});
-
-// Iniciar el servidor
+// Iniciar servidor
 app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
+  console.log(`Servidor corriendo en http://localhost:${port}`);
 });

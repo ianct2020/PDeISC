@@ -1,35 +1,110 @@
+/* fondo general y tipografía */
 body {
-    font-family: Arial, sans-serif;
+    background-color: black;
+    color: #00ff90;
+    font-family: 'Courier New', Courier, monospace;
     text-align: center;
-    padding: 30px;
-    background: linear-gradient(to right, #0f2027, #203a43, #2c5364); /* Fondo oscuro degradado */
-    color: white;
-}
-
-button {
-    margin: 8px;
-    padding: 10px 25px;
-    font-size: 16px;
-    border: none;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  /* título principal */
+  h1 {
+    color: #00ff90;
+    text-shadow: 0 0 10px #00ff90;
+    margin-bottom: 20px;
+  }
+  
+  /* formulario */
+  form {
+    margin: 20px auto;
+    width: 340px;
+    padding: 25px;
+    border: 2px solid #00ff90;
     border-radius: 12px;
-    background-color: #2507d3;
-    color: #f5f3f3;
+    background-color: #000000f0;
+  }
+  
+  /* campos de entrada */
+  input, select, textarea {
+    width: 90%;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: black;
+    color: #00ff90;
+    border: 2px solid #00ff90;
+    border-radius: 6px;
+    font-size: 16px;
+    outline: none;
+  }
+  
+  /* Color placeholder */
+  input::placeholder, textarea::placeholder {
+    color: #00ff90;
+    opacity: 1;
+  }
+  
+  /* Cuando hacen foco en un input */
+  input:focus, select:focus, textarea:focus {
+    border-color: #00ff90;
+    box-shadow: 0 0 10px #00ff90;
+  }
+  
+  /* radio y checkbox */
+  input[type="radio"], input[type="checkbox"] {
+    accent-color: #00ff90;
+  }
+  
+  /* Botón */
+  button {
+    background-color: black;
+    color: #00ff90;
+    border: 2px solid #00ff90;
+    padding: 10px 25px;
+    margin-top: 15px;
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0 0 10px #03ccb1;
-}
-
-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px #03ccb1, 0 0 30px #03ccb1;
-}
-
-#contenedor {
+    font-size: 18px;
+    border-radius: 8px;
+    transition: all 0.3s;
+  }
+  
+  button:hover {
+    background-color: #00ff90;
+    color: black;
+    transform: scale(1.1);
+  }
+  
+  /* radio y checkbox */
+  .radio-group, .checkbox-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 10px;
+  }
+  
+  /* etiquetas */
+  label {
+    font-size: 16px;
+    color: #00ff90;
+  }
+  
+  /* resultado mostrado 
+  #resultado {
     margin-top: 30px;
-}
-
-#imagen {
-    display: none;
-    margin-top: 20px;
-    max-width: 300px;
-}
+    padding: 25px;
+    border: 2px solid #00ff90;
+    border-radius: 12px;
+    background-color: #000000f0;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    font-size: 18px;
+    color: #00ff90;
+  
+  #resultado h2 {
+    text-align: center;
+    text-shadow: 0 0 10px #00ff90;
+  }
+  }*/
+  
