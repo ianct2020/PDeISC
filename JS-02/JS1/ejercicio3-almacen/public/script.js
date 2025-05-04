@@ -34,7 +34,8 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   
     // Nacionalidades
-    const paises = ["Argentina", "Brasil", "Chile", "Uruguay", "Paraguay"];
+    const paises = ["Argentina", "Brasil", "Chile", "Uruguay", "Paraguay", "Bolivia", "Perú", "Ecuador", "Colombia", "Venezuela", "México", "Estados Unidos", "Canadá", "España", "Francia", "Alemania", "Italia", "Reino Unido", "Japón", "China", "India", "Australia", "Sudáfrica"]
+
     paises.forEach(pais => {
       const op = document.createElement("option");
       op.value = pais;

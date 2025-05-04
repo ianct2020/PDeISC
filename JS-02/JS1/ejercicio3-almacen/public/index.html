@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Registro de Personas</title>
   <link rel="stylesheet" href="styles.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
@@ -15,23 +15,17 @@
     <input type="text" id="apellido" placeholder="Apellido" required pattern="[A-Za-z\s]+" title="Solo letras">
     <input type="number" id="edad" placeholder="Edad" min="1" max="110" required>
 
-
-    <div>
+    <div class="fechanac">
       <select id="dia" required>
         <option value="">Día</option>
-        <!-- Se carga por JS -->
-        
       </select>
 
       <select id="mes" required>
         <option value="">Mes</option>
-      
-        <!-- Se carga por JS -->
       </select>
 
       <select id="anio" required>
         <option value="">Año</option>
-        <!-- Se carga por JS -->
       </select>
     </div>
 
@@ -51,7 +45,6 @@
 
     <select id="nacionalidad" required>
       <option value="">Seleccionar nacionalidad</option>
-      <!-- Se carga por JS -->
     </select>
 
     <input type="tel" id="telefono" placeholder="Teléfono" required pattern="\d{8,10}" title="Entre 8 y 10 dígitos">
