@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro de Personas</title>
+  <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+</head>
+<body>
+
+  <h1>Formulario de Registro</h1>
+
+  <form id="formulario" onsubmit="guardarPersona(event)">
+    <input type="text" id="nombre" placeholder="Nombre" required pattern="[A-Za-z\s]+" title="Solo letras">
+    <input type="text" id="apellido" placeholder="Apellido" required pattern="[A-Za-z\s]+" title="Solo letras">
+    <input type="number" id="edad" placeholder="Edad" min="1" max="110" required>
+
+
+    <div>
+      <select id="dia" required>
+        <option value="">Día</option>
+        <!-- Se carga por JS -->
+        
+      </select>
+
+      <select id="mes" required>
+        <option value="">Mes</option>
+      
+        <!-- Se carga por JS -->
+      </select>
+
+      <select id="anio" required>
+        <option value="">Año</option>
+        <!-- Se carga por JS -->
+      </select>
+    </div>
+
+    <select id="sexo" required>
+      <option value="">Seleccionar sexo</option>
+      <option value="Masculino">Masculino</option>
+      <option value="Femenino">Femenino</option>
+    </select>
+
+    <input type="text" id="dni" placeholder="DNI" required pattern="\d{6,}" title="Mínimo 6 números">
+
+    <select id="estado_civil" required>
+      <option value="">Seleccionar estado civil</option>
+      <option value="Soltero">Soltero</option>
+      <option value="Casado">Casado</option>
+    </select>
+
+    <select id="nacionalidad" required>
+      <option value="">Seleccionar nacionalidad</option>
+      <!-- Se carga por JS -->
+    </select>
+
+    <input type="tel" id="telefono" placeholder="Teléfono" required pattern="\d{8,10}" title="Entre 8 y 10 dígitos">
+    <input type="email" id="email" placeholder="Email" required>
+
+    <input type="number" id="hijos" placeholder="Cantidad de hijos" required min="0" max="20">
+
+    <button type="submit">Guardar</button>
+  </form>
+
+  <div id="mensaje"></div>
+  <ul id="listado"></ul>
+
+  <script src="script.js"></script>
+</body>
+</html>
