@@ -16,14 +16,14 @@ app.get('/', (req, res) => {
 app.post('/guardar', (req, res) => {
   const { nombre, apellido, edad, nacimiento, sexo, documento, estadoCivil, nacionalidad, telefono, mail, hijos } = req.body;
 
-  console.log('Datos recibidos:', req.body);
+  console.log('Datos recibidos:', req.body); // enviar mensaje si recibe todo
 
   if (!nombre || !apellido || !edad || !nacimiento || !sexo || !documento || !estadoCivil || !nacionalidad || !telefono || !mail) {
-    return res.json({ success: false, mensaje: 'Todos los campos son obligatorios' });
+    return res.json({ success: false, mensaje: 'Todos los campos son obligatorios' }); // para q si o si se llenen todos los campos
   }
 
   personas.push({ nombre, apellido });
-  res.json({ success: true, mensaje: 'Persona guardada correctamente', personas });
+  res.json({ success: true, mensaje: 'Persona guardada correctamente', personas }); // mostrar cuanso salio todo bien
 });
 
 app.listen(port, () => {

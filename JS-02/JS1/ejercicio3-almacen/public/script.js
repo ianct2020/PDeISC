@@ -1,50 +1,50 @@
-// Cargar días, meses y años
+// cargar días, meses y años
 window.addEventListener("DOMContentLoaded", () => {
-    const diaSelect = document.getElementById("dia");
-    const mesSelect = document.getElementById("mes");
-    const anioSelect = document.getElementById("anio");
-    const nacionalidadSelect = document.getElementById("nacionalidad");
+    const diaSelect = document.getElementById("dia"); // seleccionar dia
+    const mesSelect = document.getElementById("mes"); //seleccionar mes
+    const anioSelect = document.getElementById("anio"); //seleccionar anio
+    const nacionalidadSelect = document.getElementById("nacionalidad"); // seleccionar nacionalidad
   
-    // Días
-    for (let i = 1; i <= 31; i++) {
-      const op = document.createElement("option");
-      op.value = i;
+    // días
+    for (let i = 1; i <= 31; i++) { // q aparexcan del 1 al 31
+      const op = document.createElement("option"); // definimos como opciones
+      op.value = i; //igualamos op a la i asi cuando se selecciona un dia se guarda
       op.textContent = i;
-      diaSelect.appendChild(op);
+      diaSelect.appendChild(op); //guardamos
     }
   
-    // Meses
-    const meses = [
+    // meses
+    const meses = [ //agregamos los meses que van a aparecer en las opciones
       "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
       "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
     ];
-    meses.forEach((mes, i) => {
-      const op = document.createElement("option");
+    meses.forEach((mes, i) => { // se guardan los meses
+      const op = document.createElement("option");//se pone como opcion
       op.value = i + 1;
       op.textContent = mes;
-      mesSelect.appendChild(op);
+      mesSelect.appendChild(op); //guardado
     });
   
-    // Años
-    for (let i = 2024; i >= 1920; i--) {
-      const op = document.createElement("option");
+    // anios
+    for (let i = 2024; i >= 1920; i--) { // entre esos valores se puede seleccionar
+      const op = document.createElement("option"); // se pone como opcion
       op.value = i;
       op.textContent = i;
-      anioSelect.appendChild(op);
+      anioSelect.appendChild(op); //guardado
     }
   
-    // Nacionalidades
+    // nacionalidades , opciones disponinibles
     const paises = ["Argentina", "Brasil", "Chile", "Uruguay", "Paraguay", "Bolivia", "Perú", "Ecuador", "Colombia", "Venezuela", "México", "Estados Unidos", "Canadá", "España", "Francia", "Alemania", "Italia", "Reino Unido", "Japón", "China", "India", "Australia", "Sudáfrica"]
 
     paises.forEach(pais => {
-      const op = document.createElement("option");
+      const op = document.createElement("option"); //se pone como opcion
       op.value = pais;
       op.textContent = pais;
-      nacionalidadSelect.appendChild(op);
+      nacionalidadSelect.appendChild(op); // se guarda
     });
   });
   
-  // Prevenir que Enter envíe el formulario
+  // para q enter no lo envie sino q pase al siguiente 
   document.addEventListener("keydown", function (e) {
     const form = document.getElementById("formulario");
     if (e.key === "Enter" && e.target.tagName !== "TEXTAREA") {
@@ -57,19 +57,19 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
   
-  function guardarPersona(e) {
+  function guardarPersona(e) { // se crea la funcion 
     e.preventDefault();
   
-    const nombre = document.getElementById("nombre").value.trim();
-    const apellido = document.getElementById("apellido").value.trim();
-    const edadInput = document.getElementById("edad");
-    const edad = parseInt(edadInput.value.trim(), 10);
+    const nombre = document.getElementById("nombre").value.trim(); //guardado
+    const apellido = document.getElementById("apellido").value.trim(); //guardado
+    const edadInput = document.getElementById("edad"); //guardado 
+    const edad = parseInt(edadInput.value.trim(), 10); //guardado
   
-    const anioNacimiento = parseInt(document.getElementById("anio").value);
-    const mesNacimiento = parseInt(document.getElementById("mes").value);
-    const diaNacimiento = parseInt(document.getElementById("dia").value);
+    const anioNacimiento = parseInt(document.getElementById("anio").value); //guardado
+    const mesNacimiento = parseInt(document.getElementById("mes").value); //guardado
+    const diaNacimiento = parseInt(document.getElementById("dia").value); //guardado
   
-    // Calcular edad según fecha de nacimiento
+    // calcular edad según fecha de nacimiento para asegurar 
     const hoy = new Date();
     let edadCalculada = hoy.getFullYear() - anioNacimiento;
     const mesActual = hoy.getMonth() + 1;
@@ -79,13 +79,13 @@ window.addEventListener("DOMContentLoaded", () => {
       edadCalculada--;
     }
   
-    // Comparar la edad ingresada con la calculada
-    if (isNaN(edad) || edad !== edadCalculada) {
+    // comparar la edad ingresada con la calculada
+    if (isNaN(edad) || edad !== edadCalculada) { // se usa la funcion para verificar cuando la edad ingresada y la fecha de nacimiento no coinciden
       const confirmar = confirm(`Según la fecha de nacimiento usted tiene ${edadCalculada} años. ¿Desea usar esta edad?`);
       if (confirmar) {
-        document.getElementById("edad").value = edadCalculada;
+        document.getElementById("edad").value = edadCalculada; //verificar si son iguales
       } else {
-        return mostrarError("Por favor, corrija la edad o la fecha de nacimiento.");
+        return mostrarError("Por favor, corrija la edad o la fecha de nacimiento."); // si no acepta la persona lo anima a corregir la fecha o la edad
       }
     }
   
@@ -99,20 +99,21 @@ window.addEventListener("DOMContentLoaded", () => {
     const telefono = document.getElementById("telefono").value.trim();
     const email = document.getElementById("email").value.trim();
     const hijos = parseInt(document.getElementById("hijos").value.trim(), 10);
-  
+  // guarda todo
     const mensaje = document.getElementById("mensaje");
   
     // Validaciones JS extra
-    if (!/^[A-Za-z\s]+$/.test(nombre)) return mostrarError("Nombre inválido");
-    if (!/^[A-Za-z\s]+$/.test(apellido)) return mostrarError("Apellido inválido");
-    if (isNaN(edad) || edad < 1 || edad > 110) return mostrarError("Edad inválida (debe ser entre 1 y 110)");
-    if (!/^[A-Za-z\s]+$/.test(nacionalidad)) return mostrarError("Nacionalidad inválida");
-    if (isNaN(hijos) || hijos < 0 || hijos > 20) return mostrarError("Cantidad de hijos inválida");
-    if (!/^\d{8,10}$/.test(telefono)) return mostrarError("Teléfono inválido");
-    if (!/^\d{6,}$/.test(dni)) return mostrarError("DNI inválido");
-    if (!email.includes("@")) return mostrarError("Email inválido");
+    if (!/^[A-Za-z\s]+$/.test(nombre)) return mostrarError("Nombre inválido"); // para q no se pongan numeros
+    if (!/^[A-Za-z\s]+$/.test(apellido)) return mostrarError("Apellido inválido");  // para q no se pongan numeros
+    if (isNaN(edad) || edad < 1 || edad > 110) return mostrarError("Edad inválida (debe ser entre 1 y 110)"); //para q no se pongan numero irrisorios
+    if (!/^[A-Za-z\s]+$/.test(nacionalidad)) return mostrarError("Nacionalidad inválida"); //para q no se pongan numeros
+    if (isNaN(hijos) || hijos < 0 || hijos > 20) return mostrarError("Cantidad de hijos inválida"); //nadie tiene 0 hijos o mas de 20
+    if (!/^\d{8,10}$/.test(telefono)) return mostrarError("Teléfono inválido"); // para q no se pongan letras
+    if (!/^\d{6,}$/.test(dni)) return mostrarError("DNI inválido");//paran q no se pongan letras
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return mostrarError("Email inválido"); // verificar mail
+
   
-    // Crear persona
+    // crear persona
     const persona = {
       nombre,
       apellido,
@@ -127,29 +128,29 @@ window.addEventListener("DOMContentLoaded", () => {
       hijos
     };
   
-    // Mostrar en consola
+    // mostrar en consola
     console.log("Persona guardada:", persona);
   
-    // Mostrar en listado visual
+    // mostrar en listado visual
     const lista = document.getElementById("listado");
     const item = document.createElement("li");
     item.textContent = `${nombre} ${apellido}`;
     lista.appendChild(item);
   
-    // Mostrar mensaje
+    // mostrar mensaje si salio bien
     mostrarExito("Persona guardada con éxito");
   
-    // Resetear formulario
+    // resetear formulario cuando ya se termino
     document.getElementById("formulario").reset();
   }
   
-  function mostrarExito(msg) {
+  function mostrarExito(msg) { // si sale bien se muestra esto
     const mensaje = document.getElementById("mensaje");
     mensaje.textContent = msg;
     mensaje.style.color = "green";
   }
   
-  function mostrarError(msg) {
+  function mostrarError(msg) { // si sale mal se muestra esto
     const mensaje = document.getElementById("mensaje");
     mensaje.textContent = msg;
     mensaje.style.color = "red";

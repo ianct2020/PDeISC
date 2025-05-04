@@ -8,5 +8,5 @@ function mostrarDatos(event) {
     `Datos ingresados:\n` +
     `Contraseña: ${contrasena}\n` +
     `Email: ${email}`
-  );
+  );// mostrrar la alerta con todo
 }
