@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificación con includes()</title>
+</head>
+<body>
+    <h1>Verificación de Arrays con includes()</h1>
+
+    <section>
+        <h2>1. Comprobar la palabra "admin"</h2>
+        <p>Ingresa 5 palabras:</p>
+        <form id="palabras-form">
+            <input type="text" id="palabra-input" placeholder="Ingresa una palabra" required>
+            <button type="button" id="guardar-palabra-btn">Guardar Palabra</button>
+        </form>
+        <button type="button" id="comprobar-admin-btn" disabled>Comprobar si está "admin"</button>
+        <button type="button" id="reiniciar-admin-btn">Reiniciar</button>
+        <div id="resultado-admin"></div>
+        <div id="errores-admin" style="color: red;"></div>
+        <ul id="lista-palabras"></ul>
+    </section>
+
+    <section>
+        <h2>2. Comprobar el color "verde"</h2>
+        <p>Ingresa 5 colores:</p>
+        <form id="colores-form">
+            <input type="text" id="color-input" placeholder="Ingresa un color" required>
+            <button type="button" id="guardar-color-btn">Guardar Color</button>
+        </form>
+        <button type="button" id="comprobar-verde-btn" disabled>Comprobar si está "verde"</button>
+        <button type="button" id="reiniciar-verde-btn">Reiniciar</button>
+        <div id="resultado-verde"></div>
+        <div id="errores-verde" style="color: red;"></div>
+        <ul id="lista-colores"></ul>
+    </section>
+
+    <section>
+        <h2>3. Verificar número antes de agregar</h2>
+        <p>Ingresa 5 números:</p>
+        <form id="numeros-form">
+            <input type="number" id="numero-input" placeholder="Ingresa un número" required>
+            <button type="button" id="guardar-numero-btn">Guardar Número</button>
+        </form>
+        <div id="resultado-numero"></div>
+        <div id="errores-numero" style="color: red;"></div>
+        <ul id="lista-numeros"></ul>
+        <button type="button" id="reiniciar-numeros-btn">Reiniciar</button>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
