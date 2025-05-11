@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Unshift Básico</title>
+</head>
+<body>
+  <h1>Ejercicios con unshift()</h1>
+
+  <!-- Colores -->
+  <h2>Colores</h2>
+  <input type="text" id="color" placeholder="Ingresá un color">
+  <button onclick="agregarColor()">Agregar Color</button>
+
+  <!-- Mostrar colores -->
+  <div id="coloresMostrados"></div>
+
+  <!-- Tareas -->
+  <h2>Tareas</h2>
+  <input type="text" id="tarea" placeholder="Ingresá una tarea">
+  <button onclick="agregarTarea()">Agregar Tarea</button>
+  <ul id="listaTareas"></ul>
+
+  <h3>Tareas Urgentes (al principio)</h3>
+  <ul id="urgentes"></ul>
+
+  <!-- Usuarios -->
+  <h2>Usuarios</h2>
+  <input type="text" id="usuario" placeholder="Ingresá un usuario">
+  <button onclick="agregarUsuario()">Agregar Usuario</button>
+  <ul id="usuariosConectados"></ul>
+
+  <h3>Usuario al principio</h3>
+  <input type="text" id="usuarioPrimero" placeholder="Usuario principal">
+  <button onclick="agregarUsuarioPrincipal()">Agregar al principio</button>
+
+  <!-- Ver consola -->
+  <br><br>
+  <button onclick="mostrarConsola()">Ver todo en consola</button>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Formulario Push</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Formulario Push</h1>
+
+    <form id="formulario">
+      <div class="seccion">
+        <h2>Frutas (mínimo 3)</h2>
+        <input type="text" id="fruta" placeholder="Ingresá una fruta" />
+        <button type="button" onclick="agregarFruta()">Agregar Fruta</button>
+      </div>
+
+      <div class="seccion">
+        <h2>Amigos (mínimo 3)</h2>
+        <input type="text" id="amigo" placeholder="Ingresá un amigo" />
+        <button type="button" onclick="agregarAmigo()">Agregar Amigo</button>
+      </div>
+
+      <div class="seccion">
+        <h2>Números (mínimo 2, el segundo debe ser mayor)</h2>
+        <input type="number" id="numero" placeholder="Ingresá un número" />
+        <button type="button" onclick="agregarNumero()">Agregar Número</button>
+      </div>
+
+      <button type="submit">Enviar Datos</button>
+    </form>
+
+    <div id="respuesta"></div>
+    <div id="resultado" class="resultado"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

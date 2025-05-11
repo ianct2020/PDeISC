@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Shift() Ejemplos</title>
+</head>
+<body>
+  <h2>1. Quitar primer dígito</h2>
+  <input type="number" id="numeroInput" placeholder="Ingresá número (mínimo 2 dígitos)">
+  <button onclick="agregarNumero()">Agregar número</button>
+  <button onclick="quitarPrimerDigito()">Quitar primer dígito</button>
+  <div id="numeros"></div>
+
+  <hr>
+
+  <h2>2. Mensajes de chat</h2>
+  <input type="text" id="mensajeInput" placeholder="Escribí mensaje">
+  <button onclick="agregarMensaje()">Enviar</button>
+  <button onclick="borrarPrimerMensaje()">Borrar primer mensaje</button>
+  <div id="mensajes"></div>
+
+  <hr>
+
+  <h2>3. Cola de atención al cliente</h2>
+  <input type="text" id="clienteInput" placeholder="Nombre del cliente">
+  <button onclick="agregarCliente()">Agregar a la cola</button>
+  <button onclick="atenderCliente()">Atender cliente</button>
+  <div id="cola"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
