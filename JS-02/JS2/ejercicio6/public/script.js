@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (numInputs.every(num => !isNaN(num))) {
             const numeros = numInputs.map(Number);
             const primerosTres = numeros.slice(0, 3);
-            resultadoPrimerosTresNumerosDiv.innerHTML = `<h3>Números copiados:</h3> <p>[${primerosTres}]</p>`;
+            resultadoPrimerosTresNumerosDiv.innerHTML = `<h3>Números copiados:</h3> <p class="result-text">[${primerosTres}]</p>`;
             console.log('Array original de números:', numeros);
             console.log('Primeros 3 números copiados (usando slice):', primerosTres);
         } else {
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const peliculas = peliculasInputs.slice(); // Usamos slice() para crear una copia del array de inputs
         const copiaParcial = peliculas.slice(1, 4); // Posición 2 es índice 1, posición 4 es índice 3
-        resultadoCopiaParcialPeliculasDiv.innerHTML = `<h3>Copia parcial:</h3> <p>[${copiaParcial}]</p>`;
+        resultadoCopiaParcialPeliculasDiv.innerHTML = `<h3>Copia parcial:</h3> <p class="result-text">[${copiaParcial}]</p>`;
         console.log('Array original de películas (desde inputs):', peliculas);
         console.log('Copia parcial de películas (posición 2 a 4) (usando slice):', copiaParcial);
         formCopiaParcialPeliculas.reset();
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (soloLetras) {
             const cosasRicas = ricosInputs.slice(); // Usamos slice() para crear una copia del array de inputs
             const ultimosTres = cosasRicas.slice(-3);
-            resultadoUltimosTresRicosDiv.innerHTML = `<h3>Nuevo array con los últimos 3:</h3> <p>[${ultimosTres}]</p>`;
+            resultadoUltimosTresRicosDiv.innerHTML = `<h3>Nuevo array con los últimos 3:</h3> <p class="result-text">[${ultimosTres}]</p>`;
             console.log('Array original de cosas ricas (desde inputs):', cosasRicas);
             console.log('Últimos 3 elementos (usando slice):', ultimosTres);
         } else {

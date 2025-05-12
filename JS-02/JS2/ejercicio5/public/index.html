@@ -3,35 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicios con Splice (Modificado con Reiniciar)</title>
+    <title>Ejercicios con Splice (Estilizado)</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Ejercicios con Splice (Modificado con Reiniciar)</h1>
+    <h1>Ejercicios con Splice</h1>
 
-    <div>
+    <div class="container">
         <h2>1. Eliminar letras</h2>
         <p>Ingresa hasta 5 letras:</p>
         <form id="formLetras">
             <label for="inputLetra">Letra:</label>
             <input type="text" id="inputLetra" maxlength="1" pattern="[a-zA-Z]+" required>
             <button type="button" onclick="agregarLetra()">Agregar Letra</button>
-            <div id="letrasIngresadas"></div>
+            <div id="letrasIngresadas" class="resultado"></div>
             <button type="button" onclick="eliminarDosLetras()">Eliminar Dos Letras</button>
         </form>
-        <div id="letrasEliminadas"></div>
+        <div id="letrasEliminadas" class="resultado"></div>
         <button type="button" onclick="reiniciarEjercicio1()">Reiniciar</button>
     </div>
 
-    <hr>
+    <hr class="separator">
 
-    <div>
+    <div class="container">
         <h2>2. Insertar nombre</h2>
         <p>Ingresa 3 nombres:</p>
         <form id="formNombresIniciales">
             <label for="inputNombreInicial">Nombre:</label>
             <input type="text" id="inputNombreInicial" pattern="[a-zA-Z\s]+" required>
             <button type="button" onclick="agregarNombreInicial()">Agregar Nombre</button>
-            <div id="nombresIniciales"></div>
+            <div id="nombresIniciales" class="resultado"></div>
         </form>
         <button type="button" onclick="mostrarNombres()">Mostrar Nombres</button>
         <form id="formNuevoNombre">
@@ -39,30 +40,30 @@
             <input type="text" id="inputNuevoNombre" pattern="[a-zA-Z\s]+" required>
             <button type="button" onclick="insertarNombre()">Insertar Nombre en Segunda Posición</button>
         </form>
-        <div id="nombresResultantes"></div>
+        <div id="nombresResultantes" class="resultado"></div>
         <button type="button" onclick="reiniciarEjercicio2()">Reiniciar</button>
     </div>
 
-    <hr>
+    <hr class="separator">
 
-    <div>
+    <div class="container">
         <h2>3. Reemplazar elementos</h2>
-        <p>Ingresa 5 elementos (¡sorpresa!):</p>
+        <p>Ingresa 5 elementos:</p>
         <form id="formElementosIniciales">
             <label for="inputElementoInicial">Elemento:</label>
             <input type="text" id="inputElementoInicial" required>
             <button type="button" onclick="agregarElementoInicial()">Agregar Elemento</button>
-            <div id="elementosIniciales"></div>
+            <div id="elementosIniciales" class="resultado"></div>
         </form>
         <form id="formReemplazarElementos">
-            <p>Reemplazar:</p>
+            <p class="label-reemplazar">Reemplazar:</p>
             <label for="inputReemplazo1">Nuevo Elemento 1:</label>
             <input type="text" id="inputReemplazo1" required><br><br>
             <label for="inputReemplazo2">Nuevo Elemento 2:</label>
             <input type="text" id="inputReemplazo2" required><br>
             <button type="button" onclick="reemplazarElementos()">Reemplazar Elementos</button>
         </form>
-        <div id="elementosResultantes"></div>
+        <div id="elementosResultantes" class="resultado"></div>
         <button type="button" onclick="reiniciarEjercicio3()">Reiniciar</button>
     </div>
 

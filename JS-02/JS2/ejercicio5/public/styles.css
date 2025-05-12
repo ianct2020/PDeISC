@@ -1,0 +1,93 @@
+body {
+    background-color: #000;
+    color: #00ff00;
+    font-family: monospace, sans-serif;
+    margin: 20px;
+}
+
+.container {
+    border: 2px solid #00ff00;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+h1, h2 {
+    color: #00ff00;
+    font-size: 2em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #00ff00;
+}
+
+input[type="text"] {
+    background-color: #000;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    padding: 8px;
+    margin-bottom: 10px;
+    font-family: monospace, sans-serif;
+    width: calc(100% - 18px); /* Ajuste para el padding y borde */
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #000;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    padding: 10px 15px;
+    font-family: monospace, sans-serif;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+
+button:hover {
+    transform: scale(1.05);
+    color: #39ff14;
+    border-color: #39ff14;
+}
+
+.resultado {
+    border: 1px solid #00ff00;
+    background-color: #000;
+    color: #00ff00;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.separator {
+    border-top: 2px dashed #00ff00;
+    margin: 20px 0;
+}
+
+.label-reemplazar {
+    color: #00ff00;
+    margin-top: 10px;
+    display: block;
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.5em;
+    }
+
+    h2 {
+        font-size: 1.2em;
+    }
+
+    input[type="text"], button {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+}

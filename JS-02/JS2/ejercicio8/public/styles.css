@@ -1,0 +1,121 @@
+body {
+    background-color: #000;
+    color: #00ff00;
+    font-family: monospace, sans-serif;
+    margin: 20px;
+}
+
+h1, h2 {
+    color: #00ff00;
+    font-size: 2em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+}
+
+section {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #00ff00;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #00ff00;
+}
+
+input[type="text"],
+input[type="number"] {
+    background-color: #000;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: calc(100% - 22px); /* Ajustar para el padding y borde */
+    box-sizing: border-box;
+    font-family: monospace, sans-serif;
+}
+
+button {
+    background-color: #000;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    padding: 10px 15px;
+    margin-right: 10px;
+    cursor: pointer;
+    font-family: monospace, sans-serif;
+    transition: transform 0.2s ease-in-out;
+}
+
+button:hover {
+    transform: scale(1.05);
+    color: #39ff14;
+    border-color: #39ff14;
+}
+
+#resultado-admin,
+#errores-admin,
+#resultado-verde,
+#errores-verde,
+#resultado-numero,
+#errores-numero {
+    margin-top: 10px;
+    color: #00ff00;
+}
+
+#errores-admin,
+#errores-verde,
+#errores-numero {
+    color: #ff4500; /* Un rojo anaranjado para los errores */
+}
+
+#lista-palabras,
+#lista-colores,
+#lista-numeros {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px;
+    border: 1px solid #00ff00;
+    background-color: #000;
+}
+
+#lista-palabras li,
+#lista-colores li,
+#lista-numeros li {
+    padding: 8px 10px;
+    border-bottom: 1px solid #00ff00;
+}
+
+#lista-palabras li:last-child,
+#lista-colores li:last-child,
+#lista-numeros li:last-child {
+    border-bottom: none;
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.5em;
+    }
+
+    h2 {
+        font-size: 1.2em;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    button {
+        width: calc(100% - 22px);
+        margin-bottom: 10px;
+        margin-right: 0;
+    }
+
+    button {
+        display: block;
+    }
+
+    section {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+}

@@ -1,0 +1,130 @@
+body {
+    background-color: #000;
+    color: #00ff00;
+    font-family: monospace, sans-serif;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    width: 90%;
+    max-width: 800px;
+}
+
+h1, h2 {
+    color: #00ff00;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-size: 2.5em;
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.8em;
+    margin-top: 25px;
+}
+
+.hacker-text {
+    color: #39ff14;
+}
+
+.divider {
+    border: 1px solid #00ff00;
+    margin: 20px 0;
+}
+
+.form-section {
+    background-color: #000;
+    border: 2px solid #00ff00;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    color: #00ff00;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"] {
+    background-color: #000;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    padding: 10px;
+    font-family: monospace, sans-serif;
+    font-size: 1em;
+}
+
+button {
+    background-color: #000;
+    color: #00ff00;
+    border: 2px solid #00ff00;
+    padding: 10px 15px;
+    font-family: monospace, sans-serif;
+    font-size: 1em;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+button:hover {
+    transform: scale(1.05);
+    color: #39ff14;
+    background-color: #111;
+}
+
+.result-container {
+    background-color: #000;
+    border: 2px solid #00ff00;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.result-container h3 {
+    color: #00ff00;
+    margin-top: 0;
+}
+
+.result-container p {
+    color: #39ff14;
+    margin-bottom: 0;
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 600px) {
+    .container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    .input-group {
+        margin-bottom: 10px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    button {
+        width: 100%;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+    }
+}
