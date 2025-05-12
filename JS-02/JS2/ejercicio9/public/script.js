@@ -95,11 +95,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (todosValidos) {
             numeros = numeroInputs.map(input => parseInt(input.value));
             console.log('Números ingresados:', numeros);
-            consoleNumerosDiv.textContent = `Números ingresados: ${numeros.join(', ')}`;
+            consoleNombresDiv.textContent = `Números ingresados: ${numeros.join(', ')}`;
             duplicarNumerosBtn.disabled = false;
         } else {
             console.log('Error: Por favor, complete todos los números.');
-            consoleNumerosDiv.textContent = 'Error: Por favor, complete todos los números.';
+            consoleNombresDiv.textContent = 'Error: Por favor, complete todos los números.';
         }
     });
 
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
             consoleNumerosDiv.textContent = '';
         } else {
             console.log('Error: Debes ingresar 3 números antes de duplicar.');
-            consoleNumerosDiv.textContent = 'Error: Debes ingresar 3 números antes de duplicar.';
+            consoleNombresDiv.textContent = 'Error: Debes ingresar 3 números antes de duplicar.';
         }
     });
 
@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
         errorNumeros.forEach(error => error.textContent = '');
         numeros = [];
         outputNumerosDiv.textContent = '';
-        consoleNumerosDiv.textContent = '';
+        consoleNombresDiv.textContent = '';
         duplicarNumerosBtn.disabled = true;
         console.log('Sección de números reiniciada.');
     });
@@ -174,8 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     mostrarDatosBtn.addEventListener('click', () => {
         if (personas.length > 0) {
-            // Ejemplo de uso de filter(): Filtrar personas con edad mayor a 0 (todos en este caso)
-            const personasFiltradas = personas.filter(persona => persona.edad > 0);
+            const personasFiltradas = personas.filter(persona => persona.edad >= 0); // No cambia la lógica, solo usa filter()
             let outputTextArray = [];
             personasFiltradas.forEach(persona => {
                 const anios = persona.edad <= 1 ? 'año' : 'años';
