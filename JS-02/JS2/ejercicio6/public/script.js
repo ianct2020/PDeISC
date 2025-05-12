@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('Ejemplos de slice() con formularios detallados');
+    console.log('Ejemplos de slice() con formularios detallados (Modificado)');
 
     // 1. Copiar los primeros 3 números
     const formPrimerosTresNumeros = document.getElementById('formPrimerosTresNumeros');
@@ -7,17 +7,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     formPrimerosTresNumeros.addEventListener('submit', (event) => {
         event.preventDefault();
-        const num1 = document.getElementById('numero1').value;
-        const num2 = document.getElementById('numero2').value;
-        const num3 = document.getElementById('numero3').value;
-        const num4 = document.getElementById('numero4').value;
+        const numInputs = [
+            document.getElementById('numero1').value,
+            document.getElementById('numero2').value,
+            document.getElementById('numero3').value,
+            document.getElementById('numero4').value
+        ];
 
-        if (!isNaN(num1) && !isNaN(num2) && !isNaN(num3) && !isNaN(num4)) {
-            const numeros = [Number(num1), Number(num2), Number(num3), Number(num4)];
+        if (numInputs.every(num => !isNaN(num))) {
+            const numeros = numInputs.map(Number);
             const primerosTres = numeros.slice(0, 3);
             resultadoPrimerosTresNumerosDiv.innerHTML = `<h3>Números copiados:</h3> <p>[${primerosTres}]</p>`;
             console.log('Array original de números:', numeros);
-            console.log('Primeros 3 números copiados:', primerosTres);
+            console.log('Primeros 3 números copiados (usando slice):', primerosTres);
         } else {
             resultadoPrimerosTresNumerosDiv.textContent = 'Por favor, ingrese solo números.';
             console.log('Error: Se intentó ingresar letras en el formulario de números.');
@@ -31,16 +33,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     formCopiaParcialPeliculas.addEventListener('submit', (event) => {
         event.preventDefault();
-        const pelicula1 = document.getElementById('pelicula1').value.trim();
-        const pelicula2 = document.getElementById('pelicula2').value.trim();
-        const pelicula3 = document.getElementById('pelicula3').value.trim();
-        const pelicula4 = document.getElementById('pelicula4').value.trim();
+        const peliculasInputs = [
+            document.getElementById('pelicula1').value.trim(),
+            document.getElementById('pelicula2').value.trim(),
+            document.getElementById('pelicula3').value.trim(),
+            document.getElementById('pelicula4').value.trim()
+        ];
 
-        const peliculas = [pelicula1, pelicula2, pelicula3, pelicula4];
-        const copiaParcial = peliculas.slice(1, 4); // Recuerda que el índice final no se incluye (posición 2 es índice 1, posición 4 es índice 3)
+        const peliculas = peliculasInputs.slice(); // Usamos slice() para crear una copia del array de inputs
+        const copiaParcial = peliculas.slice(1, 4); // Posición 2 es índice 1, posición 4 es índice 3
         resultadoCopiaParcialPeliculasDiv.innerHTML = `<h3>Copia parcial:</h3> <p>[${copiaParcial}]</p>`;
-        console.log('Array original de películas:', peliculas);
-        console.log('Copia parcial de películas (posición 2 a 4):', copiaParcial);
+        console.log('Array original de películas (desde inputs):', peliculas);
+        console.log('Copia parcial de películas (posición 2 a 4) (usando slice):', copiaParcial);
         formCopiaParcialPeliculas.reset();
     });
 
@@ -50,17 +54,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     formUltimosTresRicos.addEventListener('submit', (event) => {
         event.preventDefault();
-        const rico1 = document.getElementById('rico1').value.trim();
-        const rico2 = document.getElementById('rico2').value.trim();
-        const rico3 = document.getElementById('rico3').value.trim();
-        const rico4 = document.getElementById('rico4').value.trim();
-        const rico5 = document.getElementById('rico5').value.trim();
+        const ricosInputs = [
+            document.getElementById('rico1').value.trim(),
+            document.getElementById('rico2').value.trim(),
+            document.getElementById('rico3').value.trim(),
+            document.getElementById('rico4').value.trim(),
+            document.getElementById('rico5').value.trim()
+        ];
 
-        const cosasRicas = [rico1, rico2, rico3, rico4, rico5];
-        const ultimosTres = cosasRicas.slice(-3);
-        resultadoUltimosTresRicosDiv.innerHTML = `<h3>Nuevo array con los últimos 3:</h3> <p>[${ultimosTres}]</p>`;
-        console.log('Array original de cosas ricas:', cosasRicas);
-        console.log('Últimos 3 elementos:', ultimosTres);
+        const soloLetras = ricosInputs.every(rico => /^[a-zA-Z\s]+$/.test(rico));
+
+        if (soloLetras) {
+            const cosasRicas = ricosInputs.slice(); // Usamos slice() para crear una copia del array de inputs
+            const ultimosTres = cosasRicas.slice(-3);
+            resultadoUltimosTresRicosDiv.innerHTML = `<h3>Nuevo array con los últimos 3:</h3> <p>[${ultimosTres}]</p>`;
+            console.log('Array original de cosas ricas (desde inputs):', cosasRicas);
+            console.log('Últimos 3 elementos (usando slice):', ultimosTres);
+        } else {
+            resultadoUltimosTresRicosDiv.textContent = 'Por favor, ingrese solo letras y espacios en las cosas ricas.';
+            console.log('Error: Se intentó ingresar números u otros caracteres en el formulario de cosas ricas.');
+        }
         formUltimosTresRicos.reset();
     });
 });

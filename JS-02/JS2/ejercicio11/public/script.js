@@ -1,209 +1,133 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Sección 1: Saludo de Nombres (sin cambios en la presentación)
-    const formNombres = document.getElementById('formNombres');
-    const nombreInputs = [document.getElementById('nombre1'), document.getElementById('nombre2'), document.getElementById('nombre3')];
-    const errorNombres = [document.getElementById('errorNombre1'), document.getElementById('errorNombre2'), document.getElementById('errorNombre3')];
-    const agregarNombreBtn = document.getElementById('agregarNombre');
-    const saludarNombresBtn = document.getElementById('saludarNombres');
-    const reiniciarNombresBtn = document.getElementById('reiniciarNombres');
-    const outputNombresDiv = document.getElementById('outputNombres');
-    const consoleNombresDiv = document.getElementById('consoleNombres');
-    let nombres = [];
+// Sección Números
+let numeros = [];
+const numeroInput = document.getElementById('numeroInput');
+const numerosIngresadosSpan = document.getElementById('numerosIngresados');
+const numerosFiltradosSpan = document.getElementById('numerosFiltrados');
+const errorNumero = document.getElementById('errorNumero');
 
-    function validarNombre(nombreInput, errorSpan) {
-        if (!nombreInput.checkValidity()) {
-            errorSpan.textContent = nombreInput.validationMessage;
-            return false;
-        }
-        errorSpan.textContent = '';
-        return true;
+function agregarNumero() {
+    errorNumero.textContent = '';
+    const valor = numeroInput.value;
+    const numero = parseInt(valor);
+    const nuevosNumeros = [...numeros].filter(n => true); // Simulación de "agregar" con filter
+    if (!isNaN(numero)) {
+        nuevosNumeros.push(numero);
+        numeros = nuevosNumeros;
+        console.log('Número agregado:', numero);
+        console.log('Números actuales:', numeros);
+        actualizarNumerosIngresados();
+        numeroInput.value = '';
+    } else {
+        errorNumero.textContent = 'Ingrese un número válido.';
+        console.log('Error: Ingrese un número válido.');
     }
+}
 
-    agregarNombreBtn.addEventListener('click', () => {
-        let todosValidos = true;
-        nombreInputs.forEach((input, index) => {
-            if (!validarNombre(input, errorNombres[index])) {
-                todosValidos = false;
-            }
-        });
+function mostrarNumerosMayores10() {
+    const mayoresDe10 = numeros.filter(num => num > 10);
+    numerosFiltradosSpan.textContent = mayoresDe10.join(', ');
+    console.log('Números mayores a 10:', mayoresDe10);
+}
 
-        if (todosValidos) {
-            nombres = nombreInputs.map(input => input.value);
-            console.log('Nombres ingresados:', nombres);
-            consoleNombresDiv.textContent = `Nombres ingresados: ${nombres.join(', ')}`;
-            saludarNombresBtn.disabled = false;
-        } else {
-            console.log('Error: Por favor, complete todos los nombres correctamente.');
-            consoleNombresDiv.textContent = 'Error: Por favor, complete todos los nombres correctamente.';
-        }
-    });
+function reiniciarNumeros() {
+    const eliminados = numeros.filter(n => true); // Simulación de "eliminar todo" con filter
+    numeros = [];
+    numerosIngresadosSpan.textContent = '';
+    numerosFiltradosSpan.textContent = '';
+    console.log('Números eliminados:', eliminados);
+    console.log('Números actuales:', numeros);
+}
 
-    saludarNombresBtn.addEventListener('click', () => {
-        if (nombres.length === 3) {
-            const saludo = `Hola ${nombres.slice(0, -1).join(', ')} y ${nombres.slice(-1)[0]}, gracias por visitar mi página.`;
-            outputNombresDiv.textContent = saludo;
-            console.log('Saludo:', saludo);
-            formNombres.reset();
-            nombres = [];
-            saludarNombresBtn.disabled = true;
-            consoleNombresDiv.textContent = '';
-        } else {
-            console.log('Error: Debes ingresar 3 nombres antes de saludar.');
-            consoleNombresDiv.textContent = 'Error: Debes ingresar 3 nombres antes de saludar.';
-        }
-    });
+function actualizarNumerosIngresados() {
+    numerosIngresadosSpan.textContent = numeros.join(', ');
+}
 
-    reiniciarNombresBtn.addEventListener('click', () => {
-        nombreInputs.forEach(input => input.value = '');
-        errorNombres.forEach(error => error.textContent = '');
-        nombres = [];
-        outputNombresDiv.textContent = '';
-        consoleNombresDiv.textContent = '';
-        saludarNombresBtn.disabled = true;
-        console.log('Sección de nombres reiniciada.');
-    });
+// Sección Palabras
+let palabras = [];
+const palabraInput = document.getElementById('palabraInput');
+const palabrasIngresadasSpan = document.getElementById('palabrasIngresadas');
+const palabrasFiltradasSpan = document.getElementById('palabrasFiltradas');
+const errorPalabra = document.getElementById('errorPalabra');
 
-    // Sección 2: Duplicar Números (presentación apilada)
-    const formNumeros = document.getElementById('formNumeros');
-    const numeroInputs = [document.getElementById('numero1'), document.getElementById('numero2'), document.getElementById('numero3')];
-    const errorNumeros = [document.getElementById('errorNumero1'), document.getElementById('errorNumero2'), document.getElementById('errorNumero3')];
-    const agregarNumeroBtn = document.getElementById('agregarNumero');
-    const duplicarNumerosBtn = document.getElementById('duplicarNumeros');
-    const reiniciarNumerosBtn2 = document.getElementById('reiniciarNumeros');
-    const outputNumerosDiv = document.getElementById('outputNumeros');
-    const consoleNumerosDiv = document.getElementById('consoleNumeros');
-    let numeros = [];
-
-    function validarNumero(numeroInput, errorSpan) {
-        if (!numeroInput.checkValidity()) {
-            errorSpan.textContent = numeroInput.validationMessage;
-            return false;
-        }
-        errorSpan.textContent = '';
-        return true;
+function agregarPalabra() {
+    errorPalabra.textContent = '';
+    const palabra = palabraInput.value.trim();
+    const nuevasPalabras = [...palabras].filter(p => true); // Simulación de "agregar" con filter
+    if (palabra && /^[a-zA-Z]+$/.test(palabra)) {
+        nuevasPalabras.push(palabra);
+        palabras = nuevasPalabras;
+        console.log('Palabra agregada:', palabra);
+        console.log('Palabras actuales:', palabras);
+        actualizarPalabrasIngresadas();
+        palabraInput.value = '';
+    } else {
+        errorPalabra.textContent = 'Ingrese solo letras.';
+        console.log('Error: Ingrese solo letras.');
     }
+}
 
-    agregarNumeroBtn.addEventListener('click', () => {
-        let todosValidos = true;
-        numeroInputs.forEach((input, index) => {
-            if (!validarNumero(input, errorNumeros[index])) {
-                todosValidos = false;
-            }
-        });
+function mostrarPalabrasLargas() {
+    const palabrasLargas = palabras.filter(palabra => palabra.length > 5);
+    palabrasFiltradasSpan.textContent = palabrasLargas.join(', ');
+    console.log('Palabras con más de 5 letras:', palabrasLargas);
+}
 
-        if (todosValidos) {
-            numeros = numeroInputs.map(input => parseInt(input.value));
-            console.log('Números ingresados:', numeros);
-            consoleNumerosDiv.textContent = `Números ingresados: ${numeros.join(', ')}`;
-            duplicarNumerosBtn.disabled = false;
-        } else {
-            console.log('Error: Por favor, complete todos los números.');
-            consoleNumerosDiv.textContent = 'Error: Por favor, complete todos los números.';
-        }
-    });
+function reiniciarPalabras() {
+    const eliminadas = palabras.filter(p => true); // Simulación de "eliminar todo" con filter
+    palabras = [];
+    palabrasIngresadasSpan.textContent = '';
+    palabrasFiltradasSpan.textContent = '';
+    console.log('Palabras eliminadas:', eliminadas);
+    console.log('Palabras actuales:', palabras);
+}
 
-    duplicarNumerosBtn.addEventListener('click', () => {
-        if (numeros.length === 3) {
-            let outputText = '';
-            numeros.forEach(num => {
-                const doble = num * 2;
-                outputText += `${num} duplicado = ${doble}<br>`; // Usamos <br> para salto de línea en HTML
-            });
-            outputNumerosDiv.innerHTML = outputText; // Usamos innerHTML para renderizar las etiquetas HTML
-            console.log('Números duplicados:', numeros.map(num => `${num} duplicado = ${num * 2}`));
-            formNumeros.reset();
-            numeros = [];
-            duplicarNumerosBtn.disabled = true;
-            consoleNumerosDiv.textContent = '';
-        } else {
-            console.log('Error: Debes ingresar 3 números antes de duplicar.');
-            consoleNumerosDiv.textContent = 'Error: Debes ingresar 3 números antes de duplicar.';
-        }
-    });
+function actualizarPalabrasIngresadas() {
+    palabrasIngresadasSpan.textContent = palabras.join(', ');
+}
 
-    reiniciarNumerosBtn2.addEventListener('click', () => {
-        numeroInputs.forEach(input => input.value = '');
-        errorNumeros.forEach(error => error.textContent = '');
-        numeros = [];
-        outputNumerosDiv.textContent = '';
-        consoleNumerosDiv.textContent = '';
-        duplicarNumerosBtn.disabled = true;
-        console.log('Sección de números reiniciada.');
-    });
+// Sección Usuarios
+let usuarios = [];
+const nombreUsuarioInput = document.getElementById('nombreUsuarioInput');
+const activoCheckbox = document.getElementById('activoCheckbox');
+const usuariosIngresadosSpan = document.getElementById('usuariosIngresados');
+const usuariosActivosSpan = document.getElementById('usuariosActivos');
+const errorUsuario = document.getElementById('errorUsuario');
 
-    // Sección 3: Mostrar Nombres y Edades (presentación apilada y lógica de "año/años")
-    const formData = document.getElementById('formData');
-    const nombrePersonaInput = document.getElementById('nombrePersona');
-    const edadPersonaInput = document.getElementById('edadPersona');
-    const errorNombrePersona = document.getElementById('errorNombrePersona');
-    const errorEdadPersona = document.getElementById('errorEdadPersona');
-    const agregarPersonaBtn = document.getElementById('agregarPersona');
-    const mostrarDatosBtn = document.getElementById('mostrarDatos');
-    const reiniciarDatosBtn = document.getElementById('reiniciarDatos');
-    const outputDatosDiv = document.getElementById('outputDatos');
-    const consoleDatosDiv = document.getElementById('consoleDatos');
-    let personas = [];
-
-    function validarPersona() {
-        let nombreValido = true;
-        if (!nombrePersonaInput.checkValidity()) {
-            errorNombrePersona.textContent = nombrePersonaInput.validationMessage;
-            nombreValido = false;
-        } else {
-            errorNombrePersona.textContent = '';
-        }
-
-        let edadValida = true;
-        if (!edadPersonaInput.checkValidity()) {
-            errorEdadPersona.textContent = edadPersonaInput.validationMessage;
-            edadValida = false;
-        } else {
-            errorEdadPersona.textContent = '';
-        }
-
-        return nombreValido && edadValida;
+function agregarUsuario() {
+    errorUsuario.textContent = '';
+    const nombre = nombreUsuarioInput.value.trim();
+    const activo = activoCheckbox.checked;
+    const nuevosUsuarios = [...usuarios].filter(u => true); // Simulación de "agregar" con filter
+    if (nombre && /^[a-zA-Z]+$/.test(nombre)) {
+        const usuario = { nombre: nombre, activo: activo };
+        nuevosUsuarios.push(usuario);
+        usuarios = nuevosUsuarios;
+        console.log('Usuario agregado:', usuario);
+        console.log('Usuarios actuales:', usuarios);
+        actualizarUsuariosIngresados();
+        nombreUsuarioInput.value = '';
+        activoCheckbox.checked = false;
+    } else {
+        errorUsuario.textContent = 'Ingrese solo letras para el nombre.';
+        console.log('Error: Ingrese solo letras para el nombre.');
     }
+}
 
-    agregarPersonaBtn.addEventListener('click', () => {
-        if (validarPersona()) {
-            const nombre = nombrePersonaInput.value;
-            const edad = parseInt(edadPersonaInput.value);
-            personas.push({ nombre, edad });
-            console.log('Persona agregada:', { nombre, edad });
-            const aniosTexto = edad <= 1 ? 'año' : 'años';
-            consoleDatosDiv.textContent = `Persona agregada: ${nombre}, ${edad} ${aniosTexto}.`;
-            mostrarDatosBtn.disabled = false;
-            formData.reset();
-        } else {
-            console.log('Error: Por favor, complete el nombre y la edad correctamente.');
-            consoleDatosDiv.textContent = 'Error: Por favor, complete el nombre y la edad correctamente.';
-        }
-    });
+function mostrarUsuariosActivos() {
+    const usuariosActivos = usuarios.filter(usuario => usuario.activo).map(usuario => usuario.nombre);
+    usuariosActivosSpan.textContent = usuariosActivos.join(', ');
+    console.log('Usuarios activos:', usuariosActivos);
+}
 
-    mostrarDatosBtn.addEventListener('click', () => {
-        if (personas.length > 0) {
-            let outputText = '';
-            personas.forEach(persona => {
-                const anios = persona.edad <= 1 ? 'año' : 'años';
-                outputText += `${persona.nombre} tiene ${persona.edad} ${anios}.<br>`; // Usamos <br>
-            });
-            outputDatosDiv.innerHTML = outputText; // Usamos innerHTML
-            console.log('Datos de personas:', personas);
-        } else {
-            console.log('Error: No hay personas para mostrar.');
-            consoleDatosDiv.textContent = 'Error: No hay personas para mostrar.';
-        }
-    });
+function reiniciarUsuarios() {
+    const eliminados = usuarios.filter(u => true); // Simulación de "eliminar todo" con filter
+    usuarios = [];
+    usuariosIngresadosSpan.textContent = '';
+    usuariosActivosSpan.textContent = '';
+    console.log('Usuarios eliminados:', eliminados);
+    console.log('Usuarios actuales:', usuarios);
+}
 
-    reiniciarDatosBtn.addEventListener('click', () => {
-        nombrePersonaInput.value = '';
-        edadPersonaInput.value = '';
-        errorNombrePersona.textContent = '';
-        errorEdadPersona.textContent = '';
-        personas = [];
-        outputDatosDiv.textContent = '';
-        consoleDatosDiv.textContent = '';
-        mostrarDatosBtn.disabled = true;
-        console.log('Sección de datos reiniciada.');
-    });
-});
+function actualizarUsuariosIngresados() {
+    usuariosIngresadosSpan.textContent = usuarios.map(user => `${user.nombre} (${user.activo ? 'Activo' : 'Inactivo'})`).join(', ');
+}

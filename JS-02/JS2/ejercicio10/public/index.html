@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operaciones con Map</title>
+</head>
+<body>
+    <h1>Operaciones con Map</h1>
+
+    <h2>1. Multiplicar Números por 3</h2>
+    <label for="ingresarNumero">Ingresar número:</label>
+    <input type="number" id="ingresarNumero"><button id="guardarNumero">Guardar</button>
+    <p id="numerosGuardados">Números ingresados: </p>
+    <button id="mostrarMultiplicados">Mostrar Resultados</button>
+    <button id="reiniciarNumeros">Reiniciar</button>
+    <div id="resultadoMultiplicacion"></div>
+    <hr>
+
+    <h2>2. Convertir Nombres a Mayúsculas</h2>
+    <label for="ingresarNombre">Ingresar nombre:</label>
+    <input type="text" id="ingresarNombre" pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+" title="Solo se permiten letras y espacios"><button id="guardarNombre">Guardar</button>
+    <p id="nombresGuardados">Nombres ingresados: </p>
+    <button id="convertirMayusculas">Convertir</button>
+    <button id="reiniciarNombres">Reiniciar</button>
+    <div id="resultadoMayusculas"></div>
+    <hr>
+
+    <h2>3. Agregar IVA a Precios</h2>
+    <label for="ingresarPrecio">Ingresar precio:</label>
+    <input type="number" step="0.01" id="ingresarPrecio"><button id="guardarPrecio">Guardar</button>
+    <p id="preciosGuardados">Precios ingresados: </p>
+    <button id="calcularIVA">Mostrar con IVA</button>
+    <button id="reiniciarPrecios">Reiniciar</button>
+    <div id="resultadoIVA"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

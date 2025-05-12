@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operaciones con Reduce</title>
+</head>
+<body>
+    <h1>Operaciones con Reduce</h1>
+
+    <section>
+        <h2>1) Suma de elementos (números y palabras)</h2>
+        <div>
+            <label for="numeroPalabra">Ingrese número o palabra:</label>
+            <input type="text" id="numeroPalabra" required>
+            <button id="guardarNumeroPalabra">Guardar</button>
+        </div>
+        <div>
+            <button id="sumarElementos">Sumar Todo</button>
+            <button id="reiniciarElementos">Reiniciar</button>
+        </div>
+        <p>Palabras ingresadas: <span id="palabrasIngresadas"></span></p>
+        <p>Elementos con letras sumados: <span id="sumaPalabras"></span></p>
+        <p>Números ingresados: <span id="numerosIngresados"></span></p>
+        <p>Números sumados: <span id="sumaNumeros"></span></p>
+    </section>
+
+    <section>
+        <h2>2) Multiplicación de enteros</h2>
+        <div>
+            <label for="entero">Ingrese un entero:</label>
+            <input type="number" id="entero" pattern="^-?\d+$" required>
+            <button id="guardarEntero">Guardar</button>
+        </div>
+        <div>
+            <button id="multiplicarEnteros">Multiplicar Todo</button>
+            <button id="reiniciarEnteros">Reiniciar</button>
+        </div>
+        <p>Números ingresados: <span id="enterosIngresados"></span></p>
+        <p id="resultadoMultiplicacion"></p>
+    </section>
+
+    <section>
+        <h2>3) Suma de precios</h2>
+        <div>
+            <label for="precio">Ingrese un precio:</label>
+            <input type="number" id="precio" step="0.01" pattern="^-?\d+(\.\d+)?$" required>
+            <button id="guardarPrecio">Guardar</button>
+        </div>
+        <div>
+            <button id="sumarPrecios">Sumar Precios</button>
+            <button id="reiniciarPrecios">Reiniciar</button>
+        </div>
+        <p>Precios ingresados: <span id="preciosIngresados"></span></p>
+        <p id="totalPrecios"></p>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

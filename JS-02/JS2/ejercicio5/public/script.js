@@ -1,4 +1,4 @@
-console.log("Script cargado");
+console.log("Script cargado (Modificado con Reiniciar)");
 
 // Ejercicio 1: Eliminar letras
 let letras = [];
@@ -9,14 +9,15 @@ const letrasEliminadasDiv = document.getElementById('letrasEliminadas');
 
 function agregarLetra() {
     console.log("Función agregarLetra() llamada");
-    if (letras.length < 5 && inputLetra.value.match(/^[a-zA-Z]+$/)) {
-        letras.push(inputLetra.value);
-        console.log("Letra agregada:", inputLetra.value, "Array actual:", letras);
+    const letra = inputLetra.value;
+    if (letras.length < 5 && /^[a-zA-Z]+$/.test(letra)) {
+        letras.splice(letras.length, 0, letra); // Usando splice para agregar al final
+        console.log("Letra agregada:", letra, "Array actual:", letras);
         actualizarLetrasIngresadas();
         inputLetra.value = '';
     } else if (letras.length >= 5) {
         alert("Ya ingresaste el máximo de 5 letras.");
-    } else {
+    } else if (!/^[a-zA-Z]+$/.test(letra)) {
         alert("Por favor, ingresa solo letras.");
     }
 }
@@ -37,8 +38,17 @@ function eliminarDosLetras() {
     }
 }
 
+function reiniciarEjercicio1() {
+    console.log("Función reiniciarEjercicio1() llamada");
+    letras = [];
+    letrasIngresadasDiv.textContent = '';
+    letrasEliminadasDiv.textContent = '';
+    formLetras.reset();
+    console.log("Ejercicio 1 reiniciado. Array letras:", letras);
+}
+
 formLetras.addEventListener('submit', function(event) {
-    event.preventDefault(); // Evita la recarga de la página al enviar el formulario
+    event.preventDefault();
 });
 
 // Ejercicio 2: Insertar nombre
@@ -53,14 +63,15 @@ let nombresMostrados = false;
 
 function agregarNombreInicial() {
     console.log("Función agregarNombreInicial() llamada");
-    if (nombresInicialesArray.length < 3 && inputNombreInicial.value.match(/^[a-zA-Z\s]+$/)) {
-        nombresInicialesArray.push(inputNombreInicial.value);
-        console.log("Nombre inicial agregado:", inputNombreInicial.value, "Array actual:", nombresInicialesArray);
+    const nombre = inputNombreInicial.value;
+    if (nombresInicialesArray.length < 3 && /^[a-zA-Z\s]+$/.test(nombre)) {
+        nombresInicialesArray.splice(nombresInicialesArray.length, 0, nombre); // Usando splice para agregar al final
+        console.log("Nombre inicial agregado:", nombre, "Array actual:", nombresInicialesArray);
         actualizarNombresIniciales();
         inputNombreInicial.value = '';
     } else if (nombresInicialesArray.length >= 3) {
         alert("Ya ingresaste el máximo de 3 nombres iniciales.");
-    } else {
+    } else if (!/^[a-zA-Z\s]+$/.test(nombre)) {
         alert("Por favor, ingresa solo nombres.");
     }
 }
@@ -81,9 +92,9 @@ function mostrarNombres() {
 
 function insertarNombre() {
     console.log("Función insertarNombre() llamada");
-    if (nombresInicialesArray.length === 3 && nombresMostrados && inputNuevoNombre.value.match(/^[a-zA-Z\s]+$/)) {
-        const nuevoNombre = inputNuevoNombre.value;
-        nombresInicialesArray.splice(1, 0, nuevoNombre);
+    const nuevoNombre = inputNuevoNombre.value;
+    if (nombresInicialesArray.length === 3 && nombresMostrados && /^[a-zA-Z\s]+$/.test(nuevoNombre)) {
+        nombresInicialesArray.splice(1, 0, nuevoNombre); // Usando splice para insertar
         console.log("Nombre insertado:", nuevoNombre, "Array resultante:", nombresInicialesArray);
         nombresResultantesDiv.textContent = "Nombres resultantes: " + nombresInicialesArray.join(', ');
         inputNuevoNombre.value = '';
@@ -92,9 +103,20 @@ function insertarNombre() {
         alert("Por favor, ingresa los 3 nombres iniciales primero.");
     } else if (!nombresMostrados) {
         alert("Por favor, haz clic en 'Mostrar Nombres' primero.");
-    } else {
+    } else if (!/^[a-zA-Z\s]+$/.test(nuevoNombre)) {
         alert("Por favor, ingresa un nombre válido.");
     }
+}
+
+function reiniciarEjercicio2() {
+    console.log("Función reiniciarEjercicio2() llamada");
+    nombresInicialesArray = [];
+    nombresInicialesDiv.textContent = '';
+    nombresResultantesDiv.textContent = '';
+    nombresMostrados = false;
+    formNombresIniciales.reset();
+    formNuevoNombre.reset();
+    console.log("Ejercicio 2 reiniciado. Array nombresInicialesArray:", nombresInicialesArray);
 }
 
 formNombresIniciales.addEventListener('submit', function(event) {
@@ -114,14 +136,17 @@ const formReemplazarElementos = document.getElementById('formReemplazarElementos
 const inputReemplazo1 = document.getElementById('inputReemplazo1');
 const inputReemplazo2 = document.getElementById('inputReemplazo2');
 const elementosResultantesDiv = document.getElementById('elementosResultantes');
+let elementosAgregados = 0;
 
 function agregarElementoInicial() {
     console.log("Función agregarElementoInicial() llamada");
+    const elemento = inputElementoInicial.value;
     if (elementosInicialesArray.length < 5) {
-        elementosInicialesArray.push(inputElementoInicial.value);
-        console.log("Elemento inicial agregado:", inputElementoInicial.value, "Array actual:", elementosInicialesArray);
+        elementosInicialesArray.splice(elementosInicialesArray.length, 0, elemento); // Usando splice para agregar al final
+        console.log("Elemento inicial agregado:", elemento, "Array actual:", elementosInicialesArray);
         actualizarElementosIniciales();
         inputElementoInicial.value = '';
+        elementosAgregados++;
     } else {
         alert("Ya ingresaste el máximo de 5 elementos iniciales.");
     }
@@ -133,9 +158,9 @@ function actualizarElementosIniciales() {
 
 function reemplazarElementos() {
     console.log("Función reemplazarElementos() llamada");
+    const reemplazo1 = inputReemplazo1.value;
+    const reemplazo2 = inputReemplazo2.value;
     if (elementosInicialesArray.length === 5) {
-        const reemplazo1 = inputReemplazo1.value;
-        const reemplazo2 = inputReemplazo2.value;
         const eliminados = elementosInicialesArray.splice(2, 2, reemplazo1, reemplazo2);
         console.log("Elementos eliminados:", eliminados, "Elementos agregados:", [reemplazo1, reemplazo2], "Array resultante:", elementosInicialesArray);
         elementosResultantesDiv.textContent = "Elementos resultantes: " + elementosInicialesArray.join(', ');
@@ -143,6 +168,17 @@ function reemplazarElementos() {
     } else {
         alert("Por favor, ingresa los 5 elementos iniciales primero.");
     }
+}
+
+function reiniciarEjercicio3() {
+    console.log("Función reiniciarEjercicio3() llamada");
+    elementosInicialesArray = [];
+    elementosInicialesDiv.textContent = '';
+    elementosResultantesDiv.textContent = '';
+    formElementosIniciales.reset();
+    formReemplazarElementos.reset();
+    elementosAgregados = 0;
+    console.log("Ejercicio 3 reiniciado. Array elementosInicialesArray:", elementosInicialesArray);
 }
 
 formElementosIniciales.addEventListener('submit', function(event) {

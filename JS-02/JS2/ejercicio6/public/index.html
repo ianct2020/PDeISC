@@ -3,26 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejemplos de Slice con Formularios Detallados</title>
+    <title>Ejemplos de Slice con Formularios Detallados (Modificado)</title>
 </head>
 <body>
-    <h1>Ejemplos de Slice con Formularios Detallados</h1>
+    <h1>Ejemplos de Slice con Formularios Detallados (Modificado)</h1>
 
     <hr>
 
     <h2>1. Copiar los primeros 3 números</h2>
     <form id="formPrimerosTresNumeros">
         <label for="numero1">Ingrese el primer número:</label>
-        <input type="number" id="numero1" required>
+        <input type="number" id="numero1" required pattern="[0-9]+">
         <br><br>
         <label for="numero2">Ingrese el segundo número:</label>
-        <input type="number" id="numero2" required>
+        <input type="number" id="numero2" required pattern="[0-9]+">
         <br><br>
         <label for="numero3">Ingrese el tercer número:</label>
-        <input type="number" id="numero3" required>
+        <input type="number" id="numero3" required pattern="[0-9]+">
         <br><br>
         <label for="numero4">Ingrese el cuarto número:</label>
-        <input type="number" id="numero4" required>
+        <input type="number" id="numero4" required pattern="[0-9]+">
         <br><br>
         <button type="submit">Copiar Primeros 3</button>
     </form>
@@ -53,19 +53,19 @@
     <h2>3. Últimos 3 elementos de cosas ricas</h2>
     <form id="formUltimosTresRicos">
         <label for="rico1">Ingrese la primera cosa rica:</label>
-        <input type="text" id="rico1" required>
+        <input type="text" id="rico1" required pattern="[a-zA-Z\s]+">
         <br><br>
         <label for="rico2">Ingrese la segunda cosa rica:</label>
-        <input type="text" id="rico2" required>
+        <input type="text" id="rico2" required pattern="[a-zA-Z\s]+">
         <br><br>
         <label for="rico3">Ingrese la tercera cosa rica:</label>
-        <input type="text" id="rico3" required>
+        <input type="text" id="rico3" required pattern="[a-zA-Z\s]+">
         <br><br>
         <label for="rico4">Ingrese la cuarta cosa rica:</label>
-        <input type="text" id="rico4" required>
+        <input type="text" id="rico4" required pattern="[a-zA-Z\s]+">
         <br><br>
         <label for="rico5">Ingrese la quinta cosa rica:</label>
-        <input type="text" id="rico5" required>
+        <input type="text" id="rico5" required pattern="[a-zA-Z\s]+">
         <br><br>
         <button type="submit">Obtener Últimos 3</button>
     </form>

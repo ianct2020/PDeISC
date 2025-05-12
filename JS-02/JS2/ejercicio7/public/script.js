@@ -13,20 +13,15 @@ console.log('Ejercicio 1: Script cargado.');
 
 function agregarPalabra() {
     const palabra = palabraInput.value.trim();
-    const soloLetras = /^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ\s]+$/.test(palabra);
-
-    if (!soloLetras) {
+    if (!/^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ\s]+$/.test(palabra)) {
         palabraError.textContent = 'Por favor, ingresa solo letras.';
         return;
     }
-
     const palabraLower = palabra.toLowerCase();
-
     if (palabraLower.length === 0) {
         palabraError.textContent = 'Debes ingresar al menos una letra.';
         return;
     }
-
     if (palabras.length < maxPalabras) {
         if (palabraLower === 'perro' && !perroIngresado) {
             perroIngresado = true;
@@ -39,7 +34,6 @@ function agregarPalabra() {
         palabrasIngresadasSpan.textContent = 'Palabras ingresadas: ' + palabras.join(', ');
         palabraInput.value = '';
         palabraError.textContent = '';
-
         if (palabras.length === maxPalabras) {
             if (!perroIngresado) {
                 palabraError.textContent = 'Debes ingresar la palabra "perro" antes de completar las 5 palabras.';
@@ -61,13 +55,12 @@ function agregarPalabra() {
 
 function revelarPosicionPalabra() {
     if (perroIngresado) {
-        const indices = palabras.reduce((acc, p, i) => {
-            if (p === 'perro') {
-                acc.push(i + 1);
-            }
-            return acc;
-        }, []);
-
+        let indices = [];
+        let index = palabras.indexOf('perro');
+        while (index !== -1) {
+            indices.push(index + 1);
+            index = palabras.indexOf('perro', index + 1);
+        }
         if (indices.length > 0) {
             posicionPalabraParrafo.textContent = `La palabra "perro" se encuentra en las posiciones: ${indices.join(', ')}`;
             console.log('Ejercicio 1 - Posición(es) de "perro":', indices);
@@ -92,7 +85,7 @@ function reiniciarEjercicio1() {
     console.log('Ejercicio 1 - Reiniciado.');
 }
 
-// Ejercicio 2 (sin cambios)
+// Ejercicio 2
 let numeros = [];
 let cincuentaIngresado = false;
 const maxNumeros = 5;
@@ -106,47 +99,44 @@ console.log('Ejercicio 2: Script cargado.');
 
 function agregarNumero() {
     const numero = parseInt(numeroInput.value);
-
-    if (!isNaN(numero)) {
-        if (numeros.length < maxNumeros) {
-            if (numero === 50) {
-                cincuentaIngresado = true;
-            }
-            numeros.push(numero);
-            console.log('Ejercicio 2 - Número guardado:', numero);
-            console.log('Ejercicio 2 - Números actuales:', numeros);
-            numerosIngresadosSpan.textContent = 'Números ingresados: ' + numeros.join(', ');
-            numeroInput.value = '';
-            numeroError.textContent = '';
-
-            if (numeros.length === maxNumeros) {
-                if (!cincuentaIngresado) {
-                    numeroError.textContent = 'Debes ingresar el número 50 antes de completar los 5 números.';
-                    numeros.pop();
-                    console.log('Ejercicio 2 - Error: 50 no ingresado. Último número eliminado.', numeros);
-                    numerosIngresadosSpan.textContent = 'Números ingresados: ' + numeros.join(', ');
-                } else {
-                    revelarNumeroBtn.disabled = false;
-                }
+    if (isNaN(numero)) {
+        numeroError.textContent = 'Por favor, ingresa un número válido.';
+        return;
+    }
+    if (numeros.length < maxNumeros) {
+        if (numero === 50) {
+            cincuentaIngresado = true;
+        }
+        numeros.push(numero);
+        console.log('Ejercicio 2 - Número guardado:', numero);
+        console.log('Ejercicio 2 - Números actuales:', numeros);
+        numerosIngresadosSpan.textContent = 'Números ingresados: ' + numeros.join(', ');
+        numeroInput.value = '';
+        numeroError.textContent = '';
+        if (numeros.length === maxNumeros) {
+            if (!cincuentaIngresado) {
+                numeroError.textContent = 'Debes ingresar el número 50 antes de completar los 5 números.';
+                numeros.pop();
+                console.log('Ejercicio 2 - Error: 50 no ingresado. Último número eliminado.', numeros);
+                numerosIngresadosSpan.textContent = 'Números ingresados: ' + numeros.join(', ');
+            } else {
+                revelarNumeroBtn.disabled = false;
             }
         }
-    } else {
-        numeroError.textContent = 'Por favor, ingresa un número válido.';
     }
 }
 
 function revelarPosicionNumero() {
     if (cincuentaIngresado) {
-        const indicesCincuenta = numeros.reduce((acc, num, i) => {
-            if (num === 50) {
-                acc.push(i + 1);
-            }
-            return acc;
-        }, []);
-
-        if (indicesCincuenta.length > 0) {
-            posicionNumeroParrafo.textContent = `El número 50 se encuentra en las posiciones: ${indicesCincuenta.join(', ')}`;
-            console.log('Ejercicio 2 - Posición(es) del 50:', indicesCincuenta);
+        let indices = [];
+        let index = numeros.indexOf(50);
+        while (index !== -1) {
+            indices.push(index + 1);
+            index = numeros.indexOf(50, index + 1);
+        }
+        if (indices.length > 0) {
+            posicionNumeroParrafo.textContent = `El número 50 se encuentra en las posiciones: ${indices.join(', ')}`;
+            console.log('Ejercicio 2 - Posición(es) del 50:', indices);
         } else {
             posicionNumeroParrafo.textContent = 'El número 50 no se encontró.';
             console.log('Ejercicio 2 - Error: 50 no encontrado en el array.');
@@ -180,26 +170,21 @@ console.log('Ejercicio 3: Script cargado.');
 
 function agregarCiudad() {
     const ciudad = ciudadInput.value.trim();
-    const soloLetras = /^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ\s]+$/.test(ciudad);
-
-    if (!soloLetras) {
+    if (!/^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ\s]+$/.test(ciudad)) {
         ciudadError.textContent = 'Por favor, ingresa solo letras.';
         return;
     }
-
     if (ciudad.length < 3) {
         ciudadError.textContent = 'La ciudad debe tener al menos 3 letras.';
         return;
     }
-
     if (ciudades.length < maxCiudades) {
-        ciudades.push(ciudad.toLowerCase()); // Guardar en minúsculas para la búsqueda
+        ciudades.push(ciudad.toLowerCase());
         console.log('Ejercicio 3 - Ciudad guardada:', ciudad.toLowerCase());
         console.log('Ejercicio 3 - Ciudades actuales:', ciudades);
         ciudadesIngresadasSpan.textContent = 'Ciudades ingresadas: ' + ciudades.join(', ');
         ciudadInput.value = '';
         ciudadError.textContent = '';
-
         if (ciudades.length === maxCiudades) {
             buscarMadridBtn.disabled = false;
         }
@@ -207,16 +192,15 @@ function agregarCiudad() {
 }
 
 function buscarMadrid() {
-    const indicesMadrid = ciudades.reduce((acc, ciudad, i) => {
-        if (ciudad === 'madrid') {
-            acc.push(i + 1);
-        }
-        return acc;
-    }, []);
-
-    if (indicesMadrid.length > 0) {
-        resultadoMadridParrafo.textContent = `La ciudad de "Madrid" se encuentra en las posiciones: ${indicesMadrid.join(', ')}`;
-        console.log('Ejercicio 3 - Posición(es) de "Madrid":', indicesMadrid);
+    let indices = [];
+    let index = ciudades.indexOf('madrid');
+    while (index !== -1) {
+        indices.push(index + 1);
+        index = ciudades.indexOf('madrid', index + 1);
+    }
+    if (indices.length > 0) {
+        resultadoMadridParrafo.textContent = `La ciudad de "Madrid" se encuentra en las posiciones: ${indices.join(', ')}`;
+        console.log('Ejercicio 3 - Posición(es) de "Madrid":', indices);
     } else {
         resultadoMadridParrafo.textContent = 'La ciudad de "Madrid" no se encontró en la lista.';
         console.log('Ejercicio 3 - "Madrid" no encontrado en el array.');
