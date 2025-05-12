@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herramienta de Ordenamiento</title>
+</head>
+<body>
+
+    <h1>Herramientas de Ordenamiento con JavaScript</h1>
+
+    <fieldset>
+        <legend>1. Ordenar Números (Menor a Mayor)</legend>
+        <div>
+            <label for="inputNumero">Ingresa un número (máximo 5):</label>
+            <input type="number" id="inputNumero" required>
+            <button id="btnAgregarNumero">Agregar Número</button>
+        </div>
+        <div>
+            <button id="btnOrdenarNumeros">Ordenar Números</button>
+            <button id="btnReiniciarNumeros">Reiniciar Números</button>
+        </div>
+        <div>
+            <h3>Números Ingresados:</h3>
+            <ul id="listaNumerosIngresados"></ul>
+        </div>
+        <div>
+            <h3>Números Ordenados:</h3>
+            <ul id="listaNumerosOrdenados"></ul>
+        </div>
+    </fieldset>
+
+    <hr>
+
+    <fieldset>
+        <legend>2. Ordenar Palabras (Alfabéticamente)</legend>
+        <div>
+            <label for="inputPalabra">Ingresa una palabra (máximo 5, solo letras):</label>
+            <input type="text" id="inputPalabra" required pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+">
+            <button id="btnAgregarPalabra">Agregar Palabra</button>
+        </div>
+        <div>
+            <button id="btnOrdenarPalabras">Ordenar Palabras</button>
+            <button id="btnReiniciarPalabras">Reiniciar Palabras</button>
+        </div>
+        <div>
+            <h3>Palabras Ingresadas:</h3>
+            <ul id="listaPalabrasIngresadas"></ul>
+        </div>
+        <div>
+            <h3>Palabras Ordenadas:</h3>
+            <ul id="listaPalabrasOrdenadas"></ul>
+        </div>
+    </fieldset>
+
+    <hr>
+
+    <fieldset>
+        <legend>3. Ordenar Personas por Edad</legend>
+        <div>
+            <label for="inputNombrePersona">Nombre (solo letras):</label>
+            <input type="text" id="inputNombrePersona" required pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+">
+            <label for="inputEdadPersona">Edad:</label>
+            <input type="number" id="inputEdadPersona" required min="0">
+            <button id="btnAgregarPersona">Agregar Persona</button>
+        </div>
+        <div>
+            <button id="btnOrdenarPersonas">Ordenar por Edad</button>
+            <button id="btnReiniciarPersonas">Reiniciar Personas</button>
+        </div>
+        <div>
+            <h3>Personas Ingresadas:</h3>
+            <ul id="listaPersonasIngresadas"></ul>
+        </div>
+        <div>
+            <h3>Personas Ordenadas por Edad:</h3>
+            <ul id="listaPersonasOrdenadas"></ul>
+        </div>
+    </fieldset>
+
+    <script src="script.js"></script>
+</body>
+</html>
