@@ -7,11 +7,11 @@ const inputLetra = document.getElementById('inputLetra');
 const letrasIngresadasDiv = document.getElementById('letrasIngresadas');
 const letrasEliminadasDiv = document.getElementById('letrasEliminadas');
 
-function agregarLetra() {
+function agregarLetra() { //agregar letra
     console.log("Función agregarLetra() llamada");
     const letra = inputLetra.value;
     if (letras.length < 5 && /^[a-zA-Z]+$/.test(letra)) {
-        letras.splice(letras.length, 0, letra); // Usando splice para agregar al final
+        letras.splice(letras.length, 0, letra); 
         console.log("Letra agregada:", letra, "Array actual:", letras);
         actualizarLetrasIngresadas();
         inputLetra.value = '';
@@ -22,11 +22,11 @@ function agregarLetra() {
     }
 }
 
-function actualizarLetrasIngresadas() {
+function actualizarLetrasIngresadas() { //mostrar las letras en el panel
     letrasIngresadasDiv.textContent = "Letras ingresadas: " + letras.join(', ');
 }
 
-function eliminarDosLetras() {
+function eliminarDosLetras() { //eliminar dos letras
     console.log("Función eliminarDosLetras() llamada");
     if (letras.length >= 2) {
         const eliminadas = letras.splice(0, 2);
@@ -38,7 +38,7 @@ function eliminarDosLetras() {
     }
 }
 
-function reiniciarEjercicio1() {
+function reiniciarEjercicio1() { //borrar formulario para empezard nuevo
     console.log("Función reiniciarEjercicio1() llamada");
     letras = [];
     letrasIngresadasDiv.textContent = '';
@@ -61,11 +61,11 @@ const inputNuevoNombre = document.getElementById('inputNuevoNombre');
 const nombresResultantesDiv = document.getElementById('nombresResultantes');
 let nombresMostrados = false;
 
-function agregarNombreInicial() {
+function agregarNombreInicial() {  // para agregar nombre
     console.log("Función agregarNombreInicial() llamada");
     const nombre = inputNombreInicial.value;
     if (nombresInicialesArray.length < 3 && /^[a-zA-Z\s]+$/.test(nombre)) {
-        nombresInicialesArray.splice(nombresInicialesArray.length, 0, nombre); // Usando splice para agregar al final
+        nombresInicialesArray.splice(nombresInicialesArray.length, 0, nombre); 
         console.log("Nombre inicial agregado:", nombre, "Array actual:", nombresInicialesArray);
         actualizarNombresIniciales();
         inputNombreInicial.value = '';
@@ -76,11 +76,11 @@ function agregarNombreInicial() {
     }
 }
 
-function actualizarNombresIniciales() {
+function actualizarNombresIniciales() { //actualizar el panel de los ingresados
     nombresInicialesDiv.textContent = "Nombres ingresados: " + nombresInicialesArray.join(', ');
 }
 
-function mostrarNombres() {
+function mostrarNombres() { //mostrar los nombres
     console.log("Función mostrarNombres() llamada");
     if (nombresInicialesArray.length === 3) {
         nombresResultantesDiv.textContent = "Nombres iniciales: " + nombresInicialesArray.join(', ');
@@ -90,7 +90,7 @@ function mostrarNombres() {
     }
 }
 
-function insertarNombre() {
+function insertarNombre() { //insertar el nombre
     console.log("Función insertarNombre() llamada");
     const nuevoNombre = inputNuevoNombre.value;
     if (nombresInicialesArray.length === 3 && nombresMostrados && /^[a-zA-Z\s]+$/.test(nuevoNombre)) {
@@ -108,7 +108,7 @@ function insertarNombre() {
     }
 }
 
-function reiniciarEjercicio2() {
+function reiniciarEjercicio2() { //reiniciar formulario
     console.log("Función reiniciarEjercicio2() llamada");
     nombresInicialesArray = [];
     nombresInicialesDiv.textContent = '';
@@ -138,11 +138,11 @@ const inputReemplazo2 = document.getElementById('inputReemplazo2');
 const elementosResultantesDiv = document.getElementById('elementosResultantes');
 let elementosAgregados = 0;
 
-function agregarElementoInicial() {
+function agregarElementoInicial() { //agregar elemento
     console.log("Función agregarElementoInicial() llamada");
     const elemento = inputElementoInicial.value;
     if (elementosInicialesArray.length < 5) {
-        elementosInicialesArray.splice(elementosInicialesArray.length, 0, elemento); // Usando splice para agregar al final
+        elementosInicialesArray.splice(elementosInicialesArray.length, 0, elemento); 
         console.log("Elemento inicial agregado:", elemento, "Array actual:", elementosInicialesArray);
         actualizarElementosIniciales();
         inputElementoInicial.value = '';
@@ -152,11 +152,11 @@ function agregarElementoInicial() {
     }
 }
 
-function actualizarElementosIniciales() {
+function actualizarElementosIniciales() { //mostrar lo ingresado
     elementosInicialesDiv.textContent = "Elementos ingresados: " + elementosInicialesArray.join(', ');
 }
 
-function reemplazarElementos() {
+function reemplazarElementos() { //reemplazar por los otros
     console.log("Función reemplazarElementos() llamada");
     const reemplazo1 = inputReemplazo1.value;
     const reemplazo2 = inputReemplazo2.value;
@@ -170,7 +170,7 @@ function reemplazarElementos() {
     }
 }
 
-function reiniciarEjercicio3() {
+function reiniciarEjercicio3() { //reiniciar formulario
     console.log("Función reiniciarEjercicio3() llamada");
     elementosInicialesArray = [];
     elementosInicialesDiv.textContent = '';
@@ -182,7 +182,7 @@ function reiniciarEjercicio3() {
 }
 
 formElementosIniciales.addEventListener('submit', function(event) {
-    event.preventDefault();
+    event.preventDefault(); 
 });
 
 formReemplazarElementos.addEventListener('submit', function(event) {

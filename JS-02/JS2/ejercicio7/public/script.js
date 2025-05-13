@@ -1,4 +1,3 @@
-// Ejercicio 1
 let palabras = [];
 let perroIngresado = false;
 const maxPalabras = 5;
