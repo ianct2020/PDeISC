@@ -1,6 +1,6 @@
 console.log("Script cargado (Modificado con Reiniciar)");
 
-// Ejercicio 1: Eliminar letras
+
 let letras = [];
 const formLetras = document.getElementById('formLetras');
 const inputLetra = document.getElementById('inputLetra');
@@ -51,7 +51,7 @@ formLetras.addEventListener('submit', function(event) {
     event.preventDefault();
 });
 
-// Ejercicio 2: Insertar nombre
+
 let nombresInicialesArray = [];
 const formNombresIniciales = document.getElementById('formNombresIniciales');
 const inputNombreInicial = document.getElementById('inputNombreInicial');
@@ -127,7 +127,7 @@ formNuevoNombre.addEventListener('submit', function(event) {
     event.preventDefault();
 });
 
-// Ejercicio 3: Reemplazar elementos
+
 let elementosInicialesArray = [];
 const formElementosIniciales = document.getElementById('formElementosIniciales');
 const inputElementoInicial = document.getElementById('inputElementoInicial');

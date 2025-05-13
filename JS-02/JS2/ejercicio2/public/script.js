@@ -1,7 +1,7 @@
 const animales = [];
 const compras = [];
 
-function agregarAnimal() {
+function agregarAnimal() { //para agregar animal
     const input = document.getElementById("animalInput");
     const valor = input.value.trim();
     if (valor) {
@@ -11,16 +11,16 @@ function agregarAnimal() {
     }
 }
 
-function eliminarAnimal() {
+function eliminarAnimal() { //borrarlo
     if (animales.length > 0) {
         const eliminado = animales.pop();
         alert("Animal eliminado: " + eliminado);
         mostrarResultado();
-        // guardarDatos(); // Comentado para que no tire error ahora
+        
     }
 }
 
-function agregarCompra() {
+function agregarCompra() {//agregar compra
     const input = document.getElementById("compraInput");
     const valor = input.value.trim();
     if (valor) {
@@ -30,16 +30,16 @@ function agregarCompra() {
     }
 }
 
-function eliminarCompra() {
+function eliminarCompra() { //para eliminar
     if (compras.length > 0) {
         const eliminado = compras.pop();
         alert("Producto eliminado: " + eliminado);
         mostrarResultado();
-        // guardarDatos(); // Comentado para que no tire error ahora
+        
     }
 }
 
-function vaciarTodo() {
+function vaciarTodo() { //vaciar formulario
     while (animales.length > 0) {
         animales.pop();
     }
@@ -48,19 +48,17 @@ function vaciarTodo() {
     }
     alert("Arrays vaciados");
     mostrarResultado();
-    // guardarDatos(); // Comentado para que no tire error ahora
+    
 }
 
-function mostrarResultado() {
+function mostrarResultado() { //mostrar
     document.getElementById("resultado").textContent =
         "Animales: " + JSON.stringify(animales) + "\n" +
         "Compras: " + JSON.stringify(compras);
 }
 
-function mostrarTodoEnConsola() {
+function mostrarTodoEnConsola() { //mostrar
     console.log("Animales:", animales);
     console.log("Compras:", compras);
 }
 
-// La parte del servidor la dejo como estaba, para no tocar la funcionalidad.
-// Si querés que la estilicemos de alguna forma en particular, avisame!

@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM completamente cargado y analizado.');
+    console.log('DOM completamente cargado y analizado. ¡Modo Hacker Activado!');
 
     // --- Sección 1: Ordenar Números ---
     const inputNumero = document.getElementById('inputNumero');
@@ -29,14 +29,17 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const numero = parseFloat(valorNumero); // HTML5 type="number" ya ayuda con la validación
+        const numero = parseFloat(valorNumero);
 
         numeros.push(numero);
         console.log(`Número agregado: ${numero}. Array actual: [${numeros.join(', ')}]`);
-        actualizarListaVisual(listaNumerosIngresados, numeros);
-        inputNumero.value = ''; // Limpiar input
+        actualizarListaVisual(listaNumerosIngresados, numeros, "números");
+        inputNumero.value = '';
         inputNumero.focus();
-        listaNumerosOrdenados.innerHTML = ''; // Limpiar lista ordenada si se agrega nuevo número
+        listaNumerosOrdenados.innerHTML = '';
+        if (listaNumerosOrdenados.children.length === 0 && numeros.length > 0) { // Mostrar placeholder si está vacía después de agregar
+             actualizarListaVisual(listaNumerosOrdenados, [], "números ordenados");
+        }
     });
 
     btnOrdenarNumeros.addEventListener('click', () => {
@@ -47,19 +50,18 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Copia para no modificar el original al mostrar y luego reordenar
         const numerosParaOrdenar = [...numeros];
-        numerosParaOrdenar.sort((a, b) => a - b); // Orden ascendente para números
+        numerosParaOrdenar.sort((a, b) => a - b);
 
         console.log(`Números ordenados: [${numerosParaOrdenar.join(', ')}]. Array original sin cambios: [${numeros.join(', ')}]`);
-        actualizarListaVisual(listaNumerosOrdenados, numerosParaOrdenar);
+        actualizarListaVisual(listaNumerosOrdenados, numerosParaOrdenar, "números ordenados");
     });
 
     btnReiniciarNumeros.addEventListener('click', () => {
         console.log('Botón "Reiniciar Números" presionado.');
         numeros = [];
-        listaNumerosIngresados.innerHTML = '';
-        listaNumerosOrdenados.innerHTML = '';
+        actualizarListaVisual(listaNumerosIngresados, numeros, "números");
+        actualizarListaVisual(listaNumerosOrdenados, [], "números ordenados");
         inputNumero.value = '';
         console.log('Lista de números reiniciada.');
     });
@@ -103,10 +105,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         palabras.push(palabra);
         console.log(`Palabra agregada: "${palabra}". Array actual: ["${palabras.join('", "')}"]`);
-        actualizarListaVisual(listaPalabrasIngresadas, palabras);
-        inputPalabra.value = ''; // Limpiar input
+        actualizarListaVisual(listaPalabrasIngresadas, palabras, "palabras");
+        inputPalabra.value = '';
         inputPalabra.focus();
-        listaPalabrasOrdenadas.innerHTML = ''; // Limpiar lista ordenada
+        listaPalabrasOrdenadas.innerHTML = '';
+        if (listaPalabrasOrdenadas.children.length === 0 && palabras.length > 0) {
+             actualizarListaVisual(listaPalabrasOrdenadas, [], "palabras ordenadas");
+        }
     });
 
     btnOrdenarPalabras.addEventListener('click', () => {
@@ -117,19 +122,18 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         const palabrasParaOrdenar = [...palabras];
-        // sort() por defecto ordena alfabéticamente para strings
         palabrasParaOrdenar.sort((a, b) => a.localeCompare(b, 'es', { sensitivity: 'base' }));
 
 
         console.log(`Palabras ordenadas: ["${palabrasParaOrdenar.join('", "')}"]. Array original: ["${palabras.join('", "')}"]`);
-        actualizarListaVisual(listaPalabrasOrdenadas, palabrasParaOrdenar);
+        actualizarListaVisual(listaPalabrasOrdenadas, palabrasParaOrdenar, "palabras ordenadas");
     });
 
     btnReiniciarPalabras.addEventListener('click', () => {
         console.log('Botón "Reiniciar Palabras" presionado.');
         palabras = [];
-        listaPalabrasIngresadas.innerHTML = '';
-        listaPalabrasOrdenadas.innerHTML = '';
+        actualizarListaVisual(listaPalabrasIngresadas, palabras, "palabras");
+        actualizarListaVisual(listaPalabrasOrdenadas, [], "palabras ordenadas");
         inputPalabra.value = '';
         console.log('Lista de palabras reiniciada.');
     });
@@ -176,11 +180,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const nuevaPersona = { nombre, edad };
         personas.push(nuevaPersona);
         console.log(`Persona agregada: ${JSON.stringify(nuevaPersona)}. Array actual: ${JSON.stringify(personas)}`);
-        actualizarListaPersonasVisual(listaPersonasIngresadas, personas);
-        inputNombrePersona.value = ''; // Limpiar inputs
+        actualizarListaPersonasVisual(listaPersonasIngresadas, personas, "personas");
+        inputNombrePersona.value = '';
         inputEdadPersona.value = '';
         inputNombrePersona.focus();
-        listaPersonasOrdenadas.innerHTML = ''; // Limpiar lista ordenada
+        listaPersonasOrdenadas.innerHTML = '';
+        if (listaPersonasOrdenadas.children.length === 0 && personas.length > 0) {
+            actualizarListaPersonasVisual(listaPersonasOrdenadas, [], "personas ordenadas");
+        }
     });
 
     btnOrdenarPersonas.addEventListener('click', () => {
@@ -192,17 +199,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const personasParaOrdenar = [...personas];
-        personasParaOrdenar.sort((a, b) => a.edad - b.edad); // Ordena por edad, de menor a mayor
+        personasParaOrdenar.sort((a, b) => a.edad - b.edad);
 
         console.log(`Personas ordenadas por edad: ${JSON.stringify(personasParaOrdenar)}. Array original: ${JSON.stringify(personas)}`);
-        actualizarListaPersonasVisual(listaPersonasOrdenadas, personasParaOrdenar);
+        actualizarListaPersonasVisual(listaPersonasOrdenadas, personasParaOrdenar, "personas ordenadas");
     });
 
     btnReiniciarPersonas.addEventListener('click', () => {
         console.log('Botón "Reiniciar Personas" presionado.');
         personas = [];
-        listaPersonasIngresadas.innerHTML = '';
-        listaPersonasOrdenadas.innerHTML = '';
+        actualizarListaPersonasVisual(listaPersonasIngresadas, personas, "personas");
+        actualizarListaPersonasVisual(listaPersonasOrdenadas, [], "personas ordenadas");
         inputNombrePersona.value = '';
         inputEdadPersona.value = '';
         console.log('Lista de personas reiniciada.');
@@ -210,44 +217,60 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // --- Funciones Auxiliares para actualizar el DOM ---
-    function actualizarListaVisual(ulElement, array) {
-        ulElement.innerHTML = ''; // Limpiar lista anterior
+    // Modifiqué un poco para que el placeholder sea más claro
+    function actualizarListaVisual(ulElement, array, tipoElementoSingular) {
+        ulElement.innerHTML = '';
         if (array.length === 0) {
             const li = document.createElement('li');
-            li.textContent = 'No hay elementos.';
+            li.textContent = `No hay ${tipoElementoSingular} para mostrar.`;
+            if (ulElement.id.includes("Ordenad")) { // Si es una lista de "ordenados"
+                 li.textContent = `Presiona "Ordenar" para ver los ${tipoElementoSingular} aquí.`;
+                 if ( (ulElement.id.includes("Numeros") && numeros.length === 0) ||
+                      (ulElement.id.includes("Palabras") && palabras.length === 0) ||
+                      (ulElement.id.includes("Personas") && personas.length === 0)
+                 ) {
+                    li.textContent = `No hay ${tipoElementoSingular} para mostrar.`;
+                 }
+            }
             ulElement.appendChild(li);
         } else {
             array.forEach(item => {
                 const li = document.createElement('li');
                 li.textContent = item;
                 ulElement.appendChild(li);
-                console.log(`Elemento "${item}" agregado visualmente a la lista ${ulElement.id}.`);
+                // console.log(`Elemento "${item}" agregado visualmente a la lista ${ulElement.id}.`);
             });
         }
     }
 
-    function actualizarListaPersonasVisual(ulElement, arrayPersonas) {
-        ulElement.innerHTML = ''; // Limpiar lista anterior
+    function actualizarListaPersonasVisual(ulElement, arrayPersonas, tipoElementoSingular) {
+        ulElement.innerHTML = '';
         if (arrayPersonas.length === 0) {
             const li = document.createElement('li');
-            li.textContent = 'No hay personas.';
+             li.textContent = `No hay ${tipoElementoSingular} para mostrar.`;
+            if (ulElement.id.includes("Ordenad")) { // Si es una lista de "ordenados"
+                 li.textContent = `Presiona "Ordenar" para ver las ${tipoElementoSingular} aquí.`;
+                  if (personas.length === 0) { // Si no hay personas ingresadas, no tiene sentido el mensaje de ordenar
+                     li.textContent = `No hay ${tipoElementoSingular} para mostrar.`;
+                  }
+            }
             ulElement.appendChild(li);
         } else {
             arrayPersonas.forEach(persona => {
                 const li = document.createElement('li');
                 li.textContent = `Nombre: ${persona.nombre}, Edad: ${persona.edad}`;
                 ulElement.appendChild(li);
-                console.log(`Persona "${persona.nombre}, Edad: ${persona.edad}" agregada visualmente a la lista ${ulElement.id}.`);
+                // console.log(`Persona "${persona.nombre}, Edad: ${persona.edad}" agregada visualmente a la lista ${ulElement.id}.`);
             });
         }
     }
 
-    // Inicializar listas vacías al cargar
-    actualizarListaVisual(listaNumerosIngresados, numeros);
-    actualizarListaVisual(listaNumerosOrdenados, []);
-    actualizarListaVisual(listaPalabrasIngresadas, palabras);
-    actualizarListaVisual(listaPalabrasOrdenadas, []);
-    actualizarListaPersonasVisual(listaPersonasIngresadas, personas);
-    actualizarListaPersonasVisual(listaPersonasOrdenadas, []);
+    // Inicializar listas vacías al cargar con los placeholders correctos
+    actualizarListaVisual(listaNumerosIngresados, numeros, "números");
+    actualizarListaVisual(listaNumerosOrdenados, [], "números ordenados");
+    actualizarListaVisual(listaPalabrasIngresadas, palabras, "palabras");
+    actualizarListaVisual(listaPalabrasOrdenadas, [], "palabras ordenadas");
+    actualizarListaPersonasVisual(listaPersonasIngresadas, personas, "personas");
+    actualizarListaPersonasVisual(listaPersonasOrdenadas, [], "personas ordenadas");
 
 });

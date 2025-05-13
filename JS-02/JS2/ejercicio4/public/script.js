@@ -1,7 +1,7 @@
-// 1. Quitar primer dígito
+
 let numeros = [];
 
-function agregarNumero() {
+function agregarNumero() { //agregar el numero
     const input = document.getElementById('numeroInput');
     const valor = input.value.trim();
     if (valor.length >= 2 && !isNaN(valor)) {
@@ -14,7 +14,7 @@ function agregarNumero() {
     input.value = '';
 }
 
-function quitarPrimerDigito() {
+function quitarPrimerDigito() { //eliminar
         const resultado = numeros.map(num => {
             if (num.length > 1) {
                 const borrado = num[0];
@@ -31,10 +31,10 @@ function quitarPrimerDigito() {
     }
     
 
-// 2. Mensajes de chat
+
 let mensajes = [];
 
-function agregarMensaje() {
+function agregarMensaje() { //para el mensaje que sale
     const input = document.getElementById('mensajeInput');
     const mensaje = input.value.trim();
     if (mensaje !== '') {
@@ -45,16 +45,16 @@ function agregarMensaje() {
     input.value = '';
 }
 
-function borrarPrimerMensaje() {
+function borrarPrimerMensaje() { //borrarlo
     const borrado = mensajes.shift();
     console.log("Mensaje eliminado:", borrado);
     mostrar(mensajes, 'mensajes');
 }
 
-// 3. Cola de atención
+
 let cola = [];
 
-function agregarCliente() {
+function agregarCliente() { //para agreagr cliente
     const input = document.getElementById('clienteInput');
     const cliente = input.value.trim();
     if (cliente !== '') {
@@ -65,13 +65,13 @@ function agregarCliente() {
     input.value = '';
 }
 
-function atenderCliente() {
+function atenderCliente() { //marcarlo como atendido
     const atendido = cola.shift();
     console.log("Cliente atendido:", atendido);
     mostrar(cola, 'cola');
 }
 
-// Mostrar arrays en consola y en pantalla
+
 function mostrar(arr, id) {
     document.getElementById(id).innerText = "Actual: " + arr.join(", ");
 }

@@ -3,7 +3,7 @@ const tareas = [];
 const tareasUrgentes = [];
 const usuarios = [];
 
-function agregarColor() {
+function agregarColor() { //para agregar color
     const color = document.getElementById("color").value.trim();
     if (color) {
         colores.unshift(color);
@@ -12,20 +12,20 @@ function agregarColor() {
     }
 }
 
-function mostrarColores() {
+function mostrarColores() { //para mostrar
     const coloresMostrados = document.getElementById("coloresMostrados");
     coloresMostrados.innerHTML = "<strong>Colores:</strong><br>";
     colores.forEach(c => {
         const colorDiv = document.createElement("div");
         colorDiv.textContent = c;
-        colorDiv.style.backgroundColor = c; // Esto le pone el color como fondo
+        colorDiv.style.backgroundColor = c; 
         colorDiv.style.padding = "5px";
         colorDiv.style.margin = "5px";
         coloresMostrados.appendChild(colorDiv);
     });
 }
 
-function agregarTarea() {
+function agregarTarea() { //agreagr tarea
     const tarea = document.getElementById("tarea").value.trim();
     if (tarea) {
         tareas.push(tarea);
@@ -34,12 +34,12 @@ function agregarTarea() {
     }
 }
 
-function mostrarTareas() {
+function mostrarTareas() { //para mostrar
     const lista = document.getElementById("listaTareas");
     lista.innerHTML = "";
     tareasUrgentes.forEach((t) => {
         const li = document.createElement("li");
-        li.textContent = `${t} (Urgente)`; // Mostrar la etiqueta Urgente
+        li.textContent = `${t} (Urgente)`;
         lista.appendChild(li);
     });
     tareas.forEach((t, i) => {
@@ -53,14 +53,14 @@ function mostrarTareas() {
     });
 }
 
-function marcarUrgente(index) {
+function marcarUrgente(index) { //mostrar la tarea como urgente
     const tareaUrgente = tareas[index];
-    tareasUrgentes.unshift(tareaUrgente); // Usamos unshift para ponerlo al principio de las urgentes
-    tareas.splice(index, 1); // Eliminamos la tarea de la lista original
+    tareasUrgentes.unshift(tareaUrgente); 
+    tareas.splice(index, 1); 
     mostrarTareas();
 }
 
-function agregarUsuario() {
+function agregarUsuario() { //agregar elk usuario
     const usuario = document.getElementById("usuario").value.trim();
     if (usuario) {
         usuarios.push(usuario);
@@ -69,7 +69,7 @@ function agregarUsuario() {
     }
 }
 
-function agregarUsuarioPrincipal() {
+function agregarUsuarioPrincipal() { //para ponerlo arriba de todo
     const principal = document.getElementById("usuarioPrimero").value.trim();
     if (principal) {
         usuarios.unshift(principal);
@@ -78,7 +78,7 @@ function agregarUsuarioPrincipal() {
     }
 }
 
-function mostrarUsuarios() {
+function mostrarUsuarios() { //mostrarlo
     const lista = document.getElementById("usuariosConectados");
     lista.innerHTML = "";
     usuarios.forEach(u => {
@@ -88,7 +88,7 @@ function mostrarUsuarios() {
     });
 }
 
-function mostrarConsola() {
+function mostrarConsola() { //en consola
     console.log("Colores:", colores);
     console.log("Tareas comunes:", tareas);
     console.log("Tareas urgentes:", tareasUrgentes);
