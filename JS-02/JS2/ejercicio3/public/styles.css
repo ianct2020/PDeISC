@@ -1,0 +1,88 @@
+body {
+    background-color: #000;
+    color: #00ff00;
+    font-family: monospace;
+    margin: 20px;
+}
+
+h1, h2, h3 {
+    color: #00ff00;
+    text-shadow: 2px 2px #39ff14;
+    font-size: 2em;
+    margin-bottom: 15px;
+}
+
+input[type="text"] {
+    background-color: #000;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #000;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+button:hover {
+    transform: scale(1.05);
+    color: #39ff14;
+}
+
+#coloresMostrados div {
+    border: 1px solid #00ff00;
+    padding: 8px;
+    margin: 5px 0;
+    color: #000; /* El texto dentro del div de color se mantiene negro para que se vea el fondo */
+}
+
+#coloresMostrados strong {
+    color: #00ff00;
+}
+
+#coloresMostrados div {
+    border: 1px solid #00ff00;
+    padding: 8px;
+    margin: 5px 0;
+    color: #00ff00; /* El texto dentro del div de color se mantiene negro para que se vea el fondo */
+}
+
+#listaTareas li, #urgentes li, #usuariosConectados li {
+    padding: 8px;
+    margin-bottom: 5px;
+    border-bottom: 1px dashed #00ff00;
+}
+
+#listaTareas li:last-child, #urgentes li:last-child, #usuariosConectados li:last-child {
+    border-bottom: none;
+}
+
+#listaTareas li button {
+    background-color: #000;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    padding: 5px 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+#listaTareas li button:hover {
+    transform: scale(1.1);
+    color: #39ff14;
+}
+
+/* Estilos para pantallas más chicas (celulares) */
+@media (max-width: 600px) {
+    input[type="text"], button {
+        width: 100%; /* Para que ocupe todo el ancho en celu */
+    }
+}
