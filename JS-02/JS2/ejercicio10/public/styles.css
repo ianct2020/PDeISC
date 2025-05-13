@@ -1,0 +1,109 @@
+body {
+    background-color: #000;
+    color: #00ff00;
+    font-family: monospace;
+    margin: 0;
+    padding: 20px;
+}
+
+h1, h2 {
+    color: #00ff00;
+    text-shadow: 2px 2px 4px rgba(0, 255, 0, 0.5);
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-top: 30px;
+}
+
+label {
+    color: #00ff00;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="number"],
+input[type="text"] {
+    background-color: #000;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    padding: 8px;
+    margin-bottom: 10px;
+    font-family: monospace;
+    width: calc(100% - 20px); /* Para que ocupe el ancho y deje espacio para el padding y border */
+    box-sizing: border-box; /* Incluye padding y border en el ancho */
+}
+
+button {
+    background-color: #000;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    padding: 10px 15px;
+    font-family: monospace;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+button:hover {
+    transform: scale(1.05);
+    color: #39ff14;
+}
+
+#resultadoNumeros,
+#resultadoMayusculas,
+#resultadoIVA {
+    border: 1px solid #00ff00;
+    background-color: #000;
+    color: #00ff00;
+    padding: 15px;
+    margin-top: 20px;
+    white-space: pre-wrap; /* Respeta los saltos de línea */
+}
+
+#resultadoNumeros p,
+#resultadoMayusculas p,
+#resultadoIVA p {
+    margin: 5px 0;
+}
+
+#numerosGuardados,
+#nombresGuardados,
+#preciosGuardados {
+    color: #00ff00;
+    margin-bottom: 10px;
+}
+
+.separator {
+    border-top: 1px solid #00ff00;
+    margin: 20px 0;
+}
+
+section {
+    margin-bottom: 30px;
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.8em;
+    }
+
+    h2 {
+        font-size: 1.3em;
+    }
+
+    input[type="number"],
+    input[type="text"],
+    button {
+        width: 100%;
+        margin-bottom: 10px;
+        margin-right: 0;
+    }
+
+    button {
+        padding: 12px 20px;
+    }
+}

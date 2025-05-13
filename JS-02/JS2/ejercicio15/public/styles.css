@@ -1,0 +1,105 @@
+/* Estilos generales */
+body {
+    background-color: #000;
+    color: #00ff00;
+    font-family: monospace;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    border: 2px solid #00ff00;
+    background-color: #000;
+    padding: 20px;
+}
+
+/* Títulos */
+h1, h2 {
+    color: #00ff00;
+    text-shadow: 2px 2px #000;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+/* Formularios e inputs */
+label {
+    color: #00ff00;
+    display: block;
+    margin-bottom: 5px;
+}
+
+textarea {
+    background-color: #000;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    padding: 10px;
+    margin-bottom: 15px;
+    width: calc(100% - 22px); /* Ajuste para el padding y borde */
+    box-sizing: border-box;
+    font-family: monospace;
+}
+
+/* Botones */
+button {
+    background-color: #000;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-family: monospace;
+    transition: transform 0.2s ease-in-out;
+}
+
+button:hover {
+    transform: scale(1.05);
+    color: #39ff14;
+}
+
+/* Resultado */
+#resultado {
+    color: #39ff14;
+    border: 1px solid #39ff14;
+    background-color: #000;
+    padding: 15px;
+    font-family: monospace;
+    margin-top: 20px;
+}
+
+/* Estilos para celular */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    textarea {
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.6em;
+    }
+
+    #resultado {
+        padding: 10px;
+    }
+}

@@ -1,0 +1,109 @@
+/* Estilos generales */
+body {
+    background-color: #000;
+    color: #00ff00;
+    font-family: monospace, sans-serif;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+h1, h2 {
+    color: #00ff00;
+    font-size: 2em;
+    text-shadow: 0 0 10px #00ff00;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-top: 30px;
+}
+
+section {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #00ff00;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #39ff14;
+}
+
+/* Estilos para inputs y formularios */
+input[type="text"],
+input[type="number"] {
+    background-color: #000;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%; /* Ocupar el ancho en móviles */
+    box-sizing: border-box; /* Evitar desbordamiento con padding y border */
+}
+
+/* Estilos para botones */
+button {
+    background-color: #000;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-family: monospace, sans-serif;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    transition: transform 0.2s ease-in-out;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background-color: #39ff14;
+    color: #000;
+}
+
+/* Estilos para contenedores de resultados */
+p {
+    color: #00ff00;
+    padding: 10px;
+    border: 1px solid #00ff00;
+    background-color: #000;
+    margin-top: 10px;
+}
+
+span {
+    color: #39ff14;
+    font-weight: bold;
+}
+
+/* Responsividad para celulares */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.8em;
+    }
+
+    h2 {
+        font-size: 1.3em;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    button {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 15px;
+        padding: 12px;
+        font-size: 1em;
+    }
+
+    section {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    p {
+        padding: 12px;
+        font-size: 0.9em;
+    }
+}
