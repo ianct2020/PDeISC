@@ -28,7 +28,7 @@ guardarNumeroPalabraBtn.addEventListener('click', () => {
     }
 
     const esNumero = !isNaN(valor);
-    if (!esNumero) {
+    if (!esNumero) {//check
         palabras.push(valor);
         actualizarElementosSpan(palabrasIngresadasSpan, palabras);
         console.log(`Palabra "${valor}" guardada. Palabras: ${palabras}`);
@@ -40,7 +40,7 @@ guardarNumeroPalabraBtn.addEventListener('click', () => {
     inputNumeroPalabra.value = '';
 });
 
-sumarElementosBtn.addEventListener('click', () => {
+sumarElementosBtn.addEventListener('click', () => { //agrupar
     const sumaPalabras = palabras.reduce((acc, palabra) => acc + palabra, '');
     sumaPalabrasSpan.textContent = sumaPalabras;
     console.log(`Suma de palabras: ${sumaPalabras}`);
@@ -57,7 +57,7 @@ reiniciarElementosBtn.addEventListener('click', () => {
     sumaPalabrasSpan.textContent = '';
     actualizarElementosSpan(numerosIngresadosSpan, numeros);
     sumaNumerosSpan.textContent = '';
-    console.log('Se reiniciaron los elementos (números y palabras).');
+    console.log('Se reiniciaron los elementos (números y palabras).'); //reiniciar formulario
 });
 
 
@@ -70,7 +70,7 @@ const resultadoMultiplicacionP = document.getElementById('resultadoMultiplicacio
 
 let enteros = [];
 
-guardarEnteroBtn.addEventListener('click', () => {
+guardarEnteroBtn.addEventListener('click', () => { //guardar si esta todo checkeado
     const valor = inputEntero.value.trim();
     if (!/^-?\d+$/.test(valor)) {
         console.log('Error: Ingrese un número entero válido.');
@@ -110,7 +110,7 @@ const totalPreciosP = document.getElementById('totalPrecios');
 
 let precios = [];
 
-guardarPrecioBtn.addEventListener('click', () => {
+guardarPrecioBtn.addEventListener('click', () => { //guardar si esta todo bien
     const valor = inputPrecio.value.trim();
     if (!/^-?\d+(\.\d+)?$/.test(valor)) {
         console.log('Error: Ingrese un precio válido.');
@@ -133,7 +133,7 @@ sumarPreciosBtn.addEventListener('click', () => {
     console.log(`La suma de los precios (${precios.join(' + ')}) = ${total.toFixed(2)}`);
 });
 
-reiniciarPreciosBtn.addEventListener('click', () => {
+reiniciarPreciosBtn.addEventListener('click', () => { //reiniciar formulario
     precios = [];
     actualizarElementosSpan(preciosIngresadosSpan, precios);
     totalPreciosP.textContent = '';

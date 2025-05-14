@@ -12,4 +12,4 @@ document.getElementById('formulario').addEventListener('submit', async function 
     console.log("Mensaje decodificado:", data.resultado);
     document.getElementById('resultado').innerText = data.resultado;
   });
-  
+  //invertir

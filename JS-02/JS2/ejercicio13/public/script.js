@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM completamente cargado y analizado. ¡Modo Hacker Activado!');
 
-    // --- Sección 1: Ordenar Números ---
+  
     const inputNumero = document.getElementById('inputNumero');
     const btnAgregarNumero = document.getElementById('btnAgregarNumero');
     const btnOrdenarNumeros = document.getElementById('btnOrdenarNumeros');
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let numeros = [];
     const MAX_NUMEROS = 5;
 
-    btnAgregarNumero.addEventListener('click', () => {
+    btnAgregarNumero.addEventListener('click', () => { //check y agregar numero
         console.log('Botón "Agregar Número" presionado.');
         const valorNumero = inputNumero.value.trim();
 
@@ -37,12 +37,12 @@ document.addEventListener('DOMContentLoaded', () => {
         inputNumero.value = '';
         inputNumero.focus();
         listaNumerosOrdenados.innerHTML = '';
-        if (listaNumerosOrdenados.children.length === 0 && numeros.length > 0) { // Mostrar placeholder si está vacía después de agregar
+        if (listaNumerosOrdenados.children.length === 0 && numeros.length > 0) { 
              actualizarListaVisual(listaNumerosOrdenados, [], "números ordenados");
         }
     });
 
-    btnOrdenarNumeros.addEventListener('click', () => {
+    btnOrdenarNumeros.addEventListener('click', () => { //ordenar
         console.log('Botón "Ordenar Números" presionado.');
         if (numeros.length === 0) {
             alert('No hay números para ordenar.');
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         actualizarListaVisual(listaNumerosOrdenados, numerosParaOrdenar, "números ordenados");
     });
 
-    btnReiniciarNumeros.addEventListener('click', () => {
+    btnReiniciarNumeros.addEventListener('click', () => { //reiniciar formulario
         console.log('Botón "Reiniciar Números" presionado.');
         numeros = [];
         actualizarListaVisual(listaNumerosIngresados, numeros, "números");
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Lista de números reiniciada.');
     });
 
-    // --- Sección 2: Ordenar Palabras ---
+    
     const inputPalabra = document.getElementById('inputPalabra');
     const btnAgregarPalabra = document.getElementById('btnAgregarPalabra');
     const btnOrdenarPalabras = document.getElementById('btnOrdenarPalabras');
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const regexSoloLetras = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/;
 
 
-    btnAgregarPalabra.addEventListener('click', () => {
+    btnAgregarPalabra.addEventListener('click', () => { //check y agregar 
         console.log('Botón "Agregar Palabra" presionado.');
         const palabra = inputPalabra.value.trim();
 
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    btnOrdenarPalabras.addEventListener('click', () => {
+    btnOrdenarPalabras.addEventListener('click', () => { //ordenar
         console.log('Botón "Ordenar Palabras" presionado.');
         if (palabras.length === 0) {
             alert('No hay palabras para ordenar.');
@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // --- Sección 3: Ordenar Objetos (Personas por Edad) ---
+    
     const inputNombrePersona = document.getElementById('inputNombrePersona');
     const inputEdadPersona = document.getElementById('inputEdadPersona');
     const btnAgregarPersona = document.getElementById('btnAgregarPersona');
@@ -150,12 +150,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let personas = [];
 
-    btnAgregarPersona.addEventListener('click', () => {
+    btnAgregarPersona.addEventListener('click', () => { //agregar
         console.log('Botón "Agregar Persona" presionado.');
         const nombre = inputNombrePersona.value.trim();
         const edadValue = inputEdadPersona.value.trim();
 
-        if (nombre === '' || edadValue === '') {
+        if (nombre === '' || edadValue === '') { //check
             alert('Por favor, ingresa nombre y edad.');
             console.warn('Intento de agregar persona con campos vacíos.');
             return;
@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    btnOrdenarPersonas.addEventListener('click', () => {
+    btnOrdenarPersonas.addEventListener('click', () => { //ordenar
         console.log('Botón "Ordenar Personas por Edad" presionado.');
         if (personas.length === 0) {
             alert('No hay personas para ordenar.');
@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
         actualizarListaPersonasVisual(listaPersonasOrdenadas, personasParaOrdenar, "personas ordenadas");
     });
 
-    btnReiniciarPersonas.addEventListener('click', () => {
+    btnReiniciarPersonas.addEventListener('click', () => { //reiniciar formularios
         console.log('Botón "Reiniciar Personas" presionado.');
         personas = [];
         actualizarListaPersonasVisual(listaPersonasIngresadas, personas, "personas");
@@ -216,14 +216,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // --- Funciones Auxiliares para actualizar el DOM ---
-    // Modifiqué un poco para que el placeholder sea más claro
-    function actualizarListaVisual(ulElement, array, tipoElementoSingular) {
+
+    function actualizarListaVisual(ulElement, array, tipoElementoSingular) { //ordenar
         ulElement.innerHTML = '';
         if (array.length === 0) {
             const li = document.createElement('li');
             li.textContent = `No hay ${tipoElementoSingular} para mostrar.`;
-            if (ulElement.id.includes("Ordenad")) { // Si es una lista de "ordenados"
+            if (ulElement.id.includes("Ordenad")) { 
                  li.textContent = `Presiona "Ordenar" para ver los ${tipoElementoSingular} aquí.`;
                  if ( (ulElement.id.includes("Numeros") && numeros.length === 0) ||
                       (ulElement.id.includes("Palabras") && palabras.length === 0) ||
@@ -238,19 +237,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 const li = document.createElement('li');
                 li.textContent = item;
                 ulElement.appendChild(li);
-                // console.log(`Elemento "${item}" agregado visualmente a la lista ${ulElement.id}.`);
+                
             });
         }
     }
 
-    function actualizarListaPersonasVisual(ulElement, arrayPersonas, tipoElementoSingular) {
+    function actualizarListaPersonasVisual(ulElement, arrayPersonas, tipoElementoSingular) { 
         ulElement.innerHTML = '';
         if (arrayPersonas.length === 0) {
             const li = document.createElement('li');
              li.textContent = `No hay ${tipoElementoSingular} para mostrar.`;
-            if (ulElement.id.includes("Ordenad")) { // Si es una lista de "ordenados"
+            if (ulElement.id.includes("Ordenad")) { 
                  li.textContent = `Presiona "Ordenar" para ver las ${tipoElementoSingular} aquí.`;
-                  if (personas.length === 0) { // Si no hay personas ingresadas, no tiene sentido el mensaje de ordenar
+                  if (personas.length === 0) { 
                      li.textContent = `No hay ${tipoElementoSingular} para mostrar.`;
                   }
             }
@@ -260,12 +259,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const li = document.createElement('li');
                 li.textContent = `Nombre: ${persona.nombre}, Edad: ${persona.edad}`;
                 ulElement.appendChild(li);
-                // console.log(`Persona "${persona.nombre}, Edad: ${persona.edad}" agregada visualmente a la lista ${ulElement.id}.`);
+                
             });
         }
     }
 
-    // Inicializar listas vacías al cargar con los placeholders correctos
+    
     actualizarListaVisual(listaNumerosIngresados, numeros, "números");
     actualizarListaVisual(listaNumerosOrdenados, [], "números ordenados");
     actualizarListaVisual(listaPalabrasIngresadas, palabras, "palabras");
