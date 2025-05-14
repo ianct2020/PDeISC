@@ -1,16 +1,16 @@
 console.log('script.js cargado');
 
-// Función para verificar si una cadena contiene solo letras y espacios
-function esSoloLetras(str) {
+
+function esSoloLetras(str) { //check
     return /^[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+$/.test(str);
 }
 
-// Función para verificar si un valor es un número
+
 function esNumero(valor) {
     return /^[0-9]+$/.test(valor);
 }
 
-// Parte 1: Multiplicar Números por 3
+
 let numeros = [];
 const ingresarNumeroInput = document.getElementById('ingresarNumero');
 const guardarNumeroBtn = document.getElementById('guardarNumero');
@@ -29,13 +29,13 @@ guardarNumeroBtn.addEventListener('click', () => {
     } else if (!esNumero(numero) && numero !== "") {
         console.log('Por favor, ingresa solo números.');
         alert('Por favor, ingresa solo números.');
-    } else {
+    } else {//check
         console.log('Por favor, ingresa un número.');
         alert('Por favor, ingresa un número.');
     }
 });
 
-mostrarMultiplicadosBtn.addEventListener('click', () => {
+mostrarMultiplicadosBtn.addEventListener('click', () => {//mostrar resultados
     if (numeros.length > 0) {
         const multiplicados = numeros.map(numero => numero * 3);
         console.log('Números multiplicados por 3:', multiplicados);
@@ -52,10 +52,10 @@ reiniciarNumerosBtn.addEventListener('click', () => {
     numeros = [];
     numerosGuardadosParrafo.textContent = 'Números ingresados: ';
     resultadoMultiplicacionDiv.textContent = '';
-    console.log('Array de números reiniciado:', numeros);
+    console.log('Array de números reiniciado:', numeros);//reiniciar form
 });
 
-// Parte 2: Convertir Nombres a Mayúsculas
+
 let nombres = [];
 const ingresarNombreInput = document.getElementById('ingresarNombre');
 const guardarNombreBtn = document.getElementById('guardarNombre');
@@ -64,7 +64,7 @@ const reiniciarNombresBtn = document.getElementById('reiniciarNombres');
 const resultadoMayusculasDiv = document.getElementById('resultadoMayusculas');
 const nombresGuardadosParrafo = document.getElementById('nombresGuardados');
 
-guardarNombreBtn.addEventListener('click', () => {
+guardarNombreBtn.addEventListener('click', () => { // check y si esta todo bien se guarda
     const nombre = ingresarNombreInput.value.trim();
     if (nombre !== "" && esSoloLetras(nombre)) {
         nombres.push(nombre);
@@ -80,7 +80,7 @@ guardarNombreBtn.addEventListener('click', () => {
     }
 });
 
-convertirMayusculasBtn.addEventListener('click', () => {
+convertirMayusculasBtn.addEventListener('click', () => { //minuscula a mayuscula
     if (nombres.length > 0) {
         const nombresEnMayusculas = nombres.map(nombre => nombre.toUpperCase());
         console.log('Nombres en mayúsculas:', nombresEnMayusculas);
@@ -98,7 +98,7 @@ reiniciarNombresBtn.addEventListener('click', () => {
     console.log('Array de nombres reiniciado:', nombres);
 });
 
-// Parte 3: Agregar IVA a Precios
+// iva
 let precios = [];
 const ingresarPrecioInput = document.getElementById('ingresarPrecio');
 const guardarPrecioBtn = document.getElementById('guardarPrecio');
@@ -107,7 +107,7 @@ const reiniciarPreciosBtn = document.getElementById('reiniciarPrecios');
 const resultadoIVADiv = document.getElementById('resultadoIVA');
 const preciosGuardadosParrafo = document.getElementById('preciosGuardados');
 
-guardarPrecioBtn.addEventListener('click', () => {
+guardarPrecioBtn.addEventListener('click', () => { //guardar si esta todo bien 
     const precio = ingresarPrecioInput.value;
     if (precio !== "" && !isNaN(parseFloat(precio)) && isFinite(precio)) {
         precios.push(parseFloat(precio));
@@ -120,7 +120,7 @@ guardarPrecioBtn.addEventListener('click', () => {
     }
 });
 
-calcularIVABtn.addEventListener('click', () => {
+calcularIVABtn.addEventListener('click', () => { //incluir iva
     if (precios.length > 0) {
         const preciosConIVA = precios.map(precio => {
             const iva = precio * 0.21;
@@ -135,7 +135,7 @@ calcularIVABtn.addEventListener('click', () => {
     }
 });
 
-reiniciarPreciosBtn.addEventListener('click', () => {
+reiniciarPreciosBtn.addEventListener('click', () => { //reiniciar form
     precios = [];
     preciosGuardadosParrafo.textContent = 'Precios ingresados: ';
     resultadoIVADiv.textContent = '';

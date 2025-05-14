@@ -1,14 +1,13 @@
 console.log("main.js cargado");
 
-// Función genérica para actualizar el span con los elementos usando reduce
+
 const actualizarElementosSpan = (spanElement, array) => {
     spanElement.textContent = array.reduce((acc, curr, index) => acc + curr + (index < array.length - 1 ? ', ' : ''), '');
 };
 
-// Función genérica para validar si un input está vacío
 const validarInputNoVacio = (inputValue) => inputValue.trim() !== '';
 
-// 1) Suma de elementos (números y palabras)
+
 const inputNumeroPalabra = document.getElementById('numeroPalabra');
 const guardarNumeroPalabraBtn = document.getElementById('guardarNumeroPalabra');
 const sumarElementosBtn = document.getElementById('sumarElementos');
@@ -61,7 +60,7 @@ reiniciarElementosBtn.addEventListener('click', () => {
     console.log('Se reiniciaron los elementos (números y palabras).');
 });
 
-// 2) Multiplicación de enteros
+
 const inputEntero = document.getElementById('entero');
 const guardarEnteroBtn = document.getElementById('guardarEntero');
 const multiplicarEnterosBtn = document.getElementById('multiplicarEnteros');
@@ -101,7 +100,7 @@ reiniciarEnterosBtn.addEventListener('click', () => {
     console.log('Se reiniciaron los enteros.');
 });
 
-// 3) Suma de precios
+
 const inputPrecio = document.getElementById('precio');
 const guardarPrecioBtn = document.getElementById('guardarPrecio');
 const sumarPreciosBtn = document.getElementById('sumarPrecios');

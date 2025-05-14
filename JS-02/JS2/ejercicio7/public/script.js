@@ -10,7 +10,7 @@ const multiplesPerroParrafo = document.getElementById('multiplesPerro');
 
 console.log('Ejercicio 1: Script cargado.');
 
-function agregarPalabra() {
+function agregarPalabra() { //check
     const palabra = palabraInput.value.trim();
     if (!/^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ\s]+$/.test(palabra)) {
         palabraError.textContent = 'Por favor, ingresa solo letras.';
@@ -52,7 +52,7 @@ function agregarPalabra() {
     }
 }
 
-function revelarPosicionPalabra() {
+function revelarPosicionPalabra() { //donde esta perro
     if (perroIngresado) {
         let indices = [];
         let index = palabras.indexOf('perro');
@@ -72,7 +72,7 @@ function revelarPosicionPalabra() {
     }
 }
 
-function reiniciarEjercicio1() {
+function reiniciarEjercicio1() { //reiniciar formulario
     palabras = [];
     perroIngresado = false;
     palabraInput.value = '';
@@ -84,7 +84,7 @@ function reiniciarEjercicio1() {
     console.log('Ejercicio 1 - Reiniciado.');
 }
 
-// Ejercicio 2
+
 let numeros = [];
 let cincuentaIngresado = false;
 const maxNumeros = 5;
@@ -96,7 +96,7 @@ const posicionNumeroParrafo = document.getElementById('posicionNumero');
 
 console.log('Ejercicio 2: Script cargado.');
 
-function agregarNumero() {
+function agregarNumero() { //agregar numeros
     const numero = parseInt(numeroInput.value);
     if (isNaN(numero)) {
         numeroError.textContent = 'Por favor, ingresa un número válido.';
@@ -112,7 +112,7 @@ function agregarNumero() {
         numerosIngresadosSpan.textContent = 'Números ingresados: ' + numeros.join(', ');
         numeroInput.value = '';
         numeroError.textContent = '';
-        if (numeros.length === maxNumeros) {
+        if (numeros.length === maxNumeros) { //check
             if (!cincuentaIngresado) {
                 numeroError.textContent = 'Debes ingresar el número 50 antes de completar los 5 números.';
                 numeros.pop();
@@ -125,7 +125,7 @@ function agregarNumero() {
     }
 }
 
-function revelarPosicionNumero() {
+function revelarPosicionNumero() { //donde esta 50
     if (cincuentaIngresado) {
         let indices = [];
         let index = numeros.indexOf(50);
@@ -145,7 +145,7 @@ function revelarPosicionNumero() {
     }
 }
 
-function reiniciarEjercicio2() {
+function reiniciarEjercicio2() { //reiniciar formulario
     numeros = [];
     cincuentaIngresado = false;
     numeroInput.value = '';
@@ -156,7 +156,6 @@ function reiniciarEjercicio2() {
     console.log('Ejercicio 2 - Reiniciado.');
 }
 
-// Ejercicio 3
 let ciudades = [];
 const maxCiudades = 5;
 const ciudadInput = document.getElementById('ciudadInput');
@@ -167,7 +166,7 @@ const resultadoMadridParrafo = document.getElementById('resultadoMadrid');
 
 console.log('Ejercicio 3: Script cargado.');
 
-function agregarCiudad() {
+function agregarCiudad() { //check
     const ciudad = ciudadInput.value.trim();
     if (!/^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ\s]+$/.test(ciudad)) {
         ciudadError.textContent = 'Por favor, ingresa solo letras.';
@@ -190,7 +189,7 @@ function agregarCiudad() {
     }
 }
 
-function buscarMadrid() {
+function buscarMadrid() { //donde esta madrid
     let indices = [];
     let index = ciudades.indexOf('madrid');
     while (index !== -1) {
@@ -206,7 +205,7 @@ function buscarMadrid() {
     }
 }
 
-function reiniciarEjercicio3() {
+function reiniciarEjercicio3() { //reiniciar formulario
     ciudades = [];
     ciudadInput.value = '';
     ciudadError.textContent = '';

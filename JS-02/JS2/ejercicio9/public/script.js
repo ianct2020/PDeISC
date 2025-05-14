@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Sección 1: Saludo de Nombres
+    //saludoss
     const formNombres = document.getElementById('formNombres');
     const nombreInputs = [document.getElementById('nombre1'), document.getElementById('nombre2'), document.getElementById('nombre3')];
     const errorNombres = [document.getElementById('errorNombre1'), document.getElementById('errorNombre2'), document.getElementById('errorNombre3')];
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const consoleNombresDiv = document.getElementById('consoleNombres');
     let nombres = [];
 
-    function validarCampo(input, errorSpan) {
+    function validarCampo(input, errorSpan) { //check
         if (!input.checkValidity()) {
             errorSpan.textContent = input.validationMessage;
             return false;
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        if (todosValidos) {
+        if (todosValidos) { //check
             nombres = nombreInputs.map(input => input.value);
             console.log('Nombres ingresados:', nombres);
             consoleNombresDiv.textContent = `Nombres ingresados: ${nombres.join(', ')}`;
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    saludarNombresBtn.addEventListener('click', () => {
+    saludarNombresBtn.addEventListener('click', () => { //saludo
         if (nombres.length === 3) {
             let saludoPartes = [];
             nombres.forEach((nombre, index) => {
@@ -57,13 +57,13 @@ document.addEventListener('DOMContentLoaded', () => {
             nombres = [];
             saludarNombresBtn.disabled = true;
             consoleNombresDiv.textContent = '';
-        } else {
+        } else {  //check
             console.log('Error: Debes ingresar 3 nombres antes de saludar.');
             consoleNombresDiv.textContent = 'Error: Debes ingresar 3 nombres antes de saludar.';
         }
     });
 
-    reiniciarNombresBtn.addEventListener('click', () => {
+    reiniciarNombresBtn.addEventListener('click', () => { //reinciiar formulario
         nombreInputs.forEach(input => input.value = '');
         errorNombres.forEach(error => error.textContent = '');
         nombres = [];
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Sección de nombres reiniciada.');
     });
 
-    // Sección 2: Duplicar Números
+    // x2
     const formNumeros = document.getElementById('formNumeros');
     const numeroInputs = [document.getElementById('numero1'), document.getElementById('numero2'), document.getElementById('numero3')];
     const errorNumeros = [document.getElementById('errorNumero1'), document.getElementById('errorNumero2'), document.getElementById('errorNumero3')];
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let numeros = [];
 
     agregarNumeroBtn.addEventListener('click', () => {
-        let todosValidos = true;
+        let todosValidos = true; //check
         numeroInputs.forEach((input, index) => {
             if (!validarCampo(input, errorNumeros[index])) {
                 todosValidos = false;
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    duplicarNumerosBtn.addEventListener('click', () => {
+    duplicarNumerosBtn.addEventListener('click', () => { // x2
         if (numeros.length === 3) {
             let outputTextArray = [];
             numeros.forEach(num => {
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Sección de números reiniciada.');
     });
 
-    // Sección 3: Mostrar Nombres y Edades
+    // nombre y edad
     const formData = document.getElementById('formData');
     const nombrePersonaInput = document.getElementById('nombrePersona');
     const edadPersonaInput = document.getElementById('edadPersona');
@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        if (todosValidos) {
+        if (todosValidos) { //check
             const nombre = nombrePersonaInput.value;
             const edad = parseInt(edadPersonaInput.value);
             personas.push({ nombre, edad });
@@ -172,9 +172,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    mostrarDatosBtn.addEventListener('click', () => {
+    mostrarDatosBtn.addEventListener('click', () => { //mostrar 
         if (personas.length > 0) {
-            const personasFiltradas = personas.filter(persona => persona.edad >= 0); // No cambia la lógica, solo usa filter()
+            const personasFiltradas = personas.filter(persona => persona.edad >= 0); 
             let outputTextArray = [];
             personasFiltradas.forEach(persona => {
                 const anios = persona.edad <= 1 ? 'año' : 'años';
@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    reiniciarDatosBtn.addEventListener('click', () => {
+    reiniciarDatosBtn.addEventListener('click', () => { //reiniciar formulario
         personaInputs.forEach(item => {
             item.input.value = '';
             item.error.textContent = '';

@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Función para verificar si una cadena contiene solo letras y espacios
-    function esSoloLetras(str) {
+    
+    function esSoloLetras(str) { //check
         return /^[a-zA-Z\s]*$/.test(str);
     }
 
-    // Sección 1: Comprobar la palabra "admin"
+   
     const palabrasForm = document.getElementById('palabras-form');
     const palabraInput = document.getElementById('palabra-input');
     const guardarPalabraBtn = document.getElementById('guardar-palabra-btn');
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     guardarPalabraBtn.addEventListener('click', () => {
         const nuevaPalabra = palabraInput.value.trim();
-        if (nuevaPalabra) {
+        if (nuevaPalabra) { //check
             if (esSoloLetras(nuevaPalabra)) {
                 palabras.push(nuevaPalabra);
                 const li = document.createElement('li');
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Resultado de comprobar "admin":', palabras.includes('admin'));
     });
 
-    reiniciarAdminBtn.addEventListener('click', () => {
+    reiniciarAdminBtn.addEventListener('click', () => { //reinciiar formulario
         palabras = [];
         palabrasGuardadas = 0;
         listaPalabrasUl.innerHTML = '';
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Sección 1 reiniciada. Array:', palabras);
     });
 
-    // Sección 2: Comprobar el color "verde"
+    // esta verde?
     const coloresForm = document.getElementById('colores-form');
     const colorInput = document.getElementById('color-input');
     const guardarColorBtn = document.getElementById('guardar-color-btn');
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     guardarColorBtn.disabled = true;
                 }
                 erroresVerdeDiv.textContent = '';
-            } else {
+            } else {//checkkk
                 erroresVerdeDiv.textContent = 'Por favor, ingresa solo letras y espacios para el color.';
                 console.log('Intento fallido: Se ingresaron caracteres no válidos en el color.');
             }
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    comprobarVerdeBtn.addEventListener('click', () => {
+    comprobarVerdeBtn.addEventListener('click', () => { //esta o no esta
         if (colores.includes('verde')) {
             resultadoVerdeDiv.textContent = '¡El color "verde" está presente en el array!';
         } else {
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Resultado de comprobar "verde":', colores.includes('verde'));
     });
 
-    reiniciarVerdeBtn.addEventListener('click', () => {
+    reiniciarVerdeBtn.addEventListener('click', () => { //reiniciar formulario
         colores = [];
         coloresGuardados = 0;
         listaColoresUl.innerHTML = '';
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Sección 2 reiniciada. Array:', colores);
     });
 
-    // Sección 3: Verificar número antes de agregar
+    // numeross
     const numerosForm = document.getElementById('numeros-form');
     const numeroInput = document.getElementById('numero-input');
     const guardarNumeroBtn = document.getElementById('guardar-numero-btn');
@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let numeros = [];
     let numerosGuardados = 0;
 
-    guardarNumeroBtn.addEventListener('click', () => {
+    guardarNumeroBtn.addEventListener('click', () => { //checckk
         const nuevoNumero = numeroInput.value.trim();
         if (nuevoNumero) {
             if (!isNaN(nuevoNumero) && !isNaN(parseFloat(nuevoNumero))) {
@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
             erroresNumeroDiv.textContent = 'Por favor, ingresa un número.';
         }
     });
-
+//reiniciar formulario
     reiniciarNumerosBtn.addEventListener('click', () => {
         numeros = [];
         numerosGuardados = 0;
