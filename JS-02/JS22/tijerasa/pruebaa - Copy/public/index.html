@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPT // HACKER_MODE</title>
+    <link id="font-link" rel="stylesheet"> <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="overlay-background"></div> <div class="container">
+
+        <div id="startScreen" class="active">
+            <h1 class="main-title glitch" data-text="PIEDRA_PAPEL_TIJERAS">PIEDRA_PAPEL_TIJERAS</h1>
+            <div id="nameEntrySection">
+                <h2 class="sub-title">// SELECCIONAR_MODO //</h2>
+                <div class="mode-selection-buttons">
+                    <button id="selectVsPlayerBtn" class="mode-btn-hacker">HUMANO_VS_HUMANO</button>
+                    <button id="selectVsComputerBtn" class="mode-btn-hacker">HUMANO_VS_IA</button>
+                </div>
+
+                <div id="playerNamesForm" class="hidden">
+                    <div id="player1NameInputContainer">
+                        <label for="player1NameInput">NOMBRE_JUGADOR_1:</label>
+                        <input type="text" id="player1NameInput" class="hacker-input" placeholder="[ESCRIBE_AQUÍ]">
+                    </div>
+                    <div id="player2NameInputContainer" class="hidden">
+                        <label for="player2NameInput">NOMBRE_JUGADOR_2:</label>
+                        <input type="text" id="player2NameInput" class="hacker-input" placeholder="[ESCRIBE_AQUÍ]">
+                    </div>
+                    <button id="startGameWithNameBtn" class="hacker-btn main-action-btn">[ INICIAR_TRANSMISIÓN ]</button>
+                </div>
+            </div>
+        </div>
+
+        <main id="gameContainer" class="hidden">
+            <header class="game-header">
+                <h1 class="main-title-small glitch" data-text="PPT_SESSION">PPT_SESSION</h1>
+                <div class="timer-section">
+                    <p>TIEMPO_RESTANTE: <span id="timerDisplay" class="glitch-alt">10</span>s</p>
+                </div>
+            </header>
+
+            <div class="game-board">
+                <div class="player-panel" id="player1Panel">
+                    <h2 id="player1NameDisplay" class="player-title-hacker">[JUGADOR_1]</h2>
+                    <div class="choices">
+                        <button class="choice-btn player1-choice" data-choice="PIEDRA">✊</button>
+                        <button class="choice-btn player1-choice" data-choice="PAPEL">✋</button>
+                        <button class="choice-btn player1-choice" data-choice="TIJERAS">✌️</button>
+                    </div>
+                    <p class="chosen-display" id="player1ChoiceDisplay">ESPERANDO_INPUT...</p>
+                    <p class="keyboard-hint">(TECLAS: A, S, D)</p>
+                </div>
+
+                <div class="results-display-area">
+                    <p id="roundResult" class="result-text">// RESULTADO_RONDA //</p>
+                    <p id="turnIndicator" class="hidden turn-text"></p>
+                </div>
+
+                <div class="player-panel" id="player2Panel">
+                    <h2 id="player2NameDisplay" class="player-title-hacker">[JUGADOR_2]</h2>
+                    <div class="choices" id="player2Choices">
+                        <button class="choice-btn player2-choice" data-choice="PIEDRA">✊</button>
+                        <button class="choice-btn player2-choice" data-choice="PAPEL">✋</button>
+                        <button class="choice-btn player2-choice" data-choice="TIJERAS">✌️</button>
+                    </div>
+                    <p class="chosen-display" id="player2ChoiceDisplay">ESPERANDO_INPUT...</p>
+                    <p class="keyboard-hint" id="player2KeyboardHint">(TECLAS: 4, 5, 6)</p>
+                </div>
+
+                <div class="computer-panel hidden" id="computerPanel">
+                    <h2 class="player-title-hacker">[ IA_ADVERSARIA ]</h2>
+                    <div class="computer-choice-display-area">
+                        <p id="computerChoiceDisplay" class="glitch-alt">?</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="score-board-hacker">
+                <h3 class="score-title">// REGISTRO_DE_COMBATE //</h3>
+                <p id="player1Score" class="score-line"><span>[JUGADOR_1_SCORE]</span>: 0</p>
+                <p id="player2Score" class="score-line"><span>[JUGADOR_2_SCORE]</span>: 0</p>
+                <p id="ties" class="score-line"><span>[SINCRONIZACIONES_NEUTRAS]</span>: 0</p>
+            </div>
+
+            <div id="finalScoreDisplay" class="hidden final-scores">
+                <h2 class="sub-title">// TRANSMISIÓN_FINALIZADA - PUNTAJES_FINALES //</h2>
+                <p id="finalPlayer1Score"><span>[JUGADOR_1_FINAL]</span>: 0</p>
+                <p id="finalPlayer2Score"><span>[JUGADOR_2_FINAL]</span>: 0</p>
+                <p id="finalTies"><span>[EMPATES_FINALES]</span>: 0</p>
+                <p id="winnerMessage" class="winner-message-text"></p>
+            </div>
+
+
+            <div class="game-controls">
+                <button id="nextRoundBtn" class="hacker-btn control-btn hidden">[ SIGUIENTE_SECUENCIA ]</button>
+                <button id="revealBtnPVP" class="hacker-btn control-btn hidden">[ DECODIFICAR_JUGADAS ]</button>
+                <button id="endGameBtn" class="hacker-btn control-btn">[ FINALIZAR_SESIÓN ]</button>
+                <button id="resetGameBtn" class="hacker-btn control-btn hidden">[ REINICIAR_PROTOCOLO_LOCAL ]</button> <button id="changeModeBtn" class="hacker-btn control-btn">[ ABORTAR_Y_RECONFIGURAR ]</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

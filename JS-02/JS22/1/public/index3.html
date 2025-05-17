@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Mis Juegos</title> <link rel="stylesheet" href="css_variables.css">
+    <link rel="stylesheet" href="css_navbar_sidenav.css">
+    <link rel="stylesheet" href="css3.css"> </head>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-logo">Mis Juegos</div>
+        <ul class="nav-links">
+            <li><a href="index1.html" class="nav-link-item">Inicio</a></li>
+            <li><a href="index2.html" class="nav-link-item">Simón Dice</a></li>
+            <li><a href="index3.html" class="active-link nav-link-item">PPT Hacker</a></li>
+            <li><a href="index4.html" class="nav-link-item">TaTeTi</a></li>
+        </ul>
+        <div class="nav-user-area">
+            <span id="saludoUsuarioNav"></span>
+            <button id="logoutBtn" class="logout-button hidden" onclick="ejecutarLogout()">Cambiar Usuario</button>
+        </div>
+    </nav>
+
+    <div class="page-content-ppt">
+        <div class="overlay-background-ppt"></div>
+        <div class="container-ppt">
+            <div id="startScreenPpt" class="active-ppt">
+                <h1 class="main-title-ppt glitch-ppt" data-text="PIEDRA_PAPEL_TIJERAS">PIEDRA_PAPEL_TIJERAS</h1>
+                <p id="saludoGlobalPpt" class="saludo-ppt"></p>
+                <div id="nameEntrySectionPpt">
+                    <h2 class="sub-title-ppt">// SELECCIONAR_MODO //</h2>
+                    <div class="mode-selection-buttons-ppt">
+                        <button id="selectVsPlayerBtnPpt" class="mode-btn-hacker-ppt">HUMANO_VS_HUMANO</button>
+                        <button id="selectVsComputerBtnPpt" class="mode-btn-hacker-ppt">HUMANO_VS_IA</button>
+                    </div>
+                    <div id="playerNamesFormPpt" class="hidden-ppt">
+                        <div id="player2NameInputContainerPpt" class="hidden-ppt">
+                            <label for="player2NameInputPpt">NOMBRE_JUGADOR_2:</label>
+                            <input type="text" id="player2NameInputPpt" class="hacker-input-ppt" placeholder="[ESCRIBE_AQUÍ_JUGADOR_2]">
+                        </div>
+                        <button id="startGameWithNameBtnPpt" class="hacker-btn-ppt main-action-btn-ppt">[ INICIAR_TRANSMISIÓN ]</button>
+                    </div>
+                </div>
+            </div>
+
+            <main id="gameContainerPpt" class="hidden-ppt">
+                <header class="game-header-ppt">
+                    <h1 class="main-title-small-ppt glitch-ppt" data-text="PPT_SESSION">PPT_SESSION</h1>
+                    <div class="timer-section-ppt">
+                        <p>TIEMPO_RESTANTE: <span id="timerDisplayPpt" class="glitch-alt-ppt">10</span>s</p>
+                    </div>
+                </header>
+                <div class="game-board-ppt">
+                    <div class="player-panel-ppt" id="player1PanelPpt">
+                        <h2 id="player1NameDisplayPpt" class="player-title-hacker-ppt">[JUGADOR_1]</h2>
+                        <div class="choices-ppt">
+                            <button class="choice-btn-ppt player1-choice-ppt" data-choice="PIEDRA">✊</button>
+                            <button class="choice-btn-ppt player1-choice-ppt" data-choice="PAPEL">✋</button>
+                            <button class="choice-btn-ppt player1-choice-ppt" data-choice="TIJERAS">✌️</button>
+                        </div>
+                        <p class="chosen-display-ppt" id="player1ChoiceDisplayPpt">ESPERANDO_INPUT...</p>
+                        <p class="keyboard-hint-ppt">(TECLAS: A, S, D)</p>
+                    </div>
+                    <div class="results-display-area-ppt">
+                        <p id="roundResultPpt" class="result-text-ppt">// RESULTADO_RONDA //</p>
+                        <p id="turnIndicatorPpt" class="hidden-ppt turn-text-ppt"></p>
+                    </div>
+                    <div class="player-panel-ppt" id="player2PanelPpt">
+                        <h2 id="player2NameDisplayPpt" class="player-title-hacker-ppt">[JUGADOR_2]</h2>
+                        <div class="choices-ppt" id="player2ChoicesPpt">
+                            <button class="choice-btn-ppt player2-choice-ppt" data-choice="PIEDRA">✊</button>
+                            <button class="choice-btn-ppt player2-choice-ppt" data-choice="PAPEL">✋</button>
+                            <button class="choice-btn-ppt player2-choice-ppt" data-choice="TIJERAS">✌️</button>
+                        </div>
+                        <p class="chosen-display-ppt" id="player2ChoiceDisplayPpt">ESPERANDO_INPUT...</p>
+                        <p class="keyboard-hint-ppt" id="player2KeyboardHintPpt">(TECLAS: 4, 5, 6)</p>
+                    </div>
+                    <div class="computer-panel-ppt hidden-ppt" id="computerPanelPpt">
+                        <h2 class="player-title-hacker-ppt">[ IA_ADVERSARIA ]</h2>
+                        <div class="computer-choice-display-area-ppt">
+                            <p id="computerChoiceDisplayPpt" class="glitch-alt-ppt">?</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="score-board-hacker-ppt">
+                    <h3 class="score-title-ppt">// REGISTRO_DE_COMBATE //</h3>
+                    <p id="player1ScorePpt" class="score-line-ppt"><span>[JUGADOR_1_SCORE]</span>: 0</p>
+                    <p id="player2ScorePpt" class="score-line-ppt"><span>[JUGADOR_2_SCORE]</span>: 0</p>
+                    <p id="tiesPpt" class="score-line-ppt"><span>[SINCRONIZACIONES_NEUTRAS]</span>: 0</p>
+                </div>
+                <div id="finalScoreDisplayPpt" class="hidden-ppt final-scores-ppt">
+                    <h2 class="sub-title-ppt">// TRANSMISIÓN_FINALIZADA - PUNTAJES_FINALES //</h2>
+                    <p id="finalPlayer1ScorePpt"><span>[JUGADOR_1_FINAL]</span>: 0</p>
+                    <p id="finalPlayer2ScorePpt"><span>[JUGADOR_2_FINAL]</span>: 0</p>
+                    <p id="finalTiesPpt"><span>[EMPATES_FINALES]</span>: 0</p>
+                    <p id="winnerMessagePpt" class="winner-message-text-ppt"></p>
+                </div>
+                <div class="game-controls-ppt">
+                    <button id="nextRoundBtnPpt" class="hacker-btn-ppt control-btn-ppt hidden-ppt">[ SIGUIENTE_SECUENCIA ]</button>
+                    <button id="revealBtnPVPPpt" class="hacker-btn-ppt control-btn-ppt hidden-ppt">[ DECODIFICAR_JUGADAS ]</button>
+                    <button id="endGameBtnPpt" class="hacker-btn-ppt control-btn-ppt">[ FINALIZAR_SESIÓN ]</button>
+                    <button id="resetGameBtnPpt" class="hacker-btn-ppt control-btn-ppt hidden-ppt">[ REINICIAR_PROTOCOLO_LOCAL ]</button>
+                    <button id="changeModeBtnPpt" class="hacker-btn-ppt control-btn-ppt">[ ABORTAR_Y_RECONFIGURAR ]</button>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="script1.js"></script>
+    <script src="script3.js"></script>
+</body>
+</html>

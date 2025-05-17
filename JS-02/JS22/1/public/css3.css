@@ -1,0 +1,336 @@
+/* En css2.css (y similar para css3, css4) */
+@import url('css_variables.css');
+@import url('css_navbar_sidenav.css');
+
+body { /* Ya definido en css_variables.css, pero puedes sobreescribir el background aquí */
+    background-color: var(--blue-dark); /* Ejemplo para Simón Dice */
+    /* ... otros estilos de body específicos si son necesarios ... */
+}
+
+/* Estilos para el contenedor principal del contenido del juego */
+.game-page-wrapper { /* Nueva clase para envolver el contenido de cada juego */
+    padding: 20px;
+    /* min-height: calc(100vh - var(--navbar-height)); */ /* Para asegurar que ocupe espacio */
+}
+
+.game-content-card { /* Clase para el contenedor principal de cada juego, como una tarjeta */
+    background-color: var(--background-content);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-medium);
+    padding: 25px 30px;
+    max-width: 800px; /* O el ancho que necesite el juego */
+    margin: 20px auto; /* Centrar la tarjeta del juego */
+}
+body.dark-mode .game-content-card {
+    background-color: var(--dm-bg-content);
+    border: 1px solid var(--dm-border-color);
+}
+.game-content-card h1, .game-content-card h2 { /* Títulos dentro del juego */
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 25px;
+}
+body.dark-mode .game-content-card h1, body.dark-mode .game-content-card h2 {
+    color: var(--blue-turquoise-light);
+}
+
+/* === TUS ESTILOS ESPECÍFICOS DEL JUEGO VAN AQUÍ === */
+/* Adapta tus selectores para que funcionen dentro de .game-content-card si es necesario */
+/* Usa las variables de color --primary-color, --secondary-color, etc. donde sea apropiado */
+/* Estilos Generales y Barra de Navegación (copiado de css1.css) */
+body {
+    font-family: Arial, sans-serif; /* Fuente base, PPT usará la suya */
+    margin: 0;
+    padding-top: 70px; /* Espacio para la navbar fija */
+    /* El fondo del body lo controlará PPT */
+    line-height: 1.6;
+}
+.navbar { /* ... (copia completa de los estilos .navbar de css1.css) ... */
+    background-color: #333;
+    color: white;
+    padding: 0 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.nav-logo { font-size: 1.8em; font-weight: bold; }
+.nav-links { list-style: none; padding: 0; margin: 0; display: flex; }
+.nav-links li { margin-left: 20px; }
+.nav-links a { color: white; text-decoration: none; font-size: 1em; padding: 5px 10px; border-radius: 4px; transition: background-color 0.3s ease; }
+.nav-links a:hover, .nav-links a.active-link { background-color: #555; }
+.nav-user { font-size: 0.9em; }
+
+/* Para asegurar que el contenido de PPT no tenga márgenes extra de .page-content general */
+.page-content-ppt {
+    padding: 0; /* PPT maneja su propio padding y background */
+    margin: 0;
+}
+
+
+/* === TUS ESTILOS ORIGINALES PARA PPT HACKER === */
+/* Pega aquí tus estilos de style.css para PPT Hacker */
+/* Sufija las clases e IDs con -ppt o un prefijo único si es necesario para evitar colisiones */
+/* Ejemplo de adaptación: */
+
+/* --- CONFIGURACIÓN GLOBAL Y FUENTES (PPT) --- */
+/* @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700&display=swap'); */
+/* La importación de fuentes ya se maneja en el JS de PPT */
+
+:root { /* Variables específicas para PPT */
+    --hacker-green-bright-ppt: #00FF7F;
+    --hacker-green-primary-ppt: #00C24E;
+    --hacker-green-dark-ppt: #00802B;
+    --hacker-green-glow-ppt: rgba(0, 255, 127, 0.5);
+    --hacker-green-glow-intense-ppt: rgba(0, 255, 127, 0.8);
+    --hacker-black-bg-ppt: #0A0F0A;
+    --hacker-panel-bg-ppt: rgba(10, 20, 10, 0.85);
+    --hacker-panel-bg-opaque-ppt: #0D1A0D;
+    --hacker-grey-text-ppt: #9EAE9E;
+    --hacker-border-color-ppt: var(--hacker-green-dark-ppt);
+    --hacker-border-color-active-ppt: var(--hacker-green-primary-ppt);
+    --font-body-ppt: 'Share Tech Mono', monospace;
+    --font-display-ppt: 'Orbitron', sans-serif;
+    --transition-speed-ppt: 0.25s;
+}
+
+.page-content-ppt body, /* Aplicar a body si esta es la única página con estos estilos, o al contenedor principal del juego */
+.container-ppt { /* Si PPT está dentro de .container-ppt */
+    font-family: var(--font-body-ppt);
+    background-color: var(--hacker-black-bg-ppt);
+    color: var(--hacker-grey-text-ppt);
+    /* margin: 0; Ya está en body general */
+    /* padding: 20px;  Ya está en body general o .page-content-ppt lo maneja*/
+    overflow-x: hidden;
+}
+/* Eliminar el display flex, justify-content, align-items de body si los tenía PPT,
+   ya que la navbar y el padding-top del body general ya lo manejan */
+
+
+.overlay-background-ppt {
+    position: fixed;
+    top: 0; /* Ajustar a 60px si la navbar lo cubre, o dejar en 0 si el z-index es menor */
+    left: 0;
+    width: 100%;
+    height: 100%; /* O calc(100% - 60px) si es necesario */
+    z-index: -1; /* Detrás del contenido del juego pero encima del fondo del body general */
+    /* background-image: url('URL_DEL_GIF_DE_MATRIX.gif');  Asegúrate que la URL sea correcta */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    opacity: 0.25;
+    /* animation: pulseBackgroundPpt 30s infinite alternate; */
+}
+/* @keyframes pulseBackgroundPpt { from { opacity: 0.2; } to { opacity: 0.35; } } */
+
+.container-ppt {
+    background-color: var(--hacker-panel-bg-ppt);
+    border: 1px solid var(--hacker-border-color-ppt);
+    box-shadow: 0 0 20px rgba(0, 30, 0, 0.5), inset 0 0 15px rgba(0, 30, 0, 0.4);
+    padding: 30px 40px;
+    border-radius: 4px;
+    width: 95%;
+    max-width: 1000px;
+    text-align: center;
+    position: relative;
+    z-index: 1; /* Encima del overlay-background-ppt */
+    margin: 0 auto; /* Centrar el contenedor del juego */
+}
+
+/* TÍTULOS Y TEXTO PPT (con sufijo -ppt) */
+.main-title-ppt, .main-title-small-ppt {
+    font-family: var(--font-display-ppt);
+    color: var(--hacker-green-bright-ppt);
+    text-shadow: 0 0 8px var(--hacker-green-glow-ppt), 0 0 15px var(--hacker-green-glow-intense-ppt);
+    margin-bottom: 30px; letter-spacing: 1.5px; font-weight: 700;
+}
+.main-title-ppt { font-size: 2.8em; }
+.main-title-small-ppt { font-size: 2em; }
+.sub-title-ppt { font-family: var(--font-display-ppt); font-size: 1.6em; margin-bottom: 25px; color: var(--hacker-green-primary-ppt); letter-spacing: 1px; }
+.player-title-hacker-ppt { font-family: var(--font-display-ppt); font-size: 1.4em; margin-bottom: 20px; color: var(--hacker-green-primary-ppt); font-weight: 400; }
+.saludo-ppt { color: var(--hacker-green-bright-ppt); font-size: 1.2em; margin-bottom: 20px; }
+
+
+/* EFECTO GLITCH PPT (con sufijo -ppt) */
+.glitch-ppt { position: relative; }
+.glitch-ppt[data-text]::before,
+.glitch-ppt[data-text]::after {
+    content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--hacker-panel-bg-ppt); /* Usar el fondo del panel PPT */
+    /* clip y animaciones como en tu original */
+}
+.glitch-alt-ppt { /* animación como en tu original */ }
+
+/* INPUTS PPT (con sufijo -ppt) */
+#nameEntrySectionPpt label { display: block; margin: 20px 0 8px 0; font-size: 1em; color: var(--hacker-green-primary-ppt); }
+.hacker-input-ppt {
+    background-color: var(--hacker-panel-bg-opaque-ppt);
+    border: 1px solid var(--hacker-border-color-ppt);
+    color: var(--hacker-green-bright-ppt);
+    padding: 12px 15px; font-family: var(--font-body-ppt); font-size: 1em;
+    width: calc(100% - 32px); max-width: 350px; margin-bottom: 20px; border-radius: 2px;
+    box-shadow: inset 0 0 8px rgba(0, 50, 0, 0.5);
+    transition: border-color var(--transition-speed-ppt) ease, box-shadow var(--transition-speed-ppt) ease;
+}
+.hacker-input-ppt::placeholder { color: var(--hacker-green-dark-ppt); opacity: 0.7; }
+.hacker-input-ppt:focus {
+    border-color: var(--hacker-green-primary-ppt);
+    box-shadow: inset 0 0 8px rgba(0, 80, 0, 0.6), 0 0 10px var(--hacker-green-glow-ppt);
+    outline: none;
+}
+
+/* BOTONES PPT (con sufijo -ppt) */
+.mode-btn-hacker-ppt, .hacker-btn-ppt {
+    background-color: transparent;
+    border: 1px solid var(--hacker-border-color-active-ppt);
+    color: var(--hacker-green-primary-ppt);
+    padding: 10px 22px; margin: 10px 8px; font-family: var(--font-body-ppt); font-size: 1em;
+    cursor: pointer; transition: all var(--transition-speed-ppt) ease-in-out;
+    text-transform: uppercase; border-radius: 3px; letter-spacing: 0.5px;
+}
+.mode-btn-hacker-ppt:hover, .hacker-btn-ppt:hover {
+    background-color: var(--hacker-green-dark-ppt);
+    color: var(--hacker-black-bg-ppt);
+    border-color: var(--hacker-green-primary-ppt);
+    box-shadow: 0 0 10px var(--hacker-green-glow-ppt), 0 0 15px var(--hacker-green-glow-intense-ppt);
+}
+.main-action-btn-ppt { font-weight: bold; padding: 12px 28px; font-size: 1.1em; margin-top: 25px; }
+
+.choice-btn-ppt {
+    /* ... (tus estilos de .choice-btn adaptados con sufijo -ppt y usando variables -ppt) ... */
+    display: flex; align-items: center; justify-content: center; width: 100%;
+    margin: 12px 0; padding: 12px 10px; font-family: var(--font-body-ppt);
+    font-size: 2.5em; line-height: 1; cursor: pointer;
+    transition: all var(--transition-speed-ppt) ease-in-out;
+    border-radius: 3px; position: relative; overflow: visible;
+    background-color: transparent; color: var(--hacker-green-primary-ppt);
+    border: 1px solid var(--hacker-border-color-ppt);
+}
+.choice-btn-ppt::before { /* Tooltip */
+    content: attr(data-choice); position: absolute; bottom: 100%; left: 50%;
+    transform: translateX(-50%) translateY(-5px);
+    background-color: var(--hacker-panel-bg-opaque-ppt); color: var(--hacker-green-primary-ppt);
+    padding: 4px 10px; border-radius: 2px; border: 1px solid var(--hacker-green-dark-ppt);
+    font-family: var(--font-body-ppt); font-size: 0.4em; text-transform: uppercase;
+    letter-spacing: 1px; white-space: nowrap; opacity: 0; visibility: hidden;
+    transition: opacity var(--transition-speed-ppt) ease, visibility var(--transition-speed-ppt) ease, transform var(--transition-speed-ppt) ease;
+    z-index: 10;
+}
+.choice-btn-ppt:hover::before, .choice-btn-ppt:focus::before {
+    opacity: 1; visibility: visible; transform: translateX(-50%) translateY(-8px);
+}
+.choice-btn-ppt:hover {
+    border-color: var(--hacker-green-primary-ppt); color: var(--hacker-green-bright-ppt);
+    box-shadow: 0 0 10px var(--hacker-green-glow-ppt);
+}
+.choice-btn-ppt.selected-ppt { /* Cambiado para evitar conflicto con clase 'selected' genérica */
+    border-color: var(--hacker-green-bright-ppt); color: var(--hacker-green-bright-ppt);
+    box-shadow: 0 0 12px var(--hacker-green-glow-intense-ppt), inset 0 0 8px var(--hacker-green-glow-ppt);
+    background-color: rgba(0, 50, 0, 0.3);
+}
+.choice-btn-ppt.selected-ppt::before {
+    opacity: 1; visibility: visible; color: var(--hacker-green-bright-ppt);
+    border-color: var(--hacker-green-primary-ppt); transform: translateX(-50%) translateY(-8px);
+}
+.choice-btn-ppt:disabled {
+    border-color: var(--hacker-grey-text-ppt) !important; color: var(--hacker-grey-text-ppt) !important;
+    cursor: not-allowed; opacity: 0.5; background-color: transparent !important; box-shadow: none !important;
+}
+.choice-btn-ppt:disabled::before { display: none; }
+
+
+/* ÁREAS DEL JUEGO PPT (con sufijo -ppt) */
+.timer-section-ppt { font-size: 1.1em; margin-bottom: 25px; color: var(--hacker-green-primary-ppt); }
+.timer-section-ppt span { color: var(--hacker-green-bright-ppt); font-weight: bold; }
+
+.game-board-ppt { display: flex; justify-content: space-around; align-items: flex-start; margin-bottom: 30px; gap: 25px; }
+.player-panel-ppt, .computer-panel-ppt {
+    flex-basis: 32%; padding: 25px;
+    border: 1px solid var(--hacker-border-color-ppt);
+    background-color: var(--hacker-panel-bg-ppt); /* Asegurar que use el fondo correcto */
+    border-radius: 3px; box-shadow: inset 0 0 10px rgba(0, 40, 0, 0.4);
+}
+.chosen-display-ppt { margin-top: 20px; font-size: 1.2em; /* Reducido de 2.2em para mejor ajuste */ min-height: 30px; /* Reducido */ font-family: var(--font-body-ppt); color: var(--hacker-green-bright-ppt); }
+.keyboard-hint-ppt { font-size: 0.85em; color: var(--hacker-grey-text-ppt); margin-top: 15px; opacity: 0.8; }
+
+.results-display-area-ppt { flex-basis: 30%; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 150px; }
+.result-text-ppt {
+    font-size: 1.2em; padding: 12px; margin-bottom: 15px; width: 100%;
+    box-sizing: border-box; border: 1px solid var(--hacker-border-color-ppt);
+    border-radius: 2px; color: var(--hacker-grey-text-ppt);
+    background-color: var(--hacker-panel-bg-opaque-ppt);
+}
+.result-text-ppt.win-ppt { border-color: var(--hacker-green-primary-ppt); color: var(--hacker-green-bright-ppt); text-shadow: 0 0 5px var(--hacker-green-glow-ppt); }
+.result-text-ppt.lose-ppt { border-color: #FF6347; color: #FF7F7F; } /* Mantener colores de derrota y empate si te gustan */
+.result-text-ppt.tie-ppt { border-color: #FFD700; color: #FFEE77; }
+.turn-text-ppt { font-size: 1em; font-style: italic; color: var(--hacker-green-primary-ppt); }
+
+.computer-choice-display-area-ppt p {
+    font-size: 2.8em; padding: 18px; background-color: var(--hacker-panel-bg-opaque-ppt);
+    border-radius: 50%; width: 65px; height: 65px; display: flex;
+    justify-content: center; align-items: center; margin: 20px auto;
+    border: 1px solid var(--hacker-border-color-active-ppt);
+    color: var(--hacker-green-bright-ppt);
+    font-family: var(--font-body-ppt); /* Cambiado de monospace-alt */
+    box-shadow: 0 0 8px var(--hacker-green-glow-ppt);
+}
+
+/* MARCADOR Y CONTROLES PPT (con sufijo -ppt) */
+.score-board-hacker-ppt { margin: 30px 0; padding: 20px; border: 1px solid var(--hacker-border-color-ppt); border-radius: 3px; background-color: var(--hacker-panel-bg-ppt); }
+.score-title-ppt { font-family: var(--font-display-ppt); font-size: 1.3em; margin-bottom: 15px; color: var(--hacker-green-primary-ppt); letter-spacing: 0.5px; }
+.score-line-ppt { margin: 6px 0; font-size: 1em; color: var(--hacker-grey-text-ppt); }
+.score-line-ppt span { color: var(--hacker-green-bright-ppt); font-weight: bold; }
+
+.final-scores-ppt {
+    margin-top: 35px; padding: 25px;
+    border: 1px solid var(--hacker-green-primary-ppt);
+    border-radius: 3px; background-color: var(--hacker-panel-bg-ppt);
+    box-shadow: 0 0 15px var(--hacker-green-glow-ppt);
+}
+.final-scores-ppt .sub-title-ppt { color: var(--hacker-green-bright-ppt); } /* Re-aplicar por si se anula */
+.final-scores-ppt p { font-size: 1.1em; margin: 10px 0; color: var(--hacker-grey-text-ppt); }
+.final-scores-ppt p span { color: var(--hacker-green-bright-ppt); font-weight: bold; }
+.winner-message-text-ppt { font-size: 1.3em; font-weight: bold; margin-top: 20px; color: var(--hacker-green-bright-ppt); text-shadow: 0 0 8px var(--hacker-green-glow-ppt); font-family: var(--font-display-ppt); }
+
+.game-controls-ppt { margin-top: 30px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+
+/* UTILIDADES PPT (con sufijo -ppt) */
+.hidden-ppt { display: none !important; }
+/* .active-ppt puede ser necesario si tu JS lo usa para mostrar elementos como block */
+#startScreenPpt.active-ppt, /* Asumiendo que .active-ppt hace display: block o flex según necesites */
+#gameContainerPpt.active-ppt {
+    display: block; /* O flex si el contenedor es flex */
+}
+#gameContainerPpt.active-ppt { display: flex; flex-direction: column; } /* Si el contenedor del juego es flex */
+
+
+.player-panel-ppt.inactive-turn-ppt { opacity: 0.6; } /* Cambiado para evitar colisión */
+.player-panel-ppt.inactive-turn-ppt .choices-ppt button { cursor: not-allowed; opacity: 0.5; }
+
+
+/* RESPONSIVIDAD PPT (como en tu original, pero con selectores sufijados si es necesario) */
+@media (max-width: 820px) {
+    .main-title-ppt { font-size: 2.2em; }
+    .main-title-small-ppt { font-size: 1.6em; }
+    .game-board-ppt { flex-direction: column; align-items: stretch; }
+    .player-panel-ppt, .computer-panel-ppt, .results-display-area-ppt { flex-basis: auto; width: auto; margin-bottom: 20px; }
+    .container-ppt { padding: 20px 25px; }
+}
+@media (max-width: 480px) {
+    /* body general ya no tiene padding aquí, lo maneja .container-ppt */
+    .container-ppt { padding: 15px; }
+    .main-title-ppt { font-size: 1.8em; }
+    .sub-title-ppt { font-size: 1.3em; }
+    .hacker-btn-ppt, .mode-btn-hacker-ppt { font-size: 0.9em; padding: 8px 12px; }
+    .choice-btn-ppt { font-size: 2em; margin: 10px 0; padding: 10px; }
+    .choice-btn-ppt::before { font-size: 0.5em; padding: 3px 6px; }
+    .chosen-display-ppt { font-size: 1em; } /* Ajustado */
+    .timer-section-ppt { font-size: 1em; }
+    .player-title-hacker-ppt { font-size: 1.2em; }
+}

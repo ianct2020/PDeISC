@@ -1,0 +1,215 @@
+/* public/css1.css */
+/* Estilos específicos para index1.html */
+/* Las variables de color, fuentes base, botones genéricos, navbar y sidenav están en css_variables.css y css_navbar_sidenav.css */
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, var(--blue-main) 0%, var(--blue-dark) 100%);
+    color: var(--text-on-dark-bg); /* Usar el color de texto definido para fondos oscuros */
+    padding: 60px 25px; /* Aumentar padding lateral */
+    text-align: center;
+    border-bottom: 4px solid var(--blue-sky); /* Un borde con un azul más claro */
+}
+body.dark-mode .hero-section {
+    background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-midnight-darkest) 100%);
+    border-bottom-color: var(--blue-main);
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero-title {
+    font-size: clamp(2em, 5vw, 3.2em); /* Tamaño de fuente responsivo */
+    font-weight: 700;
+    margin-bottom: 15px; /* Más espacio */
+    letter-spacing: -0.5px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.hero-subtitle {
+    font-size: clamp(1em, 2.5vw, 1.4em); /* Tamaño de fuente responsivo */
+    font-weight: 300;
+    opacity: 0.9;
+    margin-bottom: 0;
+    max-width: 600px; /* Limitar ancho del subtítulo */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Contenedor Principal para index1.html */
+.main-container-index1 {
+    /* .content-wrapper ya aplica max-width y centrado */
+}
+
+/* Sección de Entrada de Nombre y Selección de Juegos */
+.input-section, .game-selection {
+    /* .card ya aplica background, padding, border-radius, box-shadow */
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.input-section .card-title, .game-selection .section-title { /* Usar .card-title o una clase específica */
+    font-size: 1.8em;
+    color: var(--blue-dark);
+    margin-bottom: 10px; /* Menos margen si hay un <p> debajo */
+    font-weight: 600;
+}
+body.dark-mode .input-section .card-title, 
+body.dark-mode .game-selection .section-title {
+    color: var(--blue-ice-very-light);
+}
+.game-selection .section-title #nombreUsuarioDisplay {
+    color: var(--accent-color); /* Destacar el nombre del usuario */
+    font-weight: 700;
+}
+body.dark-mode .game-selection .section-title #nombreUsuarioDisplay {
+    color: var(--blue-turquoise-light);
+}
+
+
+.input-section p:first-of-type { /* El párrafo descriptivo */
+    margin-bottom: 25px;
+    color: var(--text-muted);
+    font-size: 1.05em;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input-group {
+    display: flex;
+    flex-wrap: wrap; /* Para móviles */
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    max-width: 500px; /* Limitar ancho del grupo de input */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#nombreUsuarioInput {
+    padding: 12px 18px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    font-size: 1em;
+    font-family: var(--font-primary);
+    flex-grow: 1;
+    min-width: 220px; /* Para que no sea muy pequeño en flex-wrap */
+}
+#nombreUsuarioInput:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(var(--rgb-primary-color, 0,119,182),.25); /* Definir --rgb-primary-color en :root */
+    outline: none;
+}
+body.dark-mode #nombreUsuarioInput {
+    background-color: var(--blue-dark); /* Un azul oscuro sutil */
+    border-color: var(--blue-main);
+    color: var(--text-on-dark-bg);
+}
+body.dark-mode #nombreUsuarioInput::placeholder {
+    color: var(--blue-pale);
+    opacity: 0.7;
+}
+
+
+#guardarNombreBtn {
+    /* Usa .btn y .btn-primary de css_variables.css */
+    padding: 12px 28px; /* Un poco más de padding */
+}
+
+.error-message {
+    color: #e74c3c; /* Un rojo más agradable */
+    font-size: 0.9em;
+    margin-top: 10px;
+    font-weight: 500;
+    min-height: 1.2em;
+}
+
+/* Estilos para las Tarjetas de Juego */
+.game-selection .section-title {
+    margin-bottom: 30px; /* Más espacio antes de las tarjetas */
+}
+
+.game-card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.game-card {
+    /* .card ya provee background, border-radius, box-shadow */
+    /* Se heredan los estilos de .card, aquí se pueden sobreescribir o añadir */
+    text-align: center;
+    text-decoration: none;
+    color: var(--text-on-light-bg);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    overflow: hidden; /* Para que la imagen no se salga del borde redondeado */
+    display: flex;
+    flex-direction: column;
+}
+.game-card:hover {
+    transform: translateY(-6px) scale(1.02); /* Efecto de elevación y ligero zoom */
+    box-shadow: var(--shadow-medium);
+}
+
+.game-card-image {
+    width: 100%;
+    height: 180px; /* Altura consistente para las imágenes */
+    object-fit: cover;
+    background-color: var(--blue-pale); /* Color de fondo mientras carga la imagen */
+    border-bottom: 1px solid var(--border-color); /* Línea sutil debajo de la imagen */
+}
+body.dark-mode .game-card-image {
+    background-color: var(--blue-dark);
+    border-bottom-color: var(--dm-border-color);
+}
+
+.game-card-content {
+    padding: 20px;
+    flex-grow: 1; /* Asegura que el contenido llene la tarjeta */
+    display: flex;
+    flex-direction: column;
+}
+
+.game-card h3 {
+    font-size: 1.5em; /* Más grande */
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+body.dark-mode .game-card h3 {
+    color: var(--blue-turquoise-light);
+}
+
+.game-card p {
+    font-size: 0.95em;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 0; /* Quitar margen si es el último elemento */
+    flex-grow: 1; /* Para que ocupe espacio si las descripciones son cortas */
+}
+body.dark-mode .game-card p {
+    color: var(--dm-text-on-light);
+    opacity: 0.85;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 30px 20px;
+    background-color: var(--blue-dark); /* Coincide con la navbar */
+    color: var(--blue-pale);
+    font-size: 0.9em;
+    margin-top: 50px; /* Más espacio antes del footer */
+    border-top: 3px solid var(--primary-color);
+}
+body.dark-mode .footer {
+    background-color: var(--blue-midnight-darkest);
+    border-top-color: var(--blue-main);
+}
+.footer p {
+    margin: 0;
+}

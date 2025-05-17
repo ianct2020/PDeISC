@@ -1,0 +1,156 @@
+/* public/css4.css */
+@import url('css_variables.css');
+@import url('css_navbar_sidenav.css'); /* Opcional si solo heredas body y no hay más elementos de navbar aquí */
+
+body {
+    /* El fondo general ya lo da css_variables.css */
+    /* Puedes sobreescribirlo si TaTeTi necesita un fondo específico para SU PÁGINA (no el juego en sí) */
+    /* background-color: var(--blue-pale); */
+}
+
+.game-page-wrapper { /* Contenedor general para la página del juego */
+    /* padding: 20px; Ya en content-wrapper */
+}
+
+.game-content-card { /* Tarjeta principal que envuelve el juego TaTeTi */
+    background-color: var(--background-content); /* Fondo blanco o claro de tarjeta */
+    /* max-width: 900px; */ /* Ajusta según el diseño del TaTeTi */
+    /* ... otros estilos de .game-content-card de css_variables.css ya aplican ... */
+}
+body.dark-mode .game-content-card {
+    background-color: var(--dm-bg-content);
+}
+
+.game-content-card h1.tateti-title { /* Título específico para el TaTeTi dentro de su tarjeta */
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 2em;
+}
+body.dark-mode .game-content-card h1.tateti-title {
+    color: var(--blue-turquoise-light);
+}
+
+
+/* === ESTILOS ORIGINALES DE TATETI ADAPTADOS === */
+.contenedor-tateti { /* Este era tu contenedor principal del juego */
+    display: flex;
+    gap: 30px;
+    width: 100%;
+    /* max-width: 900px; Lo maneja .game-content-card */
+}
+.lado-tateti {
+    /* background: transparent;  El fondo lo da .game-content-card */
+    border-radius: var(--border-radius-md);
+    flex: 1;
+    padding: 0; /* Quitar padding si .game-content-card ya lo tiene y este es solo un layout interno */
+    /* box-shadow: none; */
+}
+.lado-tateti:hover {
+    transform: none; /* Quitar efectos de hover si ahora es parte de una tarjeta más grande */
+    box-shadow: none;
+}
+
+/* Setup del juego */
+.lado-form-tateti {
+    /* Estilos para el formulario de setup */
+}
+.lado-form-tateti h1 { /* Este es el "Bienvenido al TaTeTi, Nombre!" */
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--text-primary-color); /* Usar color de texto primario */
+    font-size: 1.4em; /* Ajustar tamaño */
+}
+body.dark-mode .lado-form-tateti h1 {
+    color: var(--blue-ice-very-light);
+}
+
+.campo-tateti label, .campo-radio-tateti > label {
+    font-weight: 500; /* Un poco menos bold */
+    color: var(--text-muted);
+    font-size: 0.9em;
+}
+.campo-tateti input[type="text"] {
+    border: 1px solid var(--border-color);
+    padding: 10px;
+}
+body.dark-mode .campo-tateti input[type="text"] {
+    background-color: var(--blue-midnight-darkest);
+    border-color: var(--blue-dark);
+    color: var(--text-on-dark-bg);
+}
+.radio-group-tateti label {
+    font-weight: normal;
+    color: var(--text-on-light-bg);
+}
+body.dark-mode .radio-group-tateti label {
+    color: var(--text-on-dark-bg);
+}
+
+
+/* Botones del TaTeTi - Aplicar clases .btn .btn-primary o .btn-secondary desde HTML */
+/* .btn-tateti { ... } Ya no es necesario si usas las clases globales */
+
+
+/* Tablero y Celdas del TaTeTi */
+#area-juego-tateti h2 { /* "Turno de..." */
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--text-primary-color);
+    font-size: 1.3em;
+}
+body.dark-mode #area-juego-tateti h2 {
+    color: var(--blue-ice-very-light);
+}
+
+.tablero-tateti {
+    display: grid;
+    grid-template-columns: repeat(3, clamp(60px, 1fr, 90px)); /* Celdas responsivas */
+    grid-template-rows: repeat(3, clamp(60px, 1fr, 90px));
+    gap: 6px;
+    justify-content: center;
+    margin: 20px auto;
+    max-width: 300px; /* Limitar tamaño del tablero */
+}
+.celda-tateti {
+    background-color: var(--blue-pale);
+    font-size: 2.8rem; /* Ajustar según tamaño de celda */
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: var(--border-radius-sm);
+    user-select: none;
+    transition: background-color 0.2s ease;
+    color: var(--blue-midnight-darkest); /* Color de X y O */
+}
+.celda-tateti:hover {
+    background-color: var(--blue-ice-very-light);
+}
+body.dark-mode .celda-tateti {
+    background-color: var(--blue-dark);
+    color: var(--blue-whitish);
+}
+body.dark-mode .celda-tateti:hover {
+    background-color: var(--blue-main);
+}
+.celda-tateti.jugador-x { color: var(--accent-color); } /* Turquesa para X */
+.celda-tateti.jugador-o { color: var(--primary-hover-color); } /* Azul cielo para O */
+body.dark-mode .celda-tateti.jugador-x { color: var(--blue-turquoise-light); }
+body.dark-mode .celda-tateti.jugador-o { color: var(--blue-cyan-light); }
+
+
+.msg-exito-tateti {
+    text-align: center;
+    color: var(--primary-color);
+    font-weight: bold;
+    margin-top: 15px;
+    padding: 8px;
+    border-radius: var(--border-radius-sm);
+    /* background-color: var(--blue-whitish); */ /* Fondo sutil */
+}
+body.dark-mode .msg-exito-tateti {
+    color: var(--blue-ice-very-light);
+    /* background-color: var(--blue-dark); */
+}

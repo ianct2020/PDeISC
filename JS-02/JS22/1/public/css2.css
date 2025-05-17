@@ -1,0 +1,182 @@
+/* En css2.css (y similar para css3, css4) */
+@import url('css_variables.css');
+@import url('css_navbar_sidenav.css');
+
+body { /* Ya definido en css_variables.css, pero puedes sobreescribir el background aquí */
+    background-color: var(--blue-dark); /* Ejemplo para Simón Dice */
+    /* ... otros estilos de body específicos si son necesarios ... */
+}
+
+/* Estilos para el contenedor principal del contenido del juego */
+.game-page-wrapper { /* Nueva clase para envolver el contenido de cada juego */
+    padding: 20px;
+    /* min-height: calc(100vh - var(--navbar-height)); */ /* Para asegurar que ocupe espacio */
+}
+
+.game-content-card { /* Clase para el contenedor principal de cada juego, como una tarjeta */
+    background-color: var(--background-content);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-medium);
+    padding: 25px 30px;
+    max-width: 800px; /* O el ancho que necesite el juego */
+    margin: 20px auto; /* Centrar la tarjeta del juego */
+}
+body.dark-mode .game-content-card {
+    background-color: var(--dm-bg-content);
+    border: 1px solid var(--dm-border-color);
+}
+.game-content-card h1, .game-content-card h2 { /* Títulos dentro del juego */
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 25px;
+}
+body.dark-mode .game-content-card h1, body.dark-mode .game-content-card h2 {
+    color: var(--blue-turquoise-light);
+}
+
+/* === TUS ESTILOS ESPECÍFICOS DEL JUEGO VAN AQUÍ === */
+/* Adapta tus selectores para que funcionen dentro de .game-content-card si es necesario */
+/* Usa las variables de color --primary-color, --secondary-color, etc. donde sea apropiado */
+/* Estilos Generales y Barra de Navegación (copiado de css1.css) */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding-top: 70px; /* Espacio para la navbar fija */
+    /* El fondo del body lo controlará Simón Dice si es necesario */
+    color: #333;
+    line-height: 1.6;
+}
+.navbar { /* ... (copia completa de los estilos .navbar de css1.css) ... */
+    background-color: #333;
+    color: white;
+    padding: 0 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.nav-logo { font-size: 1.8em; font-weight: bold; }
+.nav-links { list-style: none; padding: 0; margin: 0; display: flex; }
+.nav-links li { margin-left: 20px; }
+.nav-links a { color: white; text-decoration: none; font-size: 1em; padding: 5px 10px; border-radius: 4px; transition: background-color 0.3s ease; }
+.nav-links a:hover, .nav-links a.active-link { background-color: #555; }
+.nav-user { font-size: 0.9em; }
+.page-content { padding: 10px; } /* Añadir un padding general para el contenido de la página */
+
+
+/* === TUS ESTILOS ORIGINALES PARA SIMÓN DICE === */
+/* Pega aquí tus estilos de styles.css para Simón Dice */
+/* Asegúrate de que los selectores no entren en conflicto con la navbar si son muy generales */
+/* Ejemplo de adaptación: */
+
+.game-container-simon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* min-height: calc(100vh - 70px); /* Ajustar si es necesario */
+    background-color: #282828;
+    padding: 20px;
+    color: white; /* Asegurar que el texto sea visible sobre el fondo oscuro */
+}
+
+.welcome-simon {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #f0f0f0;
+    font-weight: bold;
+    min-height: 1.5em;
+}
+
+#simon-game {
+    position: relative;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(0,0,0,0.7);
+    margin-bottom: 30px;
+}
+
+#game-title-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4em;
+    font-weight: bold;
+    color: rgba(20, 20, 20, 0.5);
+    pointer-events: none;
+    z-index: 1;
+    text-shadow: 1px 1px 3px rgba(255,255,255,0.05);
+    user-select: none;
+}
+
+.simon-button {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    cursor: pointer;
+    border: 7px solid #222;
+    box-sizing: border-box;
+    transition: filter 0.08s ease-in-out, transform 0.08s ease-in-out, box-shadow 0.08s ease-in-out;
+}
+.simon-button.lit {
+    filter: brightness(2.6);
+    transform: scale(1.02);
+}
+#green.lit { background-color: #3cff9a; box-shadow: 0 0 25px 8px #3cff9a; }
+#red.lit { background-color: #ff7d7d; box-shadow: 0 0 25px 8px #ff7d7d; }
+#yellow.lit { background-color: #ffe977; box-shadow: 0 0 25px 8px #ffe977; }
+#blue.lit { background-color: #7db8f0; box-shadow: 0 0 25px 8px #7db8f0; }
+
+#green { background-color: #00a74a; top: 0; left: 0; border-top-left-radius: 100%; }
+#red { background-color: #d82626; top: 0; right: 0; border-top-right-radius: 100%; }
+#yellow { background-color: #fcca03; bottom: 0; left: 0; border-bottom-left-radius: 100%; }
+#blue { background-color: #1c78c0; bottom: 0; right: 0; border-bottom-right-radius: 100%; }
+
+#control-panel-simon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+    width: 90%;
+    max-width: 400px;
+    color: white; /* Asegurar que el texto sea visible */
+}
+
+.status-display-simon { font-size: 1.5em; margin-bottom: 15px; color: #fff; font-weight: bold; }
+#start-button-simon {
+    padding: 12px 25px; font-size: 1.2em; color: white; background-color: #5cb85c;
+    border: none; border-radius: 6px; cursor: pointer; transition: background-color 0.2s, transform 0.1s;
+    margin-bottom: 15px; box-shadow: 0 3px 5px rgba(0,0,0,0.3);
+}
+#start-button-simon:hover { background-color: #4cae4c; }
+#start-button-simon:active { transform: translateY(1px); box-shadow: 0 2px 3px rgba(0,0,0,0.3); }
+#start-button-simon:disabled { background-color: #666; cursor: not-allowed; box-shadow: none; }
+#message-display-simon { font-size: 1.1em; color: #ddd; min-height: 1.3em; font-style: italic; }
+
+#error-details-display-simon {
+    margin-top: 15px;
+    padding: 12px;
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 6px;
+    font-size: 0.95em;
+    color: #e0e0e0;
+    text-align: left;
+    width: calc(100% - 24px);
+    max-height: 180px;
+    overflow-y: auto;
+    border: 1px solid #444;
+}
+#error-details-display-simon p { margin: 5px 0; }
+#error-details-display-simon strong { color: #fcca03; }
+.hidden { display: none !important; }

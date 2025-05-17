@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Portal de Juegos</title>
+    <link rel="stylesheet" href="css_variables.css">
+    <link rel="stylesheet" href="css_navbar_sidenav.css">
+    <link rel="stylesheet" href="css1.css">
+    </head>
+<body>
+    <header class="top-navbar">
+        <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">
+            &#9776; </button>
+        <div class="navbar-logo">Portal de Juegos</div>
+        <div class="navbar-user-area">
+            <span id="saludoUsuarioTopNav"></span>
+            <button id="logoutBtnNav" class="logout-button-nav hidden" onclick="ejecutarLogout()">Cambiar Usuario</button>
+        </div>
+    </header>
+
+    <nav class="sidenav" id="sidenav">
+        <div class="sidenav-header">
+            <span class="sidenav-logo">Navegación</span>
+            </div>
+        <ul class="sidenav-links">
+            <li><a href="index1.html">Inicio</a></li>
+            <li><a href="index2.html">Simón Dice</a></li>
+            <li><a href="index3.html">PPT Hacker</a></li>
+            <li><a href="index4.html">TaTeTi</a></li>
+        </ul>
+        <div class="sidenav-controls">
+            <div class="theme-switch-wrapper">
+                <span>Modo Oscuro</span>
+                <label class="theme-switch" for="themeSwitch">
+                    <input type="checkbox" id="themeSwitch" />
+                    <div class="slider"></div>
+                </label>
+            </div>
+            <button id="resetPrefsBtn" class="btn btn-outline" style="width:100%; margin-top: 15px;">Resetear Datos</button>
+        </div>
+    </nav>
+    <div class="overlay-sidenav" id="overlaySidenav"></div>
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">¡Bienvenido/a al Universo Lúdico!</h1>
+            <p class="hero-subtitle">Explora, compite y diviértete en nuestro portal de juegos.</p>
+        </div>
+    </section>
+
+    <main class="content-wrapper main-container-index1">
+        <section id="entradaNombreContainer" class="card input-section">
+            <h2 class="card-title">Identifícate, Agente</h2>
+            <p>Ingresa tu alias para acceder a los desafíos y que tus hazañas queden registradas.</p>
+            <div class="input-group">
+                <input type="text" id="nombreUsuarioInput" placeholder="Escribe tu alias aquí" maxlength="25">
+                <button id="guardarNombreBtn" class="btn btn-primary">Guardar y Acceder</button>
+            </div>
+            <p id="mensajeError" class="error-message"></p>
+        </section>
+
+        <section id="seleccionJuegosContainer" class="game-selection hidden">
+            <h2 class="text-center section-title">Hola <span id="nombreUsuarioDisplay"></span>, elige tu próxima misión:</h2>
+            <div class="game-card-container">
+                <a href="index2.html" class="game-card">
+                    <img src="img/simon_card.png" alt="Juego Simón Dice" class="game-card-image">
+                    <div class="game-card-content">
+                        <h3>Simón Dice</h3>
+                        <p>Desafía tu memoria y agilidad mental con este clásico de secuencias de colores y sonidos.</p>
+                    </div>
+                </a>
+                <a href="index3.html" class="game-card">
+                    <img src="img/ppt_card.png" alt="Juego Piedra, Papel, Tijeras Estilo Hacker" class="game-card-image">
+                    <div class="game-card-content">
+                        <h3>PPT Hacker</h3>
+                        <p>Sumérgete en un duelo cibernético de Piedra, Papel o Tijeras con una estética única.</p>
+                    </div>
+                </a>
+                <a href="index4.html" class="game-card">
+                    <img src="img/tateti_card.png" alt="Juego TaTeTi (Tres en Raya)" class="game-card-image">
+                    <div class="game-card-content">
+                        <h3>TaTeTi</h3>
+                        <p>El eterno desafío del Tres en Raya. ¿Podrás alinear la victoria antes que tu oponente?</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024-2025 Portal de Juegos Interdimensionales. Programado para la diversión.</p>
+    </footer>
+
+    <script src="script1.js"></script>
+    <script src="script_navbar_sidenav.js"></script>
+</body>
+</html>

@@ -1,0 +1,322 @@
+/* --- CONFIGURACIÓN GLOBAL Y FUENTES --- */
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700&display=swap');
+
+:root {
+    --hacker-green-bright: #00FF7F; /* SpringGreen, un verde neón limpio */
+    --hacker-green-primary: #00C24E; /* Un verde ligeramente más oscuro para base */
+    --hacker-green-dark: #00802B;   /* Verde oscuro para acentos sutiles o fondos */
+    --hacker-green-glow: rgba(0, 255, 127, 0.5);
+    --hacker-green-glow-intense: rgba(0, 255, 127, 0.8);
+
+    --hacker-black-bg: #0A0F0A; /* Negro muy oscuro con un matiz verde sutil */
+    --hacker-panel-bg: rgba(10, 20, 10, 0.85); /* Fondo de panel semi-transparente oscuro */
+    --hacker-panel-bg-opaque: #0D1A0D; /* Para elementos que necesitan ser opacos */
+
+    --hacker-grey-text: #9EAE9E;  /* Gris verdoso para texto secundario */
+    --hacker-border-color: var(--hacker-green-dark);
+    --hacker-border-color-active: var(--hacker-green-primary);
+
+    --font-body: 'Share Tech Mono', monospace;
+    --font-display: 'Orbitron', sans-serif;
+    --font-monospace-alt: 'VT323', monospace;
+
+    --transition-speed: 0.25s;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--hacker-black-bg);
+    color: var(--hacker-grey-text);
+    margin: 0;
+    padding: 20px;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+/* --- FONDO MATRIX --- */
+.overlay-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-image: url('URL_DEL_GIF_DE_MATRIX.gif'); /* <<-- REEMPLAZAR URL AQUÍ */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    opacity: 0.25;
+    animation: pulseBackground 30s infinite alternate;
+}
+
+@keyframes pulseBackground {
+    from { opacity: 0.2; }
+    to { opacity: 0.35; }
+}
+
+.container {
+    background-color: var(--hacker-panel-bg);
+    border: 1px solid var(--hacker-border-color);
+    box-shadow: 0 0 20px rgba(0, 30, 0, 0.5), inset 0 0 15px rgba(0, 30, 0, 0.4);
+    padding: 30px 40px;
+    border-radius: 4px;
+    width: 95%;
+    max-width: 1000px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* --- TÍTULOS Y TEXTO --- */
+.main-title, .main-title-small {
+    font-family: var(--font-display);
+    color: var(--hacker-green-bright);
+    text-shadow: 0 0 8px var(--hacker-green-glow), 0 0 15px var(--hacker-green-glow-intense);
+    margin-bottom: 30px;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+}
+.main-title { font-size: 2.8em; }
+.main-title-small { font-size: 2em; }
+.sub-title { font-family: var(--font-display); font-size: 1.6em; margin-bottom: 25px; color: var(--hacker-green-primary); letter-spacing: 1px; }
+.player-title-hacker { font-family: var(--font-display); font-size: 1.4em; margin-bottom: 20px; color: var(--hacker-green-primary); font-weight: 400; }
+
+/* EFECTO GLITCH (Sutil) */
+.glitch { position: relative; }
+.glitch[data-text]::before,
+.glitch[data-text]::after {
+    content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--hacker-panel-bg); clip: rect(0, 0, 0, 0);
+}
+.glitch-alt { animation: glitch-anim-subtle 6s infinite steps(2,jump-both) alternate-reverse; }
+@keyframes glitch-anim-subtle {
+  0%, 100% { clip: rect(0,0,0,0); transform: translate(0,0); }
+  10%, 30%, 50%, 70%, 90% { clip: rect(0,0,0,0); transform: translate(0,0); } /* Más tiempo estable */
+  20% { clip: rect(calc(10px + (random(50) * 1px)), 9999px, calc(30px + (random(50) * 1px)), 0); transform: translate(calc(random(4) * 1px - 2px), calc(random(4) * 1px - 2px)); }
+  40% { clip: rect(calc(20px + (random(30) * 1px)), 9999px, calc(60px + (random(30) * 1px)), 0); transform: translate(calc(random(2) * 1px - 1px), calc(random(2) * 1px - 1px)); }
+  /* (random() no es CSS estándar, es una idea. El glitch real es más complejo o se hace con JS) */
+  /* Para un glitch simple sin JS, usar keyframes predefinidos más sencillos o imágenes */
+}
+
+
+/* --- PANTALLA DE INICIO Y NOMBRES --- */
+#nameEntrySection label { display: block; margin: 20px 0 8px 0; font-size: 1em; color: var(--hacker-green-primary); }
+.hacker-input {
+    background-color: var(--hacker-panel-bg-opaque);
+    border: 1px solid var(--hacker-border-color);
+    color: var(--hacker-green-bright);
+    padding: 12px 15px;
+    font-family: var(--font-body);
+    font-size: 1em;
+    width: calc(100% - 32px);
+    max-width: 350px;
+    margin-bottom: 20px;
+    border-radius: 2px;
+    box-shadow: inset 0 0 8px rgba(0, 50, 0, 0.5);
+    transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+.hacker-input::placeholder { color: var(--hacker-green-dark); opacity: 0.7; }
+.hacker-input:focus {
+    border-color: var(--hacker-green-primary);
+    box-shadow: inset 0 0 8px rgba(0, 80, 0, 0.6), 0 0 10px var(--hacker-green-glow);
+    outline: none;
+}
+
+/* --- BOTONES --- */
+.mode-btn-hacker, .hacker-btn {
+    background-color: transparent;
+    border: 1px solid var(--hacker-border-color-active);
+    color: var(--hacker-green-primary);
+    padding: 10px 22px;
+    margin: 10px 8px;
+    font-family: var(--font-body);
+    font-size: 1em;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease-in-out;
+    text-transform: uppercase;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+}
+.mode-btn-hacker:hover, .hacker-btn:hover {
+    background-color: var(--hacker-green-dark);
+    color: var(--hacker-black-bg);
+    border-color: var(--hacker-green-primary);
+    box-shadow: 0 0 10px var(--hacker-green-glow), 0 0 15px var(--hacker-green-glow-intense);
+}
+.main-action-btn { font-weight: bold; padding: 12px 28px; font-size: 1.1em; margin-top: 25px; }
+
+/* --- ESTILOS PARA BOTONES DE ELECCIÓN (PIEDRA, PAPEL, TIJERAS) --- */
+.choice-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 12px 0; /* Aumentar margen vertical */
+    padding: 12px 10px; /* Ajustar padding vertical */
+    font-family: var(--font-body); /* Fuente para el emoji si se ve afectado */
+    font-size: 2.5em; /* Tamaño GRANDE para el emoji */
+    line-height: 1; /* Para que el emoji no tome demasiado alto */
+    cursor: pointer;
+    transition: all var(--transition-speed) ease-in-out;
+    border-radius: 3px;
+    position: relative; /* Para el tooltip */
+    overflow: visible; /* Para que el tooltip no se corte */
+    background-color: transparent; /* Asegurar fondo transparente */
+    color: var(--hacker-green-primary); /* Color base del emoji */
+    border: 1px solid var(--hacker-border-color); /* Borde base sutil */
+}
+
+.choice-btn::before { /* Tooltip con el nombre de la acción */
+    content: attr(data-choice); /* Usar el data-choice para el texto */
+    position: absolute;
+    bottom: 100%; /* Posicionar arriba del botón */
+    left: 50%;
+    transform: translateX(-50%) translateY(-5px); /* Centrar y dar un pequeño espacio */
+    background-color: var(--hacker-panel-bg-opaque);
+    color: var(--hacker-green-primary);
+    padding: 4px 10px;
+    border-radius: 2px;
+    border: 1px solid var(--hacker-green-dark);
+    font-family: var(--font-body); /* Fuente del tooltip */
+    font-size: 0.4em; /* Tamaño del texto del tooltip (relativo al font-size del botón, que es grande) */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    opacity: 0; /* Oculto por defecto */
+    visibility: hidden; /* Oculto y no interactuable */
+    transition: opacity var(--transition-speed) ease, visibility var(--transition-speed) ease, transform var(--transition-speed) ease;
+    z-index: 10; /* Asegurar que esté por encima de otros elementos si es necesario */
+}
+
+.choice-btn:hover::before,
+.choice-btn:focus::before { /* Mostrar en hover y focus para accesibilidad */
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(-8px); /* Efecto de "subir" un poco más */
+}
+
+.choice-btn:hover {
+    border-color: var(--hacker-green-primary);
+    color: var(--hacker-green-bright); /* Emoji más brillante al hacer hover */
+    box-shadow: 0 0 10px var(--hacker-green-glow);
+    /* No cambiar el fondo del botón en hover para mantener el foco en el tooltip y el emoji */
+}
+
+.choice-btn.selected {
+    border-color: var(--hacker-green-bright);
+    color: var(--hacker-green-bright);
+    box-shadow: 0 0 12px var(--hacker-green-glow-intense), inset 0 0 8px var(--hacker-green-glow);
+    background-color: rgba(0, 50, 0, 0.3); /* Fondo sutil cuando está seleccionado */
+}
+.choice-btn.selected::before { /* Tooltip cuando está seleccionado */
+    opacity: 1;
+    visibility: visible;
+    color: var(--hacker-green-bright);
+    border-color: var(--hacker-green-primary);
+    transform: translateX(-50%) translateY(-8px);
+}
+
+.choice-btn:disabled {
+    border-color: var(--hacker-grey-text) !important;
+    color: var(--hacker-grey-text) !important;
+    cursor: not-allowed;
+    opacity: 0.5;
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+.choice-btn:disabled::before {
+    display: none; /* No mostrar tooltip en botones deshabilitados */
+}
+
+
+/* --- ÁREAS DEL JUEGO --- */
+.timer-section { font-size: 1.1em; margin-bottom: 25px; color: var(--hacker-green-primary); }
+.timer-section span { color: var(--hacker-green-bright); font-weight: bold; }
+
+.game-board { display: flex; justify-content: space-around; align-items: flex-start; margin-bottom: 30px; gap: 25px; }
+.player-panel, .computer-panel {
+    flex-basis: 32%; padding: 25px;
+    border: 1px solid var(--hacker-border-color);
+    background-color: var(--hacker-panel-bg);
+    border-radius: 3px;
+    box-shadow: inset 0 0 10px rgba(0, 40, 0, 0.4);
+}
+.chosen-display { margin-top: 20px; font-size: 2.2em; min-height: 45px; font-family: var(--font-monospace-alt); color: var(--hacker-green-bright); }
+.keyboard-hint { font-size: 0.85em; color: var(--hacker-grey-text); margin-top: 15px; opacity: 0.8; }
+
+.results-display-area { flex-basis: 30%; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 150px; }
+.result-text {
+    font-size: 1.2em; padding: 12px; margin-bottom: 15px; width: 100%;
+    box-sizing: border-box; border: 1px solid var(--hacker-border-color);
+    border-radius: 2px; color: var(--hacker-grey-text);
+    background-color: var(--hacker-panel-bg-opaque);
+}
+.result-text.win { border-color: var(--hacker-green-primary); color: var(--hacker-green-bright); text-shadow: 0 0 5px var(--hacker-green-glow); }
+.result-text.lose { border-color: #FF6347; color: #FF7F7F; }
+.result-text.tie { border-color: #FFD700; color: #FFEE77; }
+.turn-text { font-size: 1em; font-style: italic; color: var(--hacker-green-primary); }
+
+.computer-choice-display-area p {
+    font-size: 2.8em; padding: 18px; background-color: var(--hacker-panel-bg-opaque);
+    border-radius: 50%; width: 65px; height: 65px; display: flex;
+    justify-content: center; align-items: center; margin: 20px auto;
+    border: 1px solid var(--hacker-border-color-active);
+    color: var(--hacker-green-bright);
+    font-family: var(--font-monospace-alt);
+    box-shadow: 0 0 8px var(--hacker-green-glow);
+}
+
+/* --- MARCADOR Y CONTROLES --- */
+.score-board-hacker { margin: 30px 0; padding: 20px; border: 1px solid var(--hacker-border-color); border-radius: 3px; background-color: var(--hacker-panel-bg); }
+.score-title { font-family: var(--font-display); font-size: 1.3em; margin-bottom: 15px; color: var(--hacker-green-primary); letter-spacing: 0.5px; }
+.score-line { margin: 6px 0; font-size: 1em; color: var(--hacker-grey-text); }
+.score-line span { color: var(--hacker-green-bright); font-weight: bold; }
+
+.final-scores {
+    margin-top: 35px; padding: 25px;
+    border: 1px solid var(--hacker-green-primary);
+    border-radius: 3px;
+    background-color: var(--hacker-panel-bg);
+    box-shadow: 0 0 15px var(--hacker-green-glow);
+}
+.final-scores .sub-title { color: var(--hacker-green-bright); }
+.final-scores p { font-size: 1.1em; margin: 10px 0; color: var(--hacker-grey-text); }
+.final-scores p span { color: var(--hacker-green-bright); font-weight: bold; } /* Envolver los nombres/textos fijos en span si se quiere que el puntaje sea el único verde brillante */
+.winner-message-text { font-size: 1.3em; font-weight: bold; margin-top: 20px; color: var(--hacker-green-bright); text-shadow: 0 0 8px var(--hacker-green-glow); font-family: var(--font-display); }
+
+.game-controls { margin-top: 30px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+
+/* --- UTILIDADES Y RESPONSIVIDAD --- */
+.hidden { display: none !important; }
+.active { display: block !important; }
+#playerNamesForm.active, #gameContainer.active { display: block; }
+#gameContainer.active { display: flex; flex-direction: column; }
+
+.player-panel.inactive-turn { opacity: 0.6; }
+.player-panel.inactive-turn .choices button { cursor: not-allowed; opacity: 0.5; }
+
+
+@media (max-width: 820px) {
+    .main-title { font-size: 2.2em; }
+    .main-title-small { font-size: 1.6em; }
+    .game-board { flex-direction: column; align-items: stretch; }
+    .player-panel, .computer-panel, .results-display-area { flex-basis: auto; width: auto; margin-bottom: 20px; }
+    .container { padding: 20px 25px; }
+}
+
+@media (max-width: 480px) {
+    body { padding: 10px; }
+    .container { padding: 15px; }
+    .main-title { font-size: 1.8em; }
+    .sub-title { font-size: 1.3em; }
+    .hacker-btn, .mode-btn-hacker { font-size: 0.9em; padding: 8px 12px; }
+    .choice-btn { font-size: 2em; margin: 10px 0; padding: 10px; } /* Ajustar tamaño de emoji y padding para móviles */
+    .choice-btn::before { font-size: 0.5em; padding: 3px 6px; } /* Tooltip más pequeño en móviles */
+    .chosen-display { font-size: 1.8em; }
+    .timer-section { font-size: 1em; }
+    .player-title-hacker { font-size: 1.2em; }
+}

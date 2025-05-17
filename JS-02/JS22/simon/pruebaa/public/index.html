@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simón Dice Clásico</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="name-entry-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>¡Bienvenido a SIMÓN!</h2>
+            <p>Ingresa tu nombre para empezar:</p>
+            <input type="text" id="player-name-input" placeholder="Tu nombre" maxlength="20">
+            <button id="play-button">Jugar</button>
+            <p id="name-error-message" class="error-message"></p>
+        </div>
+    </div>
+
+    <div class="game-container hidden">
+        <div id="welcome-message"></div>
+        <div id="simon-game">
+            <div id="game-title-center">SIMÓN</div> <div class="simon-button" id="green" data-color-index="0"></div>
+            <div class="simon-button" id="red" data-color-index="1"></div>
+            <div class="simon-button" id="yellow" data-color-index="2"></div>
+            <div class="simon-button" id="blue" data-color-index="3"></div>
+        </div>
+        <div id="control-panel">
+            <div class="status-display">
+                NIVEL: <span id="level-display">0</span>
+            </div>
+            <button id="start-button">Iniciar</button>
+            <div id="message-display">Presiona "Iniciar"</div>
+            <div id="error-details-display" class="hidden"></div> </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
