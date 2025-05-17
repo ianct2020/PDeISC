@@ -3,27 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio - Mis Juegos</title> <link rel="stylesheet" href="css_variables.css">
-    <link rel="stylesheet" href="css_navbar_sidenav.css">
+    <title>Simón Dice - Mis Juegos</title>
     <link rel="stylesheet" href="css2.css"> </head>
-</head>
 <body>
     <nav class="navbar">
         <div class="nav-logo">Mis Juegos</div>
         <ul class="nav-links">
-            <li><a href="index1.html" class="nav-link-item">Inicio</a></li>
-            <li><a href="index2.html" class="active-link nav-link-item">Simón Dice</a></li>
-            <li><a href="index3.html" class="nav-link-item">PPT Hacker</a></li>
-            <li><a href="index4.html" class="nav-link-item">TaTeTi</a></li>
+            <li><a href="index1.html">Inicio</a></li>
+            <li><a href="index2.html" class="active-link">Simón Dice</a></li>
+            <li><a href="index3.html">PPT Hacker</a></li>
+            <li><a href="index4.html">Juego 3</a></li>
         </ul>
-        <div class="nav-user-area">
-            <span id="saludoUsuarioNav"></span>
-            <button id="logoutBtn" class="logout-button hidden" onclick="ejecutarLogout()">Cambiar Usuario</button>
-        </div>
+        <div id="saludoUsuarioNav" class="nav-user"></div>
     </nav>
 
-    <div class="page-content">
-        <div class="game-container-simon">
+    <div class="page-content"> <div class="game-container-simon">
             <div id="welcome-message-simon" class="welcome-simon"></div>
             <div id="simon-game">
                 <div id="game-title-center">SIMÓN</div>
@@ -43,7 +37,6 @@
         </div>
     </div>
 
-    <script src="script1.js"></script>
-    <script src="script2.js"></script>
+    <script src="script1.js"></script> <script src="script2.js"></script>
 </body>
 </html>

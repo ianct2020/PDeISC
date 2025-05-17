@@ -1,63 +1,59 @@
-// public/script3.js (PPT Hacker - Refactorizado)
+// Script para PPT Hacker (index3.html)
 document.addEventListener('DOMContentLoaded', () => {
-    const nombreJugador1Global = verificarNombreUsuario('index3.html'); // De script1.js
-
-    // --- DOM Elements Cache ---
-    const DOMElements = {
-        fontLink: document.getElementById('font-link-ppt'),
-        startScreen: document.getElementById('startScreenPpt'),
-        saludoGlobal: document.getElementById('saludoGlobalPpt'),
-        selectVsPlayerBtn: document.getElementById('selectVsPlayerBtnPpt'),
-        selectVsComputerBtn: document.getElementById('selectVsComputerBtnPpt'),
-        playerNamesForm: document.getElementById('playerNamesFormPpt'),
-        player2NameInputContainer: document.getElementById('player2NameInputContainerPpt'),
-        player2NameInput: document.getElementById('player2NameInputPpt'),
-        startGameWithNameBtn: document.getElementById('startGameWithNameBtnPpt'),
-        gameContainer: document.getElementById('gameContainerPpt'),
-        timerDisplay: document.getElementById('timerDisplayPpt'),
-        player1Panel: document.getElementById('player1PanelPpt'),
-        player1NameDisplay: document.getElementById('player1NameDisplayPpt'),
-        player1ChoiceDisplay: document.getElementById('player1ChoiceDisplayPpt'),
-        player2Panel: document.getElementById('player2PanelPpt'),
-        player2NameDisplay: document.getElementById('player2NameDisplayPpt'),
-        player2ChoiceDisplay: document.getElementById('player2ChoiceDisplayPpt'),
-        player2KeyboardHint: document.getElementById('player2KeyboardHintPpt'),
-        computerPanel: document.getElementById('computerPanelPpt'),
-        computerChoiceDisplay: document.getElementById('computerChoiceDisplayPpt'),
-        roundResultDisplay: document.getElementById('roundResultPpt'),
-        turnIndicator: document.getElementById('turnIndicatorPpt'),
-        player1ScoreDisplay: document.getElementById('player1ScorePpt'),
-        player2ScoreDisplay: document.getElementById('player2ScorePpt'),
-        tiesDisplay: document.getElementById('tiesPpt'),
-        nextRoundBtn: document.getElementById('nextRoundBtnPpt'),
-        revealBtnPVP: document.getElementById('revealBtnPVPPpt'),
-        endGameBtn: document.getElementById('endGameBtnPpt'),
-        resetGameBtn: document.getElementById('resetGameBtnPpt'), // Considerar si este botón es realmente necesario
-        changeModeBtn: document.getElementById('changeModeBtnPpt'),
-        finalScoreDisplay: document.getElementById('finalScoreDisplayPpt'),
-        finalPlayer1Score: document.getElementById('finalPlayer1ScorePpt'),
-        finalPlayer2Score: document.getElementById('finalPlayer2ScorePpt'),
-        finalTies: document.getElementById('finalTiesPpt'),
-        winnerMessage: document.getElementById('winnerMessagePpt')
-    };
-    const player1ChoiceButtons = DOMElements.player1Panel?.querySelectorAll('.player1-choice-ppt');
-    const player2ChoiceButtons = DOMElements.player2Panel?.querySelectorAll('.player2-choice-ppt');
-
+    const nombreJugador1Global = verificarNombreUsuario('index3.html');
     if (!nombreJugador1Global) {
-        if (DOMElements.saludoGlobal) DOMElements.saludoGlobal.textContent = "Acceso denegado. Identifícate en Inicio.";
-        [DOMElements.selectVsPlayerBtn, DOMElements.selectVsComputerBtn].forEach(btn => btn && (btn.disabled = true));
-        if (DOMElements.playerNamesForm) DOMElements.playerNamesForm.classList.add('hidden-ppt');
-        // Considerar añadir botón para ir a index1.html aquí si se desea
-        return;
+        return; // Detener si no hay nombre
     }
 
-    // --- Game Constants & State ---
-    const TIMER_DURATION = 10;
-    const CHOICES = ['piedra', 'papel', 'tijeras'];
-    const CHOICE_EMOJIS = { piedra: '✊', papel: '✋', tijeras: '✌️' };
-    const KEY_MAP_P1 = { 'a': 'piedra', 's': 'papel', 'd': 'tijeras' };
-    const KEY_MAP_P2 = { '4': 'piedra', '5': 'papel', '6': 'tijeras' }; // Para numpad si se desea
+    // Sufijar todos los IDs y clases referenciados en JS con "-ppt"
+    const fontLink = document.getElementById('font-link-ppt');
+    const primaryFont = 'Share Tech Mono'; // Fuentes como en tu original
+    const displayFont = 'Orbitron';
+    if (fontLink) {
+        fontLink.href = `https://fonts.googleapis.com/css2?family=${primaryFont.replace(' ', '+')}&family=${displayFont.replace(' ', '+')}:wght@400;700&display=swap`;
+    }
 
+    const startScreen = document.getElementById('startScreenPpt');
+    const saludoGlobalElemento = document.getElementById('saludoGlobalPpt');
+    const selectVsPlayerBtn = document.getElementById('selectVsPlayerBtnPpt');
+    const selectVsComputerBtn = document.getElementById('selectVsComputerBtnPpt');
+    const playerNamesForm = document.getElementById('playerNamesFormPpt');
+    // player1NameInputPpt ya no se usa para entrada
+    const player2NameInputContainer = document.getElementById('player2NameInputContainerPpt');
+    const player2NameInput = document.getElementById('player2NameInputPpt');
+    const startGameWithNameBtn = document.getElementById('startGameWithNameBtnPpt');
+
+    const gameContainer = document.getElementById('gameContainerPpt');
+    const timerDisplay = document.getElementById('timerDisplayPpt');
+    const player1Panel = document.getElementById('player1PanelPpt');
+    const player1NameDisplayElement = document.getElementById('player1NameDisplayPpt');
+    const player1ChoiceButtons = player1Panel.querySelectorAll('.player1-choice-ppt');
+    const player1ChoiceDisplay = document.getElementById('player1ChoiceDisplayPpt');
+    const player2Panel = document.getElementById('player2PanelPpt');
+    const player2NameDisplayElement = document.getElementById('player2NameDisplayPpt');
+    const player2ChoiceButtons = player2Panel.querySelectorAll('.player2-choice-ppt');
+    const player2ChoiceDisplay = document.getElementById('player2ChoiceDisplayPpt');
+    const player2KeyboardHint = document.getElementById('player2KeyboardHintPpt');
+    const computerPanel = document.getElementById('computerPanelPpt');
+    const computerChoiceDisplay = document.getElementById('computerChoiceDisplayPpt');
+    const roundResultDisplay = document.getElementById('roundResultPpt');
+    const turnIndicator = document.getElementById('turnIndicatorPpt');
+    const player1ScoreDisplay = document.getElementById('player1ScorePpt');
+    const player2ScoreDisplay = document.getElementById('player2ScorePpt');
+    const tiesDisplay = document.getElementById('tiesPpt');
+    const nextRoundBtn = document.getElementById('nextRoundBtnPpt');
+    const revealBtnPVP = document.getElementById('revealBtnPVPPpt'); // ID corregido
+    const endGameBtn = document.getElementById('endGameBtnPpt');
+    const resetGameBtn = document.getElementById('resetGameBtnPpt');
+    const changeModeBtn = document.getElementById('changeModeBtnPpt');
+
+    const finalScoreDisplay = document.getElementById('finalScoreDisplayPpt');
+    const finalPlayer1ScoreDisplay = document.getElementById('finalPlayer1ScorePpt');
+    const finalPlayer2ScoreDisplay = document.getElementById('finalPlayer2ScorePpt');
+    const finalTiesDisplay = document.getElementById('finalTiesPpt');
+    const winnerMessageDisplay = document.getElementById('winnerMessagePpt');
+
+    const TIMER_DURATION = 10;
     let timerInterval;
     let timeLeft;
     let player1Choice = null;
@@ -65,372 +61,379 @@ document.addEventListener('DOMContentLoaded', () => {
     let computerChoice = null;
     let gameMode = null; // 'pvp' o 'pvc'
     let currentPlayerTurn = null; // 1 o 2
-    let player1Name = nombreJugador1Global;
-    let player2Name = "Adversario"; // Default
-    let scores = { player1: 0, player2: 0, ties: 0 };
+    let player1Name = nombreJugador1Global; // Usar el nombre global
+    let player2Name = "JUGADOR_2";
+    let player1Score = 0;
+    let player2Score = 0;
+    let ties = 0;
     let gameEnded = false;
 
-    // --- Initialization ---
-    function initializeGame() {
-        if (DOMElements.fontLink) {
-            const primaryFont = 'Share Tech Mono';
-            const displayFont = 'Orbitron';
-            DOMElements.fontLink.href = `https://fonts.googleapis.com/css2?family=${primaryFont.replace(' ', '+')}&family=${displayFont.replace(' ', '+')}:wght@400;700&display=swap`;
-        }
-        if (DOMElements.saludoGlobal) DOMElements.saludoGlobal.textContent = `Agente ${player1Name}, bienvenido al sistema PPT.`;
+    const CHOICES = ['piedra', 'papel', 'tijeras'];
+    const CHOICE_EMOJIS = { piedra: '✊', papel: '✋', tijeras: '✌️' };
+    const KEY_MAP_P1 = { 'a': 'piedra', 's': 'papel', 'd': 'tijeras' };
+    const KEY_MAP_P2 = { '4': 'piedra', '5': 'papel', '6': 'tijeras' };
 
-        // Event Listeners para selección de modo
-        DOMElements.selectVsPlayerBtn?.addEventListener('click', () => setupMode('pvp'));
-        DOMElements.selectVsComputerBtn?.addEventListener('click', () => setupMode('pvc'));
-        DOMElements.startGameWithNameBtn?.addEventListener('click', handleStartGameWithName);
-
-        // Event Listeners para controles del juego
-        player1ChoiceButtons?.forEach(button => button.addEventListener('click', () => handlePlayerAction(1, button.dataset.choice, button)));
-        player2ChoiceButtons?.forEach(button => button.addEventListener('click', () => handlePlayerAction(2, button.dataset.choice, button)));
-        document.addEventListener('keydown', handleKeyPress);
-
-        DOMElements.revealBtnPVP?.addEventListener('click', processPVPRevealedChoices);
-        DOMElements.nextRoundBtn?.addEventListener('click', resetRound);
-        DOMElements.endGameBtn?.addEventListener('click', finalizeGame);
-        DOMElements.changeModeBtn?.addEventListener('click', returnToModeSelection);
-        // DOMElements.resetGameBtn?.addEventListener('click', () => {/* Lógica si se mantiene este botón */});
+    if (saludoGlobalElemento) {
+        saludoGlobalElemento.textContent = `Agente ${player1Name}, bienvenido al sistema PPT.`;
     }
 
-    // --- UI Update Functions ---
-    function toggleVisibility(element, show, displayType = 'block') {
-        if (element) element.style.display = show ? displayType : 'none';
-    }
-    function updateText(element, text) {
-        if (element) element.textContent = text;
-    }
-    function updateHTML(element, html) {
-        if (element) element.innerHTML = html;
-    }
-    function toggleClass(element, className, force) {
-        if(element) element.classList.toggle(className, force);
-    }
+    if (selectVsPlayerBtn) selectVsPlayerBtn.addEventListener('click', () => prepareNameEntry('pvp'));
+    if (selectVsComputerBtn) selectVsComputerBtn.addEventListener('click', () => prepareNameEntry('pvc'));
 
-    // --- Game Setup Logic ---
-    function setupMode(mode) {
+    function prepareNameEntry(mode) {
         gameMode = mode;
-        toggleClass(DOMElements.playerNamesForm, 'hidden-ppt', false);
-        const isPvp = mode === 'pvp';
-        toggleClass(DOMElements.player2NameInputContainer, 'hidden-ppt', !isPvp);
-        if (isPvp && DOMElements.player2NameInput) {
-            DOMElements.player2NameInput.placeholder = "[ALIAS_JUGADOR_2]";
-            DOMElements.player2NameInput.value = "";
-            DOMElements.player2NameInput.focus();
-        } else if (DOMElements.startGameWithNameBtn) {
-            DOMElements.startGameWithNameBtn.focus();
-        }
-    }
+        if (playerNamesForm) playerNamesForm.classList.remove('hidden-ppt');
+        // No necesitamos mostrar el input para player1Name
 
-    function handleStartGameWithName() {
-        if (gameMode === 'pvp') {
-            player2Name = DOMElements.player2NameInput.value.trim() || "Operador_2";
-            if (player2Name.toLowerCase() === player1Name.toLowerCase() && player2Name !== "Operador_2") {
-                alert("Los alias de los agentes deben ser únicos. Modifique la identificación del Operador 2.");
-                DOMElements.player2NameInput?.focus();
-                return;
+        if (mode === 'pvp') {
+            if (player2NameInputContainer) player2NameInputContainer.classList.remove('hidden-ppt');
+            if (player2NameInput) {
+                player2NameInput.placeholder = "[ALIAS_JUGADOR_2]";
+                player2NameInput.value = ""; // Limpiar para nueva entrada
+                player2NameInput.focus();
             }
-        } else {
-            player2Name = "IA Némesis";
+        } else { // pvc
+            if (player2NameInputContainer) player2NameInputContainer.classList.add('hidden-ppt');
+            if (startGameWithNameBtn) startGameWithNameBtn.focus(); // Iniciar directamente vs IA
         }
-        launchGame();
     }
 
-    function launchGame() {
-        toggleVisibility(DOMElements.startScreen, false);
-        toggleVisibility(DOMElements.gameContainer, true, 'flex'); // Asumiendo que gameContainer es flex
-        toggleVisibility(DOMElements.finalScoreDisplay, false);
-        toggleVisibility(DOMElements.endGameBtn, true);
+    if (startGameWithNameBtn) {
+        startGameWithNameBtn.addEventListener('click', () => {
+            // player1Name ya está seteado.
+            if (gameMode === 'pvp') {
+                player2Name = player2NameInput.value.trim() || "OPERADOR_2";
+                if (player2Name.toLowerCase() === player1Name.toLowerCase()) {
+                    alert("El Jugador 2 no puede tener el mismo alias que el Jugador 1. Modifica la identificación.");
+                    if (player2NameInput) player2NameInput.focus();
+                    return;
+                }
+            } else {
+                player2Name = "IA_ADVERSARIA_X";
+            }
+            startGame();
+        });
+    }
+
+
+    function startGame() {
+        if (startScreen) startScreen.classList.add('hidden-ppt'); // Ocultar pantalla de inicio de PPT
+        if (gameContainer) gameContainer.classList.remove('hidden-ppt');
+        if (finalScoreDisplay) finalScoreDisplay.classList.add('hidden-ppt');
         gameEnded = false;
+        if (endGameBtn) endGameBtn.classList.remove('hidden-ppt');
 
-        updateText(DOMElements.player1NameDisplay, `// ${player1Name} //`);
-        updateHTML(DOMElements.player1ScoreDisplay, `<span>${player1Name}</span>: 0`);
-        updateText(DOMElements.player2NameDisplay, `// ${player2Name} //`);
-        updateHTML(DOMElements.player2ScoreDisplay, `<span>${player2Name}</span>: 0`);
-        updateHTML(DOMElements.tiesDisplay, `<span>[SINCRONIZACIONES_NEUTRAS]</span>: 0`);
+        if (player1NameDisplayElement) player1NameDisplayElement.textContent = `// ${player1Name} //`;
+        if (player1ScoreDisplay) player1ScoreDisplay.querySelector('span').textContent = `${player1Name}`;
+        if (player2NameDisplayElement) player2NameDisplayElement.textContent = `// ${player2Name} //`;
+        if (player2ScoreDisplay) player2ScoreDisplay.querySelector('span').textContent = `${player2Name}`;
 
-
-        const isPvp = gameMode === 'pvp';
-        toggleVisibility(DOMElements.computerPanel, !isPvp);
-        toggleVisibility(DOMElements.player2Panel, isPvp);
-        toggleVisibility(DOMElements.player2KeyboardHint, isPvp);
-        toggleVisibility(DOMElements.turnIndicator, isPvp);
-
-        if (isPvp) {
+        if (gameMode === 'pvc') {
+            if (computerPanel) {
+                computerPanel.querySelector('h2').textContent = `// ${player2Name} //`;
+                computerPanel.classList.remove('hidden-ppt');
+            }
+            if (player2Panel) player2Panel.classList.add('hidden-ppt');
+            if (player2KeyboardHint) player2KeyboardHint.classList.add('hidden-ppt');
             currentPlayerTurn = 1;
-            updateTurnIndicatorText();
-            setPlayerControlsState(player2ChoiceButtons, false);
-        } else {
-            currentPlayerTurn = 1; // Humano siempre es jugador 1
+            if (turnIndicator) turnIndicator.classList.add('hidden-ppt');
+        } else { // pvp
+            if (player2Panel) player2Panel.classList.remove('hidden-ppt');
+            if (computerPanel) computerPanel.classList.add('hidden-ppt');
+            if (player2KeyboardHint) player2KeyboardHint.classList.remove('hidden-ppt');
+            currentPlayerTurn = 1;
+            updateTurnIndicator();
+            enablePlayerControls(player2ChoiceButtons, false);
         }
-        
-        toggleClass(DOMElements.player1Panel, 'inactive-turn-ppt', false);
-        toggleClass(DOMElements.player2Panel, 'inactive-turn-ppt', isPvp && currentPlayerTurn !== 2);
+        if (player1Panel) player1Panel.classList.remove('inactive-turn-ppt');
+        if (player2Panel) player2Panel.classList.remove('inactive-turn-ppt'); // Reset
+        if (gameMode === 'pvp' && currentPlayerTurn === 1 && player2Panel) {
+             player2Panel.classList.add('inactive-turn-ppt');
+        }
 
-        resetScoresState();
-        resetRound();
+        resetScores();
+        resetRoundState();
     }
 
-    // --- Timer Logic ---
     function startTimer() {
-        if (gameEnded || !DOMElements.timerDisplay) return;
+        if (gameEnded || !timerDisplay) return;
         timeLeft = TIMER_DURATION;
-        updateText(DOMElements.timerDisplay, timeLeft);
+        timerDisplay.textContent = timeLeft;
         clearInterval(timerInterval);
         timerInterval = setInterval(() => {
             timeLeft--;
-            updateText(DOMElements.timerDisplay, timeLeft);
+            timerDisplay.textContent = timeLeft;
             if (timeLeft <= 0) {
                 clearInterval(timerInterval);
-                processTimeOut();
+                handleTimeOut();
             }
         }, 1000);
     }
+
     function stopTimer() { clearInterval(timerInterval); }
 
-    function processTimeOut() {
-        if (gameEnded) return;
-        updateText(DOMElements.roundResultDisplay, `TIEMPO_AGOTADO_PARA_${currentPlayerTurn === 1 ? player1Name : player2Name}!`);
-        DOMElements.roundResultDisplay?.classList.add('lose-ppt'); // Asumir clase de derrota
-        setAllChoiceButtonsState(false);
+    function handleTimeOut() {
+        if (gameEnded || !roundResultDisplay) return;
+        roundResultDisplay.textContent = `TIEMPO_EXPIRADO_PARA_${currentPlayerTurn === 1 ? player1Name : player2Name}!`;
+        roundResultDisplay.className = 'result-text-ppt lose-ppt';
+        disableAllChoiceButtons();
 
-        const loser = currentPlayerTurn === 1 ? 'player1' : 'player2';
-        const winner = loser === 'player1' ? 'player2' : 'player1';
-        updateScoresState(winner);
-        
-        // Lógica específica de timeout
-        if (gameMode === 'pvc') { // Si P1 (humano) se quedó sin tiempo
-            displayRoundOutcome(winner, player1Choice, computerChoice || CHOICES[Math.floor(Math.random() * CHOICES.length)]);
-        } else { // PvP
-            const timedOutPlayer = currentPlayerTurn === 1 ? player1Name : player2Name;
-            const otherPlayer = currentPlayerTurn === 1 ? player2Name : player1Name;
-            updateText(DOMElements.roundResultDisplay, `${timedOutPlayer}_NO_COMPLETO_ACCIÓN. ${otherPlayer}_GANA_ESTA_RONDA.`);
+        if (gameMode === 'pvc') {
+            updateScores('player2'); // IA (player2) gana por timeout de P1
+            displayResult( 'player2', player1Choice, computerChoice || CHOICES[Math.floor(Math.random() * CHOICES.length)]); // P2 gana
+        } else if (gameMode === 'pvp') {
+            if (currentPlayerTurn === 1 && !player1Choice) {
+                updateScores('player2'); // P2 gana
+                roundResultDisplay.textContent = `${player1Name}_NO_EJECUTO_ACCIÓN. ${player2Name}_GANA_RONDA.`;
+            } else if (currentPlayerTurn === 2 && !player2Choice) {
+                updateScores('player1'); // P1 gana
+                roundResultDisplay.textContent = `${player2Name}_NO_EJECUTO_ACCIÓN. ${player1Name}_GANA_RONDA.`;
+            }
         }
-
-        toggleVisibility(DOMElements.nextRoundBtn, true);
-        toggleVisibility(DOMElements.revealBtnPVP, false);
+        if (nextRoundBtn) nextRoundBtn.classList.remove('hidden-ppt');
+        if (revealBtnPVP) revealBtnPVP.classList.add('hidden-ppt');
     }
 
-    // --- Player Actions & Turn Management ---
-    function setPlayerControlsState(buttons, enabled) {
-        buttons?.forEach(button => button.disabled = !enabled);
-    }
-    function setAllChoiceButtonsState(enabled) {
-        setPlayerControlsState(player1ChoiceButtons, enabled);
-        setPlayerControlsState(player2ChoiceButtons, enabled);
-    }
-
-    function initiatePlayerTurn() {
+    function startPlayerTurn() {
         if (gameEnded) return;
-        const isPvp = gameMode === 'pvp';
-        if (isPvp) updateTurnIndicatorText();
-
-        setPlayerControlsState(player1ChoiceButtons, currentPlayerTurn === 1 || !isPvp);
-        setPlayerControlsState(player2ChoiceButtons, isPvp && currentPlayerTurn === 2);
-        
-        toggleClass(DOMElements.player1Panel, 'inactive-turn-ppt', isPvp && currentPlayerTurn === 2);
-        toggleClass(DOMElements.player2Panel, 'inactive-turn-ppt', isPvp && currentPlayerTurn === 1);
+        if (gameMode === 'pvp') {
+            updateTurnIndicator();
+            if (currentPlayerTurn === 1) {
+                enablePlayerControls(player1ChoiceButtons, true);
+                enablePlayerControls(player2ChoiceButtons, false);
+                if (player1Panel) player1Panel.classList.remove('inactive-turn-ppt');
+                if (player2Panel) player2Panel.classList.add('inactive-turn-ppt');
+            } else {
+                enablePlayerControls(player1ChoiceButtons, false);
+                enablePlayerControls(player2ChoiceButtons, true);
+                if (player1Panel) player1Panel.classList.add('inactive-turn-ppt');
+                if (player2Panel) player2Panel.classList.remove('inactive-turn-ppt');
+            }
+        } else { // pvc
+            enablePlayerControls(player1ChoiceButtons, true);
+            if (turnIndicator) turnIndicator.classList.add('hidden-ppt');
+            if (player1Panel) player1Panel.classList.remove('inactive-turn-ppt');
+        }
         startTimer();
     }
 
-    function handleKeyPress(event) {
-        if (gameEnded || !DOMElements.gameContainer || DOMElements.gameContainer.classList.contains('hidden-ppt')) return;
+    player1ChoiceButtons.forEach(button => button.addEventListener('click', () => handlePlayerChoice(1, button.dataset.choice, button)));
+    player2ChoiceButtons.forEach(button => button.addEventListener('click', () => handlePlayerChoice(2, button.dataset.choice, button)));
+
+    document.addEventListener('keydown', (event) => {
+        if (gameEnded || !gameContainer || gameContainer.classList.contains('hidden-ppt')) return;
         const key = event.key.toLowerCase();
-        const targetPlayer = gameMode === 'pvc' || (gameMode === 'pvp' && currentPlayerTurn === 1) ? 1 : 2;
-        const keyMap = targetPlayer === 1 ? KEY_MAP_P1 : KEY_MAP_P2;
-        const choiceButtons = targetPlayer === 1 ? player1ChoiceButtons : player2ChoiceButtons;
-        const playerMadeChoice = targetPlayer === 1 ? player1Choice : player2Choice;
-
-        if (keyMap[key] && !playerMadeChoice) {
-            const button = Array.from(choiceButtons || []).find(b => b.dataset.choice.toLowerCase() === keyMap[key]);
-            handlePlayerAction(targetPlayer, keyMap[key], button);
+        if (gameMode === 'pvp') {
+            if (currentPlayerTurn === 1 && KEY_MAP_P1[key] && !player1Choice) {
+                handlePlayerChoice(1, KEY_MAP_P1[key], Array.from(player1ChoiceButtons).find(b => b.dataset.choice.toLowerCase() === KEY_MAP_P1[key]));
+            } else if (currentPlayerTurn === 2 && KEY_MAP_P2[key] && !player2Choice) {
+                handlePlayerChoice(2, KEY_MAP_P2[key], Array.from(player2ChoiceButtons).find(b => b.dataset.choice.toLowerCase() === KEY_MAP_P2[key]));
+            }
+        } else if (gameMode === 'pvc' && KEY_MAP_P1[key] && !player1Choice) {
+            handlePlayerChoice(1, KEY_MAP_P1[key], Array.from(player1ChoiceButtons).find(b => b.dataset.choice.toLowerCase() === KEY_MAP_P1[key]));
         }
-    }
+    });
 
-    function handlePlayerAction(playerNum, choice, buttonElement) {
-        if (gameEnded || (gameMode === 'pvp' && playerNum !== currentPlayerTurn) || (gameMode === 'pvc' && playerNum !== 1)) return;
+    function handlePlayerChoice(playerNum, choice, buttonElement) {
+        if (gameEnded) return;
+        if (gameMode === 'pvp' && playerNum !== currentPlayerTurn) return;
+        if (gameMode === 'pvc' && playerNum !== 1) return;
 
         stopTimer();
-        buttonElement?.classList.add('selected-ppt');
-        choice = choice.toLowerCase();
+        if (buttonElement) buttonElement.classList.add('selected-ppt'); // Usar clase específica
 
         if (playerNum === 1) {
-            player1Choice = choice;
-            updateText(DOMElements.player1ChoiceDisplay, `REGISTRADO: ${CHOICE_EMOJIS[choice]}`);
-            setPlayerControlsState(player1ChoiceButtons, false);
+            player1Choice = choice.toLowerCase();
+            if (player1ChoiceDisplay) player1ChoiceDisplay.textContent = `INPUT_REGISTRADO: ${CHOICE_EMOJIS[player1Choice]}`;
+            enablePlayerControls(player1ChoiceButtons, false);
             if (gameMode === 'pvc') {
-                processRoundPVC();
+                playRoundPVC();
             } else { // pvp
-                updateText(DOMElements.player1ChoiceDisplay, `// ${player1Name}_ENCRIPTANDO... //`);
+                if (player1ChoiceDisplay) player1ChoiceDisplay.textContent = `// ${player1Name}_ENCRIPTANDO... //`;
                 currentPlayerTurn = 2;
-                initiatePlayerTurn();
+                startPlayerTurn();
             }
-        } else { // playerNum === 2 (solo en PvP)
-            player2Choice = choice;
-            updateText(DOMElements.player2ChoiceDisplay, `REGISTRADO: ${CHOICE_EMOJIS[choice]}`);
-            setPlayerControlsState(player2ChoiceButtons, false);
-            updateText(DOMElements.player2ChoiceDisplay, `// ${player2Name}_ENCRIPTANDO... //`);
-            toggleVisibility(DOMElements.revealBtnPVP, true);
-            updateText(DOMElements.roundResultDisplay, 'INPUTS_RECIBIDOS. [DECODIFICAR_TRANSMISIONES]');
-            updateText(DOMElements.turnIndicator, `ESPERANDO_DECODIFICACIÓN...`);
+        } else if (playerNum === 2 && gameMode === 'pvp') {
+            player2Choice = choice.toLowerCase();
+            if (player2ChoiceDisplay) player2ChoiceDisplay.textContent = `INPUT_REGISTRADO: ${CHOICE_EMOJIS[player2Choice]}`;
+            enablePlayerControls(player2ChoiceButtons, false);
+            if (player2ChoiceDisplay) player2ChoiceDisplay.textContent = `// ${player2Name}_ENCRIPTANDO... //`;
+            if (revealBtnPVP) revealBtnPVP.classList.remove('hidden-ppt');
+            if (roundResultDisplay) roundResultDisplay.textContent = 'AMBOS_INPUTS_RECIBIDOS. [DECODIFICAR_JUGADAS]';
+            if (turnIndicator) turnIndicator.textContent = `PULSAR [DECODIFICAR_JUGADAS]`;
         }
     }
-    
-    function processPVPRevealedChoices() {
-        if (gameEnded || !(gameMode === 'pvp' && player1Choice && player2Choice)) return;
-        updateText(DOMElements.player1ChoiceDisplay, `${player1Name}: ${CHOICE_EMOJIS[player1Choice]}`);
-        updateText(DOMElements.player2ChoiceDisplay, `${player2Name}: ${CHOICE_EMOJIS[player2Choice]}`);
-        processRoundPVP();
-        toggleVisibility(DOMElements.revealBtnPVP, false);
+
+    function enablePlayerControls(buttons, enable) {
+        buttons.forEach(button => button.disabled = !enable);
+    }
+    function disableAllChoiceButtons() {
+        enablePlayerControls(player1ChoiceButtons, false);
+        enablePlayerControls(player2ChoiceButtons, false);
     }
 
-    // --- Round Processing ---
-    function generateComputerChoice() {
+    if (revealBtnPVP) {
+        revealBtnPVP.addEventListener('click', () => {
+            if (gameEnded) return;
+            if (gameMode === 'pvp' && player1Choice && player2Choice) {
+                if (player1ChoiceDisplay) player1ChoiceDisplay.textContent = `${player1Name}: ${CHOICE_EMOJIS[player1Choice]}`;
+                if (player2ChoiceDisplay) player2ChoiceDisplay.textContent = `${player2Name}: ${CHOICE_EMOJIS[player2Choice]}`;
+                playRoundPVP();
+                revealBtnPVP.classList.add('hidden-ppt');
+            }
+        });
+    }
+
+
+    function getComputerChoice() {
         computerChoice = CHOICES[Math.floor(Math.random() * CHOICES.length)];
-        updateText(DOMElements.computerChoiceDisplay, CHOICE_EMOJIS[computerChoice]);
+        if (computerChoiceDisplay) computerChoiceDisplay.textContent = CHOICE_EMOJIS[computerChoice];
     }
 
-    function processRoundPVC() {
-        if (!player1Choice) { processTimeOut(); return; } // Debería ser manejado por timeout, pero por si acaso
-        generateComputerChoice();
-        const winner = determineRoundWinner(player1Choice, computerChoice);
-        updateScoresState(winner);
-        displayRoundOutcome(winner, player1Choice, computerChoice);
-        toggleVisibility(DOMElements.nextRoundBtn, true);
-        setAllChoiceButtonsState(false);
+    function playRoundPVC() {
+        if (!player1Choice) { handleTimeOut(); return; }
+        getComputerChoice();
+        const winner = determineWinner(player1Choice, computerChoice);
+        updateScores(winner);
+        displayResult(winner, player1Choice, computerChoice); // Usar displayResult para PVC
+        if (nextRoundBtn) nextRoundBtn.classList.remove('hidden-ppt');
+        disableAllChoiceButtons();
     }
 
-    function processRoundPVP() {
-        if (!player1Choice || !player2Choice) { processTimeOut(); return; }
-        const winner = determineRoundWinner(player1Choice, player2Choice);
-        updateScoresState(winner);
-        displayRoundOutcome(winner, player1Choice, player2Choice);
-        toggleVisibility(DOMElements.nextRoundBtn, true);
-        setAllChoiceButtonsState(false);
+    function playRoundPVP() {
+        if (!player1Choice || !player2Choice) { handleTimeOut(); return; }
+        const winner = determineWinner(player1Choice, player2Choice);
+        updateScores(winner);
+        displayResultPVP(winner, player1Choice, player2Choice); // Usar displayResultPVP
+        if (nextRoundBtn) nextRoundBtn.classList.remove('hidden-ppt');
+        disableAllChoiceButtons();
     }
 
-    function determineRoundWinner(p1, p2) {
-        if (!p1 && p2) return 'player2'; 
-        if (p1 && !p2) return 'player1';
-        if (!p1 && !p2 || p1 === p2) return 'tie';
-        return ((p1 === 'piedra' && p2 === 'tijeras') || 
-                (p1 === 'papel' && p2 === 'piedra') || 
-                (p1 === 'tijeras' && p2 === 'papel')) ? 'player1' : 'player2';
+
+    function determineWinner(p1, p2) { /* Sin cambios */
+        if (!p1 && p2) return 'player2'; if (p1 && !p2) return 'player1';
+        if (!p1 && !p2) return 'tie'; if (p1 === p2) return 'tie';
+        if ((p1 === 'piedra' && p2 === 'tijeras') || (p1 === 'papel' && p2 === 'piedra') || (p1 === 'tijeras' && p2 === 'papel')) return 'player1';
+        return 'player2';
     }
 
-    // --- Score & Display Updates ---
-    function updateScoresState(winner) {
-        if (winner === 'player1') scores.player1++;
-        else if (winner === 'player2') scores.player2++;
-        else if (winner === 'tie') scores.ties++;
-        updateHTML(DOMElements.player1ScoreDisplay, `<span>${player1Name}</span>: ${scores.player1}`);
-        updateHTML(DOMElements.player2ScoreDisplay, `<span>${player2Name}</span>: ${scores.player2}`);
-        updateHTML(DOMElements.tiesDisplay, `<span>[SINCRONIZACIONES_NEUTRAS]</span>: ${scores.ties}`);
+    function updateScores(winner) { /* Sin cambios, usa player1Name y player2Name */
+        if (winner === 'player1') player1Score++; else if (winner === 'player2') player2Score++; else if (winner === 'tie') ties++;
+        if (player1ScoreDisplay) player1ScoreDisplay.innerHTML = `<span>${player1Name}</span>: ${player1Score}`;
+        if (player2ScoreDisplay) player2ScoreDisplay.innerHTML = `<span>${player2Name}</span>: ${player2Score}`;
+        if (tiesDisplay) tiesDisplay.innerHTML = `<span>[SINCRONIZACIONES_NEUTRAS]</span>: ${ties}`;
     }
 
-    function displayRoundOutcome(winner, p1c, p2c) {
-        if (!DOMElements.roundResultDisplay) return;
-        DOMElements.roundResultDisplay.className = 'result-text-ppt'; // Reset class
-        const p1 = { choice: p1c, name: player1Name, emoji: p1c ? CHOICE_EMOJIS[p1c] : "X", text: p1c ? capitalize(p1c) : "N/A" };
-        const p2 = { choice: p2c, name: player2Name, emoji: p2c ? CHOICE_EMOJIS[p2c] : "X", text: p2c ? capitalize(p2c) : "N/A" };
-        const isPvcAndP2Wins = gameMode === 'pvc' && winner === 'player2';
-
-        let message = "";
-        let outcomeClass = "";
+    function displayResult(winner, p1c, p2c) { // Para PVC
+        if (!roundResultDisplay) return;
+        roundResultDisplay.className = 'result-text-ppt'; // Clase base
+        let p1cText = p1c ? capitalize(p1c) : "N/A";
+        let p2cText = p2c ? capitalize(p2c) : "N/A";
+        let p1cEmoji = p1c ? CHOICE_EMOJIS[p1c] : "X";
+        let p2cEmoji = p2c ? CHOICE_EMOJIS[p2c] : "X";
 
         if (winner === 'tie') {
-            message = `SINCRONIZACIÓN_NEUTRA! ${p1.name} ${p1.emoji} vs ${p2.name} ${p2.emoji}`;
-            outcomeClass = 'tie-ppt';
+            roundResultDisplay.textContent = `SINCRONIZACIÓN_NEUTRA! ${player1Name} ${p1cEmoji} vs IA ${p2cEmoji}`;
+            roundResultDisplay.classList.add('tie-ppt');
         } else if (winner === 'player1') {
-            message = `VICTORIA ${p1.name}! ${p1.text} ${getVerb(p1.choice)} ${p2.text}. (${p1.emoji} > ${p2.emoji})`;
-            outcomeClass = 'win-ppt';
-        } else { // player2 wins
-            message = `VICTORIA ${p2.name}! ${p2.text} ${getVerb(p2.choice)} ${p1.text}. (${p2.emoji} > ${p1.emoji})`;
-            outcomeClass = isPvcAndP2Wins ? 'lose-ppt' : 'win-ppt'; // 'lose' si la IA gana al humano
+            roundResultDisplay.textContent = `VICTORIA ${player1Name}! ${p1cText} ${getVerb(p1c)} ${p2cText}. (${p1cEmoji} > ${p2cEmoji})`;
+            roundResultDisplay.classList.add('win-ppt');
+        } else { // player2 (IA) gana
+            roundResultDisplay.textContent = `IA GANA. ${p2cText} ${getVerb(p2c)} ${p1cText}. (${p2cEmoji} > ${p1cEmoji})`;
+            roundResultDisplay.classList.add('lose-ppt');
         }
-        updateText(DOMElements.roundResultDisplay, message);
-        DOMElements.roundResultDisplay.classList.add(outcomeClass);
     }
 
-    function updateTurnIndicatorText() {
-        if (gameEnded || !DOMElements.turnIndicator) { toggleVisibility(DOMElements.turnIndicator, false); return; }
+    function displayResultPVP(winner, p1c, p2c) { // Para PVP
+        if (!roundResultDisplay) return;
+        roundResultDisplay.className = 'result-text-ppt'; // Clase base
+        let p1cText = capitalize(p1c); let p2cText = capitalize(p2c);
+        let p1cEmoji = CHOICE_EMOJIS[p1c]; let p2cEmoji = CHOICE_EMOJIS[p2c];
+
+        if (winner === 'tie') {
+            roundResultDisplay.textContent = `SINCRONIZACIÓN_NEUTRA! AMBOS ${p1cEmoji}`;
+            roundResultDisplay.classList.add('tie-ppt');
+        } else if (winner === 'player1') {
+            roundResultDisplay.textContent = `VICTORIA ${player1Name}! ${p1cText} ${getVerb(p1c)} ${p2cText}. (${p1cEmoji} > ${p2cEmoji})`;
+            roundResultDisplay.classList.add('win-ppt');
+        } else { // player2 gana
+            roundResultDisplay.textContent = `VICTORIA ${player2Name}! ${p2cText} ${getVerb(p2c)} ${p1cText}. (${p2cEmoji} > ${p1cEmoji})`;
+            roundResultDisplay.classList.add('win-ppt'); // En pvp, la victoria del oponente es una "victoria" para ese jugador
+        }
+    }
+
+
+    function updateTurnIndicator() { /* Sin cambios, usa player1Name y player2Name */
+        if (gameEnded || !turnIndicator) { if (turnIndicator) turnIndicator.classList.add('hidden-ppt'); return; }
         if (gameMode === 'pvp') {
-            toggleVisibility(DOMElements.turnIndicator, true);
-            updateText(DOMElements.turnIndicator, `TURNO_DE: // ${currentPlayerTurn === 1 ? player1Name : player2Name} //`);
-        } else {
-            toggleVisibility(DOMElements.turnIndicator, false);
-        }
+            turnIndicator.classList.remove('hidden-ppt');
+            turnIndicator.textContent = `TURNO_DE: // ${currentPlayerTurn === 1 ? player1Name : player2Name} //`;
+        } else { turnIndicator.classList.add('hidden-ppt'); }
     }
 
-    // --- Game State Management ---
-    function resetRound() {
-        if (gameEnded) return;
-        stopTimer();
+    function resetRoundState() {
+        if (gameEnded) return; stopTimer();
         player1Choice = null; player2Choice = null; computerChoice = null;
-        updateText(DOMElements.player1ChoiceDisplay, 'ESPERANDO_INPUT...');
-        updateText(DOMElements.player2ChoiceDisplay, 'ESPERANDO_INPUT...');
-        if (gameMode === 'pvc') updateText(DOMElements.computerChoiceDisplay, '?');
-        
-        updateText(DOMElements.roundResultDisplay, '// INICIANDO_TRANSMISIÓN_DE_RONDA //');
-        if(DOMElements.roundResultDisplay) DOMElements.roundResultDisplay.className = 'result-text-ppt';
-        
-        toggleVisibility(DOMElements.nextRoundBtn, false);
-        toggleVisibility(DOMElements.revealBtnPVP, false);
-        
-        player1ChoiceButtons?.forEach(btn => btn.classList.remove('selected-ppt'));
-        player2ChoiceButtons?.forEach(btn => btn.classList.remove('selected-ppt'));
-
-        currentPlayerTurn = 1; // P1 siempre inicia la nueva ronda (o es el primero en PvP)
-        initiatePlayerTurn();
+        if (player1ChoiceDisplay) player1ChoiceDisplay.textContent = 'ESPERANDO_INPUT...';
+        if (player2ChoiceDisplay) player2ChoiceDisplay.textContent = 'ESPERANDO_INPUT...';
+        if (gameMode === 'pvc' && computerChoiceDisplay) computerChoiceDisplay.textContent = '?';
+        if (roundResultDisplay) { roundResultDisplay.textContent = '// INICIANDO_SECUENCIA //'; roundResultDisplay.className = 'result-text-ppt'; }
+        if (nextRoundBtn) nextRoundBtn.classList.add('hidden-ppt');
+        if (revealBtnPVP) revealBtnPVP.classList.add('hidden-ppt');
+        [...player1ChoiceButtons, ...player2ChoiceButtons].forEach(btn => btn.classList.remove('selected-ppt'));
+        if (gameMode === 'pvp') { currentPlayerTurn = 1; }
+        startPlayerTurn();
     }
 
-    function resetScoresState() {
-        scores = { player1: 0, player2: 0, ties: 0 };
-        updateScoresState(null); // Actualiza el display con scores en 0
+    if (nextRoundBtn) nextRoundBtn.addEventListener('click', resetRoundState);
+    if (endGameBtn) {
+        endGameBtn.addEventListener('click', () => { /* Sin cambios, usa player1Name y player2Name */
+            gameEnded = true; stopTimer(); disableAllChoiceButtons();
+            if (finalPlayer1ScoreDisplay) finalPlayer1ScoreDisplay.innerHTML = `<span>${player1Name}</span>: ${player1Score}`;
+            if (finalPlayer2ScoreDisplay) finalPlayer2ScoreDisplay.innerHTML = `<span>${player2Name}</span>: ${player2Score}`;
+            if (finalTiesDisplay) finalTiesDisplay.innerHTML = `<span>[EMPATES_FINALES]</span>: ${ties}`;
+            if (winnerMessageDisplay) {
+                if (player1Score > player2Score) winnerMessageDisplay.textContent = `// ${player1Name} HA DOMINADO LA SESIÓN //`;
+                else if (player2Score > player1Score) winnerMessageDisplay.textContent = `// ${player2Name} HA DOMINADO LA SESIÓN //`;
+                else winnerMessageDisplay.textContent = "// LA SESIÓN CONCLUYE EN EQUILIBRIO //";
+            }
+            if (finalScoreDisplay) finalScoreDisplay.classList.remove('hidden-ppt');
+            if (roundResultDisplay) roundResultDisplay.textContent = "// SESIÓN_TERMINADA //";
+            if (turnIndicator) turnIndicator.classList.add('hidden-ppt');
+            if (nextRoundBtn) nextRoundBtn.classList.add('hidden-ppt');
+            if (revealBtnPVP) revealBtnPVP.classList.add('hidden-ppt');
+            endGameBtn.classList.add('hidden-ppt');
+        });
     }
 
-    function finalizeGame() {
-        gameEnded = true;
-        stopTimer();
-        setAllChoiceButtonsState(false);
-
-        updateHTML(DOMElements.finalPlayer1Score, `<span>${player1Name}</span>: ${scores.player1}`);
-        updateHTML(DOMElements.finalPlayer2Score, `<span>${player2Name}</span>: ${scores.player2}`);
-        updateHTML(DOMElements.finalTies, `<span>[EMPATES_FINALES]</span>: ${scores.ties}`);
-
-        let winnerMsgText = "// ANÁLISIS_DE_SESIÓN_CONCLUIDO //";
-        if (scores.player1 > scores.player2) winnerMsgText = `// ${player1Name} HA_DEMOSTRADO_SUPERIORIDAD_TÁCTICA //`;
-        else if (scores.player2 > scores.player1) winnerMsgText = `// ${player2Name} HA_LOGRADO_LA_DOMINACIÓN //`;
-        else winnerMsgText = "// LA_CONTIENDA_FINALIZA_EN_PUNTO_MUERTO_ESTRATÉGICO //";
-        updateText(DOMElements.winnerMessage, winnerMsgText);
-
-        toggleVisibility(DOMElements.finalScoreDisplay, true);
-        updateText(DOMElements.roundResultDisplay, "// TRANSMISIÓN_DE_SESIÓN_COMPLETADA //");
-        [DOMElements.turnIndicator, DOMElements.nextRoundBtn, DOMElements.revealBtnPVP, DOMElements.endGameBtn].forEach(el => toggleVisibility(el, false));
+    if (resetGameBtn) { // Este botón suele estar oculto, su lógica es para reiniciar la partida actual
+        resetGameBtn.addEventListener('click', () => {
+            if (!gameEnded && gameContainer && !gameContainer.classList.contains('hidden-ppt')) {
+                resetScores(); resetRoundState();
+                if (finalScoreDisplay) finalScoreDisplay.classList.add('hidden-ppt');
+                if (endGameBtn) endGameBtn.classList.remove('hidden-ppt');
+            }
+        });
+    }
+    if (changeModeBtn) { // Volver a la selección de modo DENTRO de PPT
+        changeModeBtn.addEventListener('click', () => {
+            stopTimer();
+            if (gameContainer) gameContainer.classList.add('hidden-ppt');
+            if (startScreen) startScreen.classList.remove('hidden-ppt');
+            if (playerNamesForm) playerNamesForm.classList.add('hidden-ppt');
+            if (finalScoreDisplay) finalScoreDisplay.classList.add('hidden-ppt');
+            gameEnded = false;
+        });
     }
 
-    function returnToModeSelection() {
-        stopTimer();
-        toggleVisibility(DOMElements.gameContainer, false);
-        toggleVisibility(DOMElements.startScreen, true);
-        toggleVisibility(DOMElements.playerNamesForm, true); // Mostrar para reconfigurar
-        toggleVisibility(DOMElements.finalScoreDisplay, false);
-        gameEnded = false;
-        // Resetear nombres y elecciones para la nueva configuración
-        player1Choice = null; player2Choice = null; computerChoice = null;
-        setupMode(gameMode || 'pvp'); // Volver al último modo o pvp por defecto
+    function resetScores() { /* Sin cambios, usa player1Name y player2Name */
+        player1Score = 0; player2Score = 0; ties = 0;
+        if (player1ScoreDisplay) player1ScoreDisplay.innerHTML = `<span>${player1Name}</span>: ${player1Score}`;
+        if (player2ScoreDisplay) player2ScoreDisplay.innerHTML = `<span>${player2Name}</span>: ${player2Score}`;
+        if (tiesDisplay) tiesDisplay.innerHTML = `<span>[SINCRONIZACIONES_NEUTRAS]</span>: ${ties}`;
     }
 
-    // --- Utility Functions ---
-    function capitalize(string) { return string ? string.charAt(0).toUpperCase() + string.slice(1) : ''; }
-    function getVerb(choice) {
-        const verbs = { piedra: 'DESTRUYE', papel: 'ENVUELVE', tijeras: 'CORTA' };
-        return verbs[choice] || '';
-    }
+    function capitalize(string) { if (!string) return ''; return string.charAt(0).toUpperCase() + string.slice(1); }
+    function getVerb(choice) { if (choice === 'piedra') return 'DESTRUYE'; if (choice === 'papel') return 'ENVUELVE'; if (choice === 'tijeras') return 'CORTA'; return ''; }
 
-    // --- Start Everything ---
-    initializeGame();
 });
