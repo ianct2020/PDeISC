@@ -1,15 +1,17 @@
-/* Estilos Generales y Barra de Navegación (copiado de css1.css) */
 body {
-    font-family: Arial, sans-serif; /* Fuente base, TaTeTi usará la suya para el juego */
+    font-family: 'Roboto', Arial, sans-serif;
     margin: 0;
-    padding-top: 70px; /* Espacio para la navbar fija */
-    /* El fondo del body lo controlará TaTeTi si es necesario para su propia pantalla */
+    padding-top: 70px;
+    background-color: #0A192F; /* Azul oscuro principal de fondo */
+    color: #E2E8F0; /* Color de texto claro general */
     line-height: 1.6;
-    /* display: flex; justify-content: center; align-items: center; min-height: 100vh; */
-    /* Lo anterior se manejará por .page-content-tateti */
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 70px);
 }
-.navbar { /* ... (copia completa de los estilos .navbar de css1.css) ... */
-    background-color: #333;
+
+.navbar {
+    background-color: #0D2A4C; /* Un azul un poco más claro para la navbar */
     color: white;
     padding: 0 20px;
     position: fixed;
@@ -21,141 +23,304 @@ body {
     justify-content: space-between;
     align-items: center;
     height: 60px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
-.nav-logo { font-size: 1.8em; font-weight: bold; }
-.nav-links { list-style: none; padding: 0; margin: 0; display: flex; }
-.nav-links li { margin-left: 20px; }
-.nav-links a { color: white; text-decoration: none; font-size: 1em; padding: 5px 10px; border-radius: 4px; transition: background-color 0.3s ease; }
-.nav-links a:hover, .nav-links a.active-link { background-color: #555; }
-.nav-user-area { display: flex; align-items: center; gap: 10px; }
-#saludoUsuarioNav { font-size: 0.9em; color: white; }
-.logout-button { background-color: #f0ad4e; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8em; transition: background-color 0.3s ease; }
-.logout-button:hover { background-color: #ec971f; }
-.hidden { display: none !important; }
 
+.nav-logo {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #60A5FA; /* Azul brillante para el logo */
+}
 
-/* Estilos para el contenedor del juego TaTeTi */
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    color: #CBD5E0; /* Color de enlace más suave */
+    text-decoration: none;
+    font-size: 1em;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-links a:hover {
+    background-color: #1E40AF; /* Azul más oscuro al pasar el mouse */
+    color: white;
+}
+.nav-links a.active-link {
+    background-color: #2563EB; /* Azul brillante para el enlace activo */
+    color: white;
+    font-weight: 500;
+}
+
+.nav-user-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#saludoUsuarioNav {
+    font-size: 0.9em;
+    color: #A0AEC0; /* Un gris azulado para el saludo */
+}
+
+.logout-button {
+    background-color: #2563EB;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8em;
+    transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #1D4ED8;
+}
+
+.hidden {
+    display: none !important;
+}
+
 .page-content-tateti {
-    font-family: 'Segoe UI', sans-serif; /* Fuente original del TaTeTi */
-    background: linear-gradient(135deg, #ea9c1d, #6938ef); /* Fondo original */
-    min-height: calc(100vh - 70px); /* Ocupar el resto de la altura después de la navbar */
+    font-family: 'Roboto', 'Segoe UI', sans-serif;
+    flex-grow: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px; /* Padding original del body del TaTeTi */
+    padding: 20px;
     box-sizing: border-box;
 }
 
-/* === TUS ESTILOS ORIGINALES PARA TATETI (con sufijos -tateti) === */
-/* Reset & fondo ya están arriba o en body general */
-* { /* Este selector global es muy amplio, mejor quitarlo o limitarlo si no es necesario */
-    /* margin: 0; padding: 0; box-sizing: border-box; */ /* Ya manejado por estilos más específicos o body */
-}
-
-/* Layout principal TaTeTi */
-.contenedor-tateti { /* Original: .contenedor */
+.contenedor-tateti {
     display: flex;
-    gap: 30px;
+    flex-direction: column; /* Apilado por defecto, cambia en pantallas grandes */
+    gap: 25px;
     width: 100%;
-    max-width: 1200px;
-    /* background: #fff; No, los lados tienen su propio fondo */
-    /* border-radius: 10px; */
-    /* padding: 25px; */ /* El padding irá en los .lado-tateti */
-    /* box-shadow: 0 6px 20px rgba(0,0,0,0.1); */
+    max-width: 900px; /* Ancho máximo para el contenedor del juego */
 }
-.lado-tateti { /* Original: .lado */
-    background: #fff;
-    border-radius: 10px;
-    flex: 1;
-    padding: 25px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+
+.lado-tateti {
+    background: #1E293B; /* Fondo de tarjeta azul-gris oscuro */
+    border-radius: 12px;
+    padding: 25px 30px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
     transition: transform .3s, box-shadow .3s;
-}
-.lado-tateti:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    flex: 1;
 }
 
-/* Títulos TaTeTi */
-.lado-form-tateti h1, /* Original: .lado-form h1 */
-#area-juego-tateti h2 { /* Original: h2 (dentro del área de juego) */
+.lado-form-tateti h1,
+#area-juego-tateti h2 {
     text-align: center;
-    margin-bottom: 20px;
-    color: #333;
+    margin-bottom: 25px;
+    color: #93C5FD; /* Azul claro para títulos */
+    font-weight: 500;
+}
+#area-juego-tateti h2 {
+    margin-top: 0;
 }
 
-/* Campos de formulario TaTeTi */
-.campo-tateti { /* Original: .campo */
-    margin-bottom: 15px;
+.campo-form-tateti {
+    margin-bottom: 20px;
 }
-.campo-tateti label {
+
+.campo-form-tateti label {
     display: block;
-    font-weight: 600;
-    margin-bottom: 5px;
-    color: #444;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #A0AEC0; /* Gris azulado para labels */
 }
-.campo-tateti input[type="text"] { /* Más específico */
+
+.campo-form-tateti input[type="text"] {
     width: 100%;
-    padding: 10px;
-    border: 2px solid #ddd;
+    padding: 12px 15px;
+    border: 1px solid #334155; /* Borde azul-gris */
+    background-color: #0F172A; /* Fondo de input muy oscuro */
     border-radius: 6px;
     font-size: 1rem;
+    color: #E2E8F0;
+    box-sizing: border-box;
 }
-.campo-radio-tateti .radio-group-tateti { /* Original: .campo-radio .radio-group */
-    display: flex;
-    gap: 20px;
-    margin-top: 10px;
+.campo-form-tateti input[type="text"]::placeholder {
+    color: #4A5568;
 }
-.campo-radio-tateti label { /* Original: .campo-radio label */
-    font-weight: 600; /* Esto podría aplicar también al label general del campo-radio */
+.campo-form-tateti input[type="text"]:focus {
+    outline: none;
+    border-color: #2563EB; /* Borde azul brillante al enfocar */
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
 }
 
-/* Botón TaTeTi */
-.btn-tateti { /* Original: .btn */
+.radio-group-tateti {
+    display: flex;
+    gap: 10px; /* Espacio reducido entre radios */
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+.radio-group-tateti label {
+    font-weight: 400; /* Peso normal para opciones de radio */
+    color: #A0AEC0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.radio-group-tateti input[type="radio"] {
+    margin-right: 8px;
+    accent-color: #2563EB; /* Color del radio button */
+}
+
+.btn-tateti {
     width: 100%;
-    background: #083c8a;
-    color: #fff;
-    padding: 12px;
+    padding: 12px 20px;
     border: none;
     border-radius: 6px;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
+    font-weight: 500;
     cursor: pointer;
     margin-top: 10px;
-    transition: background .3s;
+    transition: background-color .3s, transform 0.2s;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
 }
 .btn-tateti:hover {
-    background: #2f3ddc;
+    transform: translateY(-2px);
 }
 
-/* Tablero TaTeTi */
-.tablero-tateti { /* Original: .tablero */
+.btn-principal-tateti {
+    background-color: #2563EB; /* Azul brillante */
+    color: white;
+}
+.btn-principal-tateti:hover {
+    background-color: #1D4ED8; /* Azul más oscuro */
+}
+
+.btn-secundario-tateti {
+    background-color: #374151; /* Gris azulado oscuro */
+    color: #E2E8F0;
+}
+.btn-secundario-tateti:hover {
+    background-color: #4B5563; /* Gris azulado medio */
+}
+
+.btn-terciario-tateti {
+    background-color: transparent;
+    color: #60A5FA;
+    border: 1px solid #60A5FA;
+}
+.btn-terciario-tateti:hover {
+    background-color: rgba(96, 165, 250, 0.1);
+}
+
+
+.area-juego-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tablero-tateti {
     display: grid;
-    grid-template-columns: repeat(3, 100px);
+    grid-template-columns: repeat(3, clamp(80px, 20vw, 110px)); /* Celdas responsivas */
+    grid-template-rows: repeat(3, clamp(80px, 20vw, 110px));    /* Celdas responsivas */
     gap: 10px;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
-.celda-tateti { /* Original: .celda */
-    width: 100px;
-    height: 100px;
-    background-color: #f5c8e4;
-    font-size: 2.5rem;
+
+.celda-tateti {
+    background-color: #334155; /* Azul-gris para celdas */
+    font-size: clamp(2rem, 10vw, 3.5rem); /* Tamaño de fuente responsivo */
+    font-weight: bold;
+    color: #93C5FD; /* Color para X y O */
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    border-radius: 10px;
+    border-radius: 8px;
     user-select: none;
+    transition: background-color 0.2s ease;
 }
 .celda-tateti:hover {
-    background-color: #fbbdea;
+    background-color: #4B5563; /* Un poco más claro al pasar el mouse */
+}
+.celda-tateti.jugador-x {
+    color: #FDBA74; /* Naranja claro para X */
+}
+.celda-tateti.jugador-o {
+    color: #A5B4FC; /* Lavanda para O */
 }
 
-/* Mensajes TaTeTi */
-.msg-exito-tateti { /* Original: .msg-exito */
+.controles-juego-tateti {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 350px; /* Ancho máximo para los botones de control */
+    margin-bottom: 15px;
+}
+
+.msg-resultado-tateti {
     text-align: center;
-    color: green;
-    font-weight: bold;
-    margin-top: 10px;
+    color: #6EE7B7; /* Verde menta para mensajes de éxito/resultado */
+    font-weight: 500;
+    margin-top: 15px;
+    font-size: 1.1rem;
+    min-height: 1.5em; /* Para evitar saltos de layout */
+}
+.msg-resultado-tateti.visible {
+    display: block;
+}
+
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .contenedor-tateti {
+        flex-direction: row; /* Lados en horizontal en pantallas más grandes */
+        align-items: flex-start; /* Alinear al inicio si tienen alturas diferentes */
+    }
+    .lado-form-tateti {
+        max-width: 380px; /* Ancho fijo para el formulario en desktop */
+        flex-shrink: 0; /* Evitar que se encoja */
+    }
+    .area-juego-container {
+        flex-grow: 1;
+    }
+    .controles-juego-tateti {
+        flex-direction: row; /* Botones en línea */
+        max-width: none;
+    }
+    .controles-juego-tateti .btn-tateti {
+        width: auto; /* Ancho automático para botones en línea */
+        flex-grow: 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-links {
+        display: none; /* Ocultar links para una futura versión con menú hamburguesa si es necesario */
+    }
+    .nav-logo {
+        font-size: 1.5em;
+    }
+    .lado-tateti {
+        padding: 20px;
+    }
+    .campo-form-tateti input[type="text"],
+    .btn-tateti {
+        padding: 10px 12px;
+        font-size: 0.95rem;
+    }
+    .tablero-tateti {
+        gap: 8px;
+    }
 }
