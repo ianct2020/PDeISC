@@ -13,30 +13,85 @@ body {
 .navbar {
     background-color: #1A3A6D;
     color: #FFFFFF;
-    padding: 0 20px;
+    padding: 0 20px; /* Mantenemos el padding general de la navbar */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 60px;
+    align-items: center; /* Mantenemos la alineación vertical al centro */
+    min-height: 60px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    box-sizing: border-box; /* Buena práctica para incluir padding y borde en el width/height total */
+    justify-content: flex-start; /* CAMBIO: Alinear items al inicio */
 }
 
 .nav-logo {
     font-size: 1.7em;
     font-weight: bold;
     color: #FFFFFF;
+    flex-shrink: 0;
+}
+
+.nav-toggle-checkbox {
+    display: none;
+}
+
+.nav-toggle-label {
+    display: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+    display: block;
+    background-color: #FFFFFF;
+    height: 3px;
+    width: 28px;
+    border-radius: 2px;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+    content: '';
+    position: absolute;
+}
+
+.nav-toggle-label span::before {
+    top: -9px;
+}
+
+.nav-toggle-label span::after {
+    top: 9px;
+}
+
+.nav-toggle-checkbox:checked ~ .nav-toggle-label span {
+    background-color: transparent;
+}
+
+.nav-toggle-checkbox:checked ~ .nav-toggle-label span::before {
+    transform: rotate(45deg);
+    top: 0;
+}
+
+.nav-toggle-checkbox:checked ~ .nav-toggle-label span::after {
+    transform: rotate(-45deg);
+    top: 0;
 }
 
 .nav-links {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 0; /* Asegúrate que no haya márgenes por defecto */
     display: flex;
+    align-items: center;
+    margin-left: 25px;  /* AÑADIDO/AJUSTADO: Espacio entre el logo y los links */
+    margin-right: auto; /* AÑADIDO: Esto empujará .nav-user hacia el extremo derecho */
 }
 
 .nav-links li {
@@ -64,6 +119,9 @@ body {
     font-size: 0.9em;
     padding: 8px 12px;
     color: #FFFFFF;
+    white-space: nowrap; /* AÑADIDO: Evita que el texto "Hola, asd" se divida en múltiples líneas */
+    flex-shrink: 0;    /* AÑADIDO: Evita que este elemento se encoja */
+    margin-left: 20px; /* AÑADIDO: Un pequeño espacio antes del saludo del usuario */
 }
 
 .page-content {
@@ -99,19 +157,18 @@ body {
     text-align: center;
 }
 
-/* En tu css2.css, reemplaza el estilo de #simon-game por este: */
 #simon-game {
     position: relative;
     width: 100%;
     max-width: 360px;
-    aspect-ratio: 1 / 1; /* Esto asegura que sea un cuadrado */
-    border-radius: 50%; /* Esto lo hace redondo */
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
     box-shadow: 0 0 25px rgba(0,0,0,0.6);
-    margin-left: auto; /* Para centrarlo si el contenedor padre es más ancho */
-    margin-right: auto; /* Para centrarlo si el contenedor padre es más ancho */
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 30px;
     background-color: #1C2833;
-    overflow: hidden; /* Asegura que el contenido se mantenga dentro del círculo */
+    overflow: hidden;
 }
 
 #game-title-center {
@@ -239,6 +296,9 @@ body {
 }
 
 @media (max-width: 768px) {
+    .navbar {
+        padding: 0 15px;
+    }
     .nav-links li {
         margin-left: 10px;
     }
@@ -248,6 +308,50 @@ body {
     }
     .nav-logo {
         font-size: 1.5em;
+    }
+    .nav-toggle-label {
+        display: block;
+    }
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: #16325C;
+        padding: 0;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .nav-links li {
+        margin: 0;
+        width: 100%;
+        text-align: left;
+    }
+    .nav-links a {
+        display: block;
+        padding: 15px 20px;
+        width: 100%;
+        box-sizing: border-box;
+        border-radius: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-links li:last-child a {
+        border-bottom: none;
+    }
+    .nav-links a:hover,
+    .nav-links a.active-link {
+        background-color: #A9D6E5;
+        color: #1A3A6D;
+    }
+    .nav-toggle-checkbox:checked ~ .nav-links {
+        display: flex;
+    }
+    .nav-user {
+        font-size: 0.85em;
+        padding: 6px 10px;
+        margin-left: auto;
     }
     .game-container-simon {
         padding: 20px;
@@ -275,32 +379,6 @@ body {
     body {
         padding-top: 60px;
     }
-    .navbar {
-        padding: 0 10px;
-        height: auto;
-        flex-direction: column;
-        align-items: center;
-        padding-bottom: 8px;
-        padding-top: 8px;
-    }
-     .nav-logo {
-        margin-bottom: 8px;
-        text-align: center;
-        width: 100%;
-    }
-    .nav-links {
-        flex-wrap: wrap;
-        justify-content: center;
-        width: 100%;
-    }
-    .nav-links li {
-        margin: 3px 5px;
-    }
-    .nav-user {
-        width: 100%;
-        text-align: center;
-        margin-top: 5px;
-    }
     .page-content {
         padding: 15px;
     }
@@ -312,10 +390,6 @@ body {
     }
      #simon-game {
       max-width: 260px;
-      border-width: 4px;
-    }
-    .simon-button {
-        border-width: 4px;
     }
     .welcome-simon {
         font-size: 1.1em;
