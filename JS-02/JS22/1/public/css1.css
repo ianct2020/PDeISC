@@ -1,37 +1,63 @@
 /* Estilos Generales */
+:root {
+    --dark-blue: #0B2D6D;         /* Azul oscuro para fondos principales como navbar */
+    --medium-blue: #00599F;       /* Azul medio para hovers, acentos */
+    --primary-blue: #008DD8;      /* Azul primario para botones, enlaces activos */
+    --light-blue: #61C7EB;        /* Azul claro para acentos sutiles */
+    --very-light-blue: #E9F5FA;   /* Un azul muy claro casi blanco para fondos de sección */
+    --text-on-dark: #FFFFFF;
+    --text-on-light: #2c3e50;     /* Un gris azulado oscuro para texto */
+    --border-color: #D0E0E8;
+    --shadow-color: rgba(0, 50, 100, 0.1);
+    --error-color: #d9534f;
+    --font-family-main: 'Open Sans', Arial, sans-serif; /* Nueva fuente */
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: var(--font-family-main);
     margin: 0;
     padding-top: 70px; /* Espacio para la navbar fija */
-    background-color: #f0f0f0;
-    color: #333;
+    background-color: #f8f9fa; /* Un gris muy claro para el fondo general */
+    color: var(--text-on-light);
     line-height: 1.6;
+    font-size: 16px;
 }
 
 .main-container {
     max-width: 900px;
-    margin: 20px auto;
-    padding: 25px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 30px auto;
+    padding: 30px; /* Aumentamos un poco el padding */
+    background-color: var(--text-on-dark); /* Blanco */
+    border-radius: 12px; /* Bordes más redondeados */
+    box-shadow: 0 5px 15px var(--shadow-color);
     text-align: center;
 }
 
 h1, h2 {
-    color: #333;
-    margin-bottom: 20px;
+    color: var(--dark-blue); /* Títulos con el azul oscuro */
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+h1 {
+    font-size: 2.2em;
+}
+
+h2 {
+    font-size: 1.8em;
 }
 
 p {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    font-size: 1.05em;
 }
 
 /* Barra de Navegación */
 .navbar {
-    background-color: #333;
-    color: white;
-    padding: 0 20px;
+    background-color: var(--dark-blue);
+    color: var(--text-on-dark);
+    padding: 0 25px; /* Un poco más de padding */
     position: fixed;
     top: 0;
     left: 0;
@@ -41,12 +67,12 @@ p {
     justify-content: space-between;
     align-items: center;
     height: 60px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
 .nav-logo {
-    font-size: 1.8em;
-    font-weight: bold;
+    font-size: 1.7em; /* Ligeramente más pequeño para balance */
+    font-weight: 700; /* Usar el peso de la fuente */
 }
 
 .nav-links {
@@ -57,60 +83,113 @@ p {
 }
 
 .nav-links li {
-    margin-left: 20px;
+    margin-left: 15px; /* Reducimos un poco para mejor responsividad */
 }
 
 .nav-links a {
-    color: white;
+    color: var(--text-on-dark);
     text-decoration: none;
     font-size: 1em;
-    padding: 5px 10px;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
+    padding: 8px 12px; /* Ajuste de padding */
+    border-radius: 6px; /* Bordes más suaves */
+    transition: background-color 0.2s ease, color 0.2s ease;
+    font-weight: 600;
 }
 
-.nav-links a:hover,
+.nav-links a:hover {
+    background-color: var(--medium-blue);
+    color: var(--text-on-dark);
+}
+
 .nav-links a.active-link {
-    background-color: #555;
+    background-color: var(--primary-blue);
+    color: var(--text-on-dark);
+    font-weight: 700;
 }
 
-.nav-user {
+.nav-user-area { /* Estilo para el contenedor del saludo y botón */
+    display: flex;
+    align-items: center;
+    font-size: 0.95em;
+}
+
+#saludoUsuarioNav {
+    margin-right: 15px;
+    color: var(--light-blue); /* Un color más sutil para el saludo */
+}
+
+.logout-button {
+    padding: 8px 15px;
+    background-color: var(--primary-blue);
+    color: var(--text-on-dark);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
     font-size: 0.9em;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.logout-button:hover {
+    background-color: var(--medium-blue);
 }
 
 /* Contenido Específico de index1.html */
-#entradaNombreContainer input[type="text"] {
-    padding: 10px;
-    margin-right: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    min-width: 250px;
+#entradaNombreContainer {
+    margin-bottom: 30px;
 }
 
-#entradaNombreContainer button,
+#entradaNombreContainer input[type="text"] {
+    padding: 12px 15px;
+    margin-right: 10px;
+    margin-bottom: 10px; /* Para responsividad */
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    min-width: 280px; /* Ajustado */
+    font-size: 1em;
+    color: var(--text-on-light);
+}
+
+#entradaNombreContainer input[type="text"]::placeholder {
+    color: #999;
+}
+
+#entradaNombreContainer input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 2px rgba(0, 141, 216, 0.2); /* Sombra de foco sutil */
+}
+
+
+#guardarNombreBtn, /* Aplicar a ambos botones */
 .boton-juego {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
+    padding: 12px 25px;
+    background-color: var(--primary-blue);
+    color: var(--text-on-dark);
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
     text-decoration: none;
     font-size: 1em;
-    transition: background-color 0.3s ease;
+    font-weight: 600;
+    transition: background-color 0.2s ease, transform 0.1s ease;
     margin: 5px;
+    display: inline-block; /* Para que el margin funcione correctamente */
 }
 
-#entradaNombreContainer button:hover,
+#guardarNombreBtn:hover,
 .boton-juego:hover {
-    background-color: #0056b3;
+    background-color: var(--medium-blue);
+    transform: translateY(-2px); /* Efecto sutil al pasar el mouse */
 }
+
 
 .error {
-    color: #d9534f;
+    color: var(--error-color);
     font-size: 0.9em;
     margin-top: 10px;
-    min-height: 1.2em;
+    min-height: 1.2em; /* Para que no salte el layout */
+    font-weight: 600;
 }
 
 .hidden {
@@ -122,17 +201,103 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 15px; /* Espacio entre botones */
 }
+
 .botones-juegos .boton-juego {
-    margin-bottom: 10px;
-    display: inline-block;
-    width: 250px;
+    width: 100%; /* Ocupan el ancho completo del contenedor de botones */
+    max-width: 300px; /* Pero con un máximo */
+    box-sizing: border-box; /* Para que el padding no aumente el ancho */
 }
 
 /* Estilos para todas las páginas que usan esta barra */
-.page-content { /* Para el contenido de las páginas index2, index3, index4 */
-    max-width: 100%; /* Permitir que el contenido del juego ocupe más ancho */
+.page-content {
+    max-width: 100%;
     margin: 20px auto;
     padding: 20px;
-    /* No añadir background o shadow aquí para que los estilos propios de cada juego (css2, css3) dominen */
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+    body {
+        padding-top: 60px; /* Ajustar si la navbar cambia de altura */
+    }
+
+    .main-container {
+        margin: 20px 15px;
+        padding: 20px;
+    }
+
+    h1 { font-size: 1.8em; }
+    h2 { font-size: 1.5em; }
+
+    .navbar {
+        padding: 0 15px;
+        height: auto; /* Permitir que la navbar crezca si el contenido se envuelve */
+        flex-direction: column; /* Apilar logo y links en pantallas pequeñas */
+        align-items: flex-start; /* Alinear al inicio */
+        padding-bottom: 10px; /* Espacio si se apila */
+    }
+
+    .nav-logo {
+      margin-bottom: 10px; /* Espacio entre logo y menú/usuario */
+      margin-top: 10px;
+    }
+
+    .nav-links {
+        flex-direction: column; /* Apilar los links */
+        width: 100%;
+        align-items: flex-start; /* Alinear links a la izquierda */
+    }
+
+    .nav-links li {
+        margin-left: 0;
+        margin-bottom: 8px; /* Espacio entre links apilados */
+        width: 100%;
+    }
+    .nav-links a {
+        display: block; /* Para que ocupen todo el ancho disponible */
+        width: calc(100% - 24px); /* Restar padding */
+    }
+
+    .nav-user-area {
+        width: 100%;
+        margin-top: 10px;
+        justify-content: space-between; /* Distribuir saludo y botón */
+    }
+
+    #entradaNombreContainer input[type="text"] {
+        min-width: unset; /* Quitar min-width */
+        width: calc(100% - 32px); /* Hacerlo más responsivo, restando padding y border */
+        margin-right: 0;
+    }
+
+    #entradaNombreContainer button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+      padding-top: 10px;
+      align-items: center; /* Centrar todo cuando está en columna */
+    }
+    .nav-links {
+        align-items: center;
+    }
+    .nav-links a {
+        text-align: center;
+    }
+    .nav-user-area {
+        flex-direction: column;
+        gap: 10px;
+    }
+    #saludoUsuarioNav {
+        margin-right: 0;
+        text-align: center;
+    }
+    .logout-button {
+        width: 80%;
+        max-width: 250px;
+    }
 }

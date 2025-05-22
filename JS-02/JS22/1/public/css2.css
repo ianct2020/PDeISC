@@ -1,15 +1,18 @@
-/* Estilos Generales y Barra de Navegación (copiado de css1.css) */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
-    padding-top: 70px; /* Espacio para la navbar fija */
-    /* El fondo del body lo controlará Simón Dice si es necesario */
-    color: #333;
+    padding-top: 70px;
+    background-color: #F8F9FA;
+    color: #212F3C;
     line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 70px);
 }
-.navbar { /* ... (copia completa de los estilos .navbar de css1.css) ... */
-    background-color: #333;
-    color: white;
+
+.navbar {
+    background-color: #1A3A6D;
+    color: #FFFFFF;
     padding: 0 20px;
     position: fixed;
     top: 0;
@@ -20,48 +23,95 @@ body {
     justify-content: space-between;
     align-items: center;
     height: 60px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
-.nav-logo { font-size: 1.8em; font-weight: bold; }
-.nav-links { list-style: none; padding: 0; margin: 0; display: flex; }
-.nav-links li { margin-left: 20px; }
-.nav-links a { color: white; text-decoration: none; font-size: 1em; padding: 5px 10px; border-radius: 4px; transition: background-color 0.3s ease; }
-.nav-links a:hover, .nav-links a.active-link { background-color: #555; }
-.nav-user { font-size: 0.9em; }
-.page-content { padding: 10px; } /* Añadir un padding general para el contenido de la página */
 
+.nav-logo {
+    font-size: 1.7em;
+    font-weight: bold;
+    color: #FFFFFF;
+}
 
-/* === TUS ESTILOS ORIGINALES PARA SIMÓN DICE === */
-/* Pega aquí tus estilos de styles.css para Simón Dice */
-/* Asegúrate de que los selectores no entren en conflicto con la navbar si son muy generales */
-/* Ejemplo de adaptación: */
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 15px;
+}
+
+.nav-links a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 1em;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-weight: 500;
+}
+
+.nav-links a:hover,
+.nav-links a.active-link {
+    background-color: #A9D6E5;
+    color: #1A3A6D;
+    font-weight: bold;
+}
+
+.nav-user {
+    font-size: 0.9em;
+    padding: 8px 12px;
+    color: #FFFFFF;
+}
+
+.page-content {
+    padding: 25px;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .game-container-simon {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* min-height: calc(100vh - 70px); /* Ajustar si es necesario */
-    background-color: #282828;
-    padding: 20px;
-    color: white; /* Asegurar que el texto sea visible sobre el fondo oscuro */
+    background-color: #082032;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    color: #ECF0F1;
+    width: 95%;
+    max-width: 500px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .welcome-simon {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-    color: #f0f0f0;
+    font-size: 1.6em;
+    margin-bottom: 25px;
+    color: #EAEAEA;
     font-weight: bold;
     min-height: 1.5em;
+    text-align: center;
 }
 
+/* En tu css2.css, reemplaza el estilo de #simon-game por este: */
 #simon-game {
     position: relative;
-    width: 380px;
-    height: 380px;
-    border-radius: 50%;
-    box-shadow: 0 0 30px rgba(0,0,0,0.7);
+    width: 100%;
+    max-width: 360px;
+    aspect-ratio: 1 / 1; /* Esto asegura que sea un cuadrado */
+    border-radius: 50%; /* Esto lo hace redondo */
+    box-shadow: 0 0 25px rgba(0,0,0,0.6);
+    margin-left: auto; /* Para centrarlo si el contenedor padre es más ancho */
+    margin-right: auto; /* Para centrarlo si el contenedor padre es más ancho */
     margin-bottom: 30px;
+    background-color: #1C2833;
+    overflow: hidden; /* Asegura que el contenido se mantenga dentro del círculo */
 }
 
 #game-title-center {
@@ -69,12 +119,11 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 4em;
+    font-size: clamp(2.5em, 10vw, 3.8em);
     font-weight: bold;
-    color: rgba(20, 20, 20, 0.5);
+    color: rgba(236, 240, 241, 0.25);
     pointer-events: none;
     z-index: 1;
-    text-shadow: 1px 1px 3px rgba(255,255,255,0.05);
     user-select: none;
 }
 
@@ -83,61 +132,199 @@ body {
     width: 50%;
     height: 50%;
     cursor: pointer;
-    border: 7px solid #222;
+    border: 6px solid #082032;
     box-sizing: border-box;
     transition: filter 0.08s ease-in-out, transform 0.08s ease-in-out, box-shadow 0.08s ease-in-out;
 }
+
 .simon-button.lit {
-    filter: brightness(2.6);
-    transform: scale(1.02);
+    filter: brightness(2.2);
+    transform: scale(1.015);
 }
-#green.lit { background-color: #3cff9a; box-shadow: 0 0 25px 8px #3cff9a; }
-#red.lit { background-color: #ff7d7d; box-shadow: 0 0 25px 8px #ff7d7d; }
-#yellow.lit { background-color: #ffe977; box-shadow: 0 0 25px 8px #ffe977; }
-#blue.lit { background-color: #7db8f0; box-shadow: 0 0 25px 8px #7db8f0; }
 
 #green { background-color: #00a74a; top: 0; left: 0; border-top-left-radius: 100%; }
 #red { background-color: #d82626; top: 0; right: 0; border-top-right-radius: 100%; }
 #yellow { background-color: #fcca03; bottom: 0; left: 0; border-bottom-left-radius: 100%; }
 #blue { background-color: #1c78c0; bottom: 0; right: 0; border-bottom-right-radius: 100%; }
 
+#green.lit { box-shadow: 0 0 20px 5px #3cff9a; }
+#red.lit { box-shadow: 0 0 20px 5px #ff7d7d; }
+#yellow.lit { box-shadow: 0 0 20px 5px #ffe977; }
+#blue.lit { box-shadow: 0 0 20px 5px #7db8f0; }
+
 #control-panel-simon {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    background-color: #2a2a2a;
+    background-color: #2C3E50;
     border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
-    width: 90%;
-    max-width: 400px;
-    color: white; /* Asegurar que el texto sea visible */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 420px;
+    color: #ECF0F1;
 }
 
-.status-display-simon { font-size: 1.5em; margin-bottom: 15px; color: #fff; font-weight: bold; }
-#start-button-simon {
-    padding: 12px 25px; font-size: 1.2em; color: white; background-color: #5cb85c;
-    border: none; border-radius: 6px; cursor: pointer; transition: background-color 0.2s, transform 0.1s;
-    margin-bottom: 15px; box-shadow: 0 3px 5px rgba(0,0,0,0.3);
+.status-display-simon {
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    color: #FFFFFF;
+    font-weight: bold;
 }
-#start-button-simon:hover { background-color: #4cae4c; }
-#start-button-simon:active { transform: translateY(1px); box-shadow: 0 2px 3px rgba(0,0,0,0.3); }
-#start-button-simon:disabled { background-color: #666; cursor: not-allowed; box-shadow: none; }
-#message-display-simon { font-size: 1.1em; color: #ddd; min-height: 1.3em; font-style: italic; }
+
+#start-button-simon {
+    padding: 12px 30px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+    margin-bottom: 15px;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+}
+
+#start-button-simon:hover {
+    background-color: #0056b3;
+    box-shadow: 0 4px 7px rgba(0,0,0,0.25);
+}
+
+#start-button-simon:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+}
+
+#start-button-simon:disabled {
+    background-color: #566573;
+    color: #AAB7B8;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+#message-display-simon {
+    font-size: 1.05em;
+    color: #BDC3C7;
+    min-height: 1.3em;
+    font-style: italic;
+    text-align: center;
+}
 
 #error-details-display-simon {
     margin-top: 15px;
-    padding: 12px;
-    background-color: rgba(0,0,0,0.2);
+    padding: 15px;
+    background-color: rgba(8, 32, 50, 0.7);
     border-radius: 6px;
-    font-size: 0.95em;
-    color: #e0e0e0;
+    font-size: 0.9em;
+    color: #BDC3C7;
     text-align: left;
-    width: calc(100% - 24px);
-    max-height: 180px;
+    width: calc(100% - 30px);
+    max-height: 200px;
     overflow-y: auto;
-    border: 1px solid #444;
+    border: 1px solid #2C3E50;
 }
-#error-details-display-simon p { margin: 5px 0; }
-#error-details-display-simon strong { color: #fcca03; }
-.hidden { display: none !important; }
+
+#error-details-display-simon p {
+    margin: 8px 0;
+}
+
+#error-details-display-simon strong {
+    color: #A9D6E5;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    .nav-links li {
+        margin-left: 10px;
+    }
+    .nav-links a {
+        font-size: 0.9em;
+        padding: 6px 8px;
+    }
+    .nav-logo {
+        font-size: 1.5em;
+    }
+    .game-container-simon {
+        padding: 20px;
+        width: 90%;
+    }
+    #simon-game {
+      max-width: 300px;
+    }
+    .welcome-simon {
+        font-size: 1.3em;
+    }
+    .status-display-simon {
+        font-size: 1.2em;
+    }
+    #start-button-simon {
+        font-size: 1.1em;
+        padding: 10px 25px;
+    }
+    #message-display-simon {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding-top: 60px;
+    }
+    .navbar {
+        padding: 0 10px;
+        height: auto;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 8px;
+        padding-top: 8px;
+    }
+     .nav-logo {
+        margin-bottom: 8px;
+        text-align: center;
+        width: 100%;
+    }
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+    }
+    .nav-links li {
+        margin: 3px 5px;
+    }
+    .nav-user {
+        width: 100%;
+        text-align: center;
+        margin-top: 5px;
+    }
+    .page-content {
+        padding: 15px;
+    }
+    .game-container-simon {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 15px;
+    }
+     #simon-game {
+      max-width: 260px;
+      border-width: 4px;
+    }
+    .simon-button {
+        border-width: 4px;
+    }
+    .welcome-simon {
+        font-size: 1.1em;
+        margin-bottom: 15px;
+    }
+    #game-title-center {
+        font-size: clamp(2em, 8vw, 3em);
+    }
+    #control-panel-simon {
+        padding: 15px;
+    }
+}
