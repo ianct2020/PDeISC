@@ -1,23 +1,26 @@
-/* Estilos Generales */
 :root {
-    --dark-blue: #0B2D6D;         /* Azul oscuro para fondos principales como navbar */
-    --medium-blue: #00599F;       /* Azul medio para hovers, acentos */
-    --primary-blue: #008DD8;      /* Azul primario para botones, enlaces activos */
-    --light-blue: #61C7EB;        /* Azul claro para acentos sutiles */
-    --very-light-blue: #E9F5FA;   /* Un azul muy claro casi blanco para fondos de sección */
+    --dark-blue: #0B2D6D;
+    --medium-blue: #00599F;
+    --primary-blue: #008DD8;
+    --light-blue: #61C7EB;
+    --very-light-blue: #E9F5FA;
     --text-on-dark: #FFFFFF;
-    --text-on-light: #2c3e50;     /* Un gris azulado oscuro para texto */
+    --text-on-light: #2c3e50;
     --border-color: #D0E0E8;
     --shadow-color: rgba(0, 50, 100, 0.1);
     --error-color: #d9534f;
-    --font-family-main: 'Open Sans', Arial, sans-serif; /* Nueva fuente */
+    --font-family-main: 'Open Sans', Arial, sans-serif;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
 }
 
 body {
     font-family: var(--font-family-main);
     margin: 0;
-    padding-top: 70px; /* Espacio para la navbar fija */
-    background-color: #f8f9fa; /* Un gris muy claro para el fondo general */
+    padding-top: 70px;
+    background-color: #f8f9fa;
     color: var(--text-on-light);
     line-height: 1.6;
     font-size: 16px;
@@ -26,15 +29,15 @@ body {
 .main-container {
     max-width: 900px;
     margin: 30px auto;
-    padding: 30px; /* Aumentamos un poco el padding */
-    background-color: var(--text-on-dark); /* Blanco */
-    border-radius: 12px; /* Bordes más redondeados */
+    padding: 30px;
+    background-color: var(--text-on-dark);
+    border-radius: 12px;
     box-shadow: 0 5px 15px var(--shadow-color);
     text-align: center;
 }
 
 h1, h2 {
-    color: var(--dark-blue); /* Títulos con el azul oscuro */
+    color: var(--dark-blue);
     margin-top: 0;
     margin-bottom: 25px;
     font-weight: 700;
@@ -53,11 +56,10 @@ p {
     font-size: 1.05em;
 }
 
-/* Barra de Navegación */
 .navbar {
     background-color: var(--dark-blue);
     color: var(--text-on-dark);
-    padding: 0 25px; /* Un poco más de padding */
+    padding: 0 15px;
     position: fixed;
     top: 0;
     left: 0;
@@ -66,13 +68,14 @@ p {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 60px;
+    min-height: 60px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
 .nav-logo {
-    font-size: 1.7em; /* Ligeramente más pequeño para balance */
-    font-weight: 700; /* Usar el peso de la fuente */
+    font-size: 1.6em;
+    font-weight: 700;
+    flex-shrink: 0;
 }
 
 .nav-links {
@@ -80,88 +83,130 @@ p {
     padding: 0;
     margin: 0;
     display: flex;
+    align-items: center;
 }
 
 .nav-links li {
-    margin-left: 15px; /* Reducimos un poco para mejor responsividad */
+    margin-left: 10px;
+}
+
+.nav-links li.logout-menu-item {
+    display: none !important;
 }
 
 .nav-links a {
     color: var(--text-on-dark);
     text-decoration: none;
-    font-size: 1em;
-    padding: 8px 12px; /* Ajuste de padding */
-    border-radius: 6px; /* Bordes más suaves */
+    font-size: 0.95em;
+    padding: 8px 10px;
+    border-radius: 6px;
     transition: background-color 0.2s ease, color 0.2s ease;
     font-weight: 600;
+    white-space: nowrap;
+    display: block;
 }
 
 .nav-links a:hover {
     background-color: var(--medium-blue);
-    color: var(--text-on-dark);
 }
 
 .nav-links a.active-link {
     background-color: var(--primary-blue);
-    color: var(--text-on-dark);
     font-weight: 700;
 }
 
-.nav-user-area { /* Estilo para el contenedor del saludo y botón */
+.nav-user-area {
     display: flex;
     align-items: center;
-    font-size: 0.95em;
+    font-size: 0.9em;
+    gap: 8px;
+    flex-shrink: 0;
+    margin-left: 15px;
 }
 
 #saludoUsuarioNav {
-    margin-right: 15px;
-    color: var(--light-blue); /* Un color más sutil para el saludo */
+    margin-right: 5px;
+    color: var(--light-blue);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
 }
 
 .logout-button {
-    padding: 8px 15px;
+    padding: 7px 12px;
     background-color: var(--primary-blue);
     color: var(--text-on-dark);
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    font-size: 0.9em;
+    font-size: 0.85em;
     font-weight: 600;
     transition: background-color 0.2s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .logout-button:hover {
     background-color: var(--medium-blue);
 }
 
-/* Contenido Específico de index1.html */
+.nav-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    z-index: 1001;
+    width: 40px;
+    height: 40px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-on-dark);
+    margin: 4px 0;
+    border-radius: 3px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.nav-toggle.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle.open span:nth-child(2) {
+    opacity: 0;
+}
+.nav-toggle.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
 #entradaNombreContainer {
     margin-bottom: 30px;
 }
-
 #entradaNombreContainer input[type="text"] {
     padding: 12px 15px;
     margin-right: 10px;
-    margin-bottom: 10px; /* Para responsividad */
+    margin-bottom: 10px;
     border: 1px solid var(--border-color);
     border-radius: 6px;
-    min-width: 280px; /* Ajustado */
+    min-width: 280px;
     font-size: 1em;
     color: var(--text-on-light);
 }
-
 #entradaNombreContainer input[type="text"]::placeholder {
     color: #999;
 }
-
 #entradaNombreContainer input[type="text"]:focus {
     outline: none;
     border-color: var(--primary-blue);
-    box-shadow: 0 0 0 2px rgba(0, 141, 216, 0.2); /* Sombra de foco sutil */
+    box-shadow: 0 0 0 2px rgba(0, 141, 216, 0.2);
 }
 
-
-#guardarNombreBtn, /* Aplicar a ambos botones */
+#guardarNombreBtn,
 .boton-juego {
     padding: 12px 25px;
     background-color: var(--primary-blue);
@@ -174,21 +219,19 @@ p {
     font-weight: 600;
     transition: background-color 0.2s ease, transform 0.1s ease;
     margin: 5px;
-    display: inline-block; /* Para que el margin funcione correctamente */
+    display: inline-block;
 }
-
 #guardarNombreBtn:hover,
 .boton-juego:hover {
     background-color: var(--medium-blue);
-    transform: translateY(-2px); /* Efecto sutil al pasar el mouse */
+    transform: translateY(-2px);
 }
-
 
 .error {
     color: var(--error-color);
     font-size: 0.9em;
     margin-top: 10px;
-    min-height: 1.2em; /* Para que no salte el layout */
+    min-height: 1.2em;
     font-weight: 600;
 }
 
@@ -201,103 +244,102 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px; /* Espacio entre botones */
+    gap: 15px;
 }
-
 .botones-juegos .boton-juego {
-    width: 100%; /* Ocupan el ancho completo del contenedor de botones */
-    max-width: 300px; /* Pero con un máximo */
-    box-sizing: border-box; /* Para que el padding no aumente el ancho */
+    width: 100%;
+    max-width: 300px;
 }
 
-/* Estilos para todas las páginas que usan esta barra */
 .page-content {
     max-width: 100%;
     margin: 20px auto;
     padding: 20px;
 }
 
-/* Media Queries para Responsividad */
 @media (max-width: 768px) {
     body {
-        padding-top: 60px; /* Ajustar si la navbar cambia de altura */
+        padding-top: 60px;
+    }
+    .navbar {
+        padding: 0 15px;
+    }
+    .nav-logo {
+        order: 1;
+        font-size: 1.5em;
+    }
+    .nav-user-area {
+        display: none !important;
+    }
+    .nav-toggle {
+        display: flex;
+        order: 2;
+    }
+    
+    .nav-links {
+        order: 2;
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--dark-blue);
+        padding: 10px 0;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        z-index: 999;
+    }
+    .nav-links.open {
+        display: flex;
+    }
+    .nav-links li {
+        margin-left: 0;
+        width: 100%;
+    }
+    .nav-links li.logout-menu-item {
+        display: list-item !important;
+    }
+    .nav-links li.logout-menu-item.hidden {
+         display: none !important;
+    }
+
+    .nav-links a {
+        padding: 12px 20px;
+        text-align: center;
+        border-bottom: 1px solid var(--medium-blue);
+    }
+    .nav-links li:last-child a,
+    .nav-links li.logout-menu-item a {
+        border-bottom: none;
+    }
+    
+    .logout-menu-item a#logoutMenuLink {
+        background-color: var(--primary-blue);
+        font-weight: 600;
+    }
+    .logout-menu-item a#logoutMenuLink:hover {
+        background-color: var(--medium-blue);
     }
 
     .main-container {
         margin: 20px 15px;
         padding: 20px;
     }
-
     h1 { font-size: 1.8em; }
     h2 { font-size: 1.5em; }
 
-    .navbar {
-        padding: 0 15px;
-        height: auto; /* Permitir que la navbar crezca si el contenido se envuelve */
-        flex-direction: column; /* Apilar logo y links en pantallas pequeñas */
-        align-items: flex-start; /* Alinear al inicio */
-        padding-bottom: 10px; /* Espacio si se apila */
-    }
-
-    .nav-logo {
-      margin-bottom: 10px; /* Espacio entre logo y menú/usuario */
-      margin-top: 10px;
-    }
-
-    .nav-links {
-        flex-direction: column; /* Apilar los links */
-        width: 100%;
-        align-items: flex-start; /* Alinear links a la izquierda */
-    }
-
-    .nav-links li {
-        margin-left: 0;
-        margin-bottom: 8px; /* Espacio entre links apilados */
-        width: 100%;
-    }
-    .nav-links a {
-        display: block; /* Para que ocupen todo el ancho disponible */
-        width: calc(100% - 24px); /* Restar padding */
-    }
-
-    .nav-user-area {
-        width: 100%;
-        margin-top: 10px;
-        justify-content: space-between; /* Distribuir saludo y botón */
-    }
-
     #entradaNombreContainer input[type="text"] {
-        min-width: unset; /* Quitar min-width */
-        width: calc(100% - 32px); /* Hacerlo más responsivo, restando padding y border */
+        min-width: unset;
+        width: calc(100% - 20px);
         margin-right: 0;
     }
-
     #entradaNombreContainer button {
-        width: 100%;
+        width: calc(100% - 20px);
     }
 }
 
 @media (max-width: 480px) {
-    .navbar {
-      padding-top: 10px;
-      align-items: center; /* Centrar todo cuando está en columna */
-    }
-    .nav-links {
-        align-items: center;
-    }
-    .nav-links a {
-        text-align: center;
-    }
-    .nav-user-area {
-        flex-direction: column;
-        gap: 10px;
-    }
-    #saludoUsuarioNav {
-        margin-right: 0;
-        text-align: center;
-    }
-    .logout-button {
-        width: 80%;
-        max-width: 250px;
+    .nav-logo {
+        font-size: 1.3em;
     }
 }

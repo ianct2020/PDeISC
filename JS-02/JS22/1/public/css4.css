@@ -1,19 +1,25 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Roboto', Arial, sans-serif;
     margin: 0;
-    padding-top: 70px;
-    background-color: #0A192F; /* Azul oscuro principal de fondo */
-    color: #E2E8F0; /* Color de texto claro general */
+    padding-top: 60px; /* Altura de la navbar */
+    background-color: #0A192F;
+    color: #E2E8F0;
     line-height: 1.6;
     display: flex;
     flex-direction: column;
-    min-height: calc(100vh - 70px);
+    min-height: calc(100vh - 60px);
+    align-items: center;
 }
 
+/* === NAVBAR STYLES (Menú Hamburguesa Siempre Visible) === */
 .navbar {
-    background-color: #0D2A4C; /* Un azul un poco más claro para la navbar */
+    background-color: #0D2A4C;
     color: white;
-    padding: 0 20px;
+    padding: 0 15px;
     position: fixed;
     top: 0;
     left: 0;
@@ -26,65 +32,133 @@ body {
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 
-.nav-logo {
-    font-size: 1.8em;
-    font-weight: bold;
-    color: #60A5FA; /* Azul brillante para el logo */
+.nav-logo,
+.nav-toggle,
+.logout-button {
+    box-sizing: border-box;
 }
 
-.nav-links {
+.nav-logo {
+    font-size: 1.6em;
+    font-weight: bold;
+    color: #60A5FA;
+    flex-shrink: 0;
+}
+
+.nav-toggle {
+    display: flex; /* SIEMPRE VISIBLE */
+    flex-direction: column;
+    justify-content: space-around;
+    width: 28px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.nav-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.3s cubic-bezier(.86, 0, .07, 1);
+}
+
+.nav-toggle.open span:nth-child(1) {
+    transform: rotate(45deg) translate(4px, 4px);
+}
+.nav-toggle.open span:nth-child(2) {
+    opacity: 0;
+}
+.nav-toggle.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.nav-links { /* Contenedor del menú desplegable */
+    display: none; /* OCULTO POR DEFECTO, se muestra con JS al añadir clase .open */
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    background-color: #0D2A4C;
+    position: absolute;
+    top: 60px; /* Debajo de la navbar (debe coincidir con la altura de .navbar) */
+    left: 0;
+    padding: 10px 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    z-index: 999; /* Para que esté sobre el contenido principal */
+}
+
+.nav-links.open {
+    display: flex; /* ESTA LÍNEA ES CRUCIAL para que el menú se muestre */
 }
 
 .nav-links li {
-    margin-left: 20px;
+    margin: 0;
+    width: 100%;
+    text-align: center;
 }
 
-.nav-links a {
-    color: #CBD5E0; /* Color de enlace más suave */
+.nav-links li a,
+.nav-user-greeting-item {
+    color: #CBD5E0;
     text-decoration: none;
     font-size: 1em;
-    padding: 8px 12px;
-    border-radius: 4px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: block;
+    transition: background-color 0.2s ease;
 }
-
-.nav-links a:hover {
-    background-color: #1E40AF; /* Azul más oscuro al pasar el mouse */
+.nav-links li a:hover,
+.nav-user-greeting-item:hover { /* :hover para el saludo solo si es interactivo o por consistencia */
+    background-color: #1E40AF;
     color: white;
 }
-.nav-links a.active-link {
-    background-color: #2563EB; /* Azul brillante para el enlace activo */
+.nav-links li a.active-link {
+    background-color: #2563EB;
     color: white;
     font-weight: 500;
 }
 
-.nav-user-area {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+.nav-user-greeting-item {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #A0AEC0; /* Color diferente para el saludo si no es un enlace */
+}
+/* Quitar el borde inferior del último elemento visible en el menú */
+.nav-links li:last-of-type > a, /* Si el último es un enlace normal */
+.nav-links li:last-of-type > span, /* Si el último es el saludo */
+.nav-user-logout-item { /* Si el botón de logout es el último, su contenedor li */
+    border-bottom: none;
+}
+/* Específicamente para el botón si es el último LI */
+.nav-links li.nav-user-logout-item {
+    border-bottom: none;
 }
 
-#saludoUsuarioNav {
-    font-size: 0.9em;
-    color: #A0AEC0; /* Un gris azulado para el saludo */
-}
 
-.logout-button {
+.nav-user-logout-item {
+    padding: 10px 20px; /* Espacio para el botón dentro de su 'li' */
+}
+.nav-user-logout-item .logout-button {
     background-color: #2563EB;
     color: white;
     border: none;
-    padding: 8px 12px;
+    padding: 10px 15px;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 0.8em;
+    font-size: 0.9em;
     transition: background-color 0.3s ease;
+    white-space: nowrap;
+    width: 100%;
+    display: block;
 }
-
-.logout-button:hover {
+.nav-user-logout-item .logout-button:hover {
     background-color: #1D4ED8;
 }
 
@@ -92,6 +166,29 @@ body {
     display: none !important;
 }
 
+@media (max-width: 480px) {
+    .navbar {
+        padding: 0 10px;
+    }
+    .nav-logo {
+        font-size: 1.4em;
+    }
+    .nav-toggle {
+        width: 26px;
+        height: 18px;
+    }
+    .nav-links li a,
+    .nav-user-greeting-item {
+        font-size: 0.95em;
+        padding: 10px 15px;
+    }
+    .nav-user-logout-item .logout-button {
+        font-size: 0.85em;
+    }
+}
+
+
+/* === ESTILOS DEL JUEGO TaTeTi (A CONTINUACIÓN) === */
 .page-content-tateti {
     font-family: 'Roboto', 'Segoe UI', sans-serif;
     flex-grow: 1;
@@ -99,19 +196,19 @@ body {
     justify-content: center;
     align-items: center;
     padding: 20px;
-    box-sizing: border-box;
+    width: 100%;
 }
 
 .contenedor-tateti {
     display: flex;
-    flex-direction: column; /* Apilado por defecto, cambia en pantallas grandes */
+    flex-direction: column;
     gap: 25px;
-    width: 100%;
-    max-width: 900px; /* Ancho máximo para el contenedor del juego */
+    width: 90%;
+    max-width: 900px;
 }
 
 .lado-tateti {
-    background: #1E293B; /* Fondo de tarjeta azul-gris oscuro */
+    background: #1E293B;
     border-radius: 12px;
     padding: 25px 30px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.2);
@@ -123,7 +220,7 @@ body {
 #area-juego-tateti h2 {
     text-align: center;
     margin-bottom: 25px;
-    color: #93C5FD; /* Azul claro para títulos */
+    color: #93C5FD;
     font-weight: 500;
 }
 #area-juego-tateti h2 {
@@ -138,36 +235,35 @@ body {
     display: block;
     font-weight: 500;
     margin-bottom: 8px;
-    color: #A0AEC0; /* Gris azulado para labels */
+    color: #A0AEC0;
 }
 
 .campo-form-tateti input[type="text"] {
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid #334155; /* Borde azul-gris */
-    background-color: #0F172A; /* Fondo de input muy oscuro */
+    border: 1px solid #334155;
+    background-color: #0F172A;
     border-radius: 6px;
     font-size: 1rem;
     color: #E2E8F0;
-    box-sizing: border-box;
 }
 .campo-form-tateti input[type="text"]::placeholder {
     color: #4A5568;
 }
 .campo-form-tateti input[type="text"]:focus {
     outline: none;
-    border-color: #2563EB; /* Borde azul brillante al enfocar */
+    border-color: #2563EB;
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
 }
 
 .radio-group-tateti {
     display: flex;
-    gap: 10px; /* Espacio reducido entre radios */
+    gap: 10px;
     flex-wrap: wrap;
     margin-top: 8px;
 }
 .radio-group-tateti label {
-    font-weight: 400; /* Peso normal para opciones de radio */
+    font-weight: 400;
     color: #A0AEC0;
     display: flex;
     align-items: center;
@@ -175,7 +271,7 @@ body {
 }
 .radio-group-tateti input[type="radio"] {
     margin-right: 8px;
-    accent-color: #2563EB; /* Color del radio button */
+    accent-color: #2563EB;
 }
 
 .btn-tateti {
@@ -197,19 +293,19 @@ body {
 }
 
 .btn-principal-tateti {
-    background-color: #2563EB; /* Azul brillante */
+    background-color: #2563EB;
     color: white;
 }
 .btn-principal-tateti:hover {
-    background-color: #1D4ED8; /* Azul más oscuro */
+    background-color: #1D4ED8;
 }
 
 .btn-secundario-tateti {
-    background-color: #374151; /* Gris azulado oscuro */
+    background-color: #374151;
     color: #E2E8F0;
 }
 .btn-secundario-tateti:hover {
-    background-color: #4B5563; /* Gris azulado medio */
+    background-color: #4B5563;
 }
 
 .btn-terciario-tateti {
@@ -221,7 +317,6 @@ body {
     background-color: rgba(96, 165, 250, 0.1);
 }
 
-
 .area-juego-container {
     display: flex;
     flex-direction: column;
@@ -230,18 +325,18 @@ body {
 
 .tablero-tateti {
     display: grid;
-    grid-template-columns: repeat(3, clamp(80px, 20vw, 110px)); /* Celdas responsivas */
-    grid-template-rows: repeat(3, clamp(80px, 20vw, 110px));    /* Celdas responsivas */
+    grid-template-columns: repeat(3, clamp(80px, 20vw, 110px));
+    grid-template-rows: repeat(3, clamp(80px, 20vw, 110px));
     gap: 10px;
     justify-content: center;
     margin-bottom: 25px;
 }
 
 .celda-tateti {
-    background-color: #334155; /* Azul-gris para celdas */
-    font-size: clamp(2rem, 10vw, 3.5rem); /* Tamaño de fuente responsivo */
+    background-color: #334155;
+    font-size: clamp(2rem, 10vw, 3.5rem);
     font-weight: bold;
-    color: #93C5FD; /* Color para X y O */
+    color: #93C5FD;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -251,13 +346,13 @@ body {
     transition: background-color 0.2s ease;
 }
 .celda-tateti:hover {
-    background-color: #4B5563; /* Un poco más claro al pasar el mouse */
+    background-color: #4B5563;
 }
 .celda-tateti.jugador-x {
-    color: #FDBA74; /* Naranja claro para X */
+    color: #FDBA74;
 }
 .celda-tateti.jugador-o {
-    color: #A5B4FC; /* Lavanda para O */
+    color: #A5B4FC;
 }
 
 .controles-juego-tateti {
@@ -265,62 +360,41 @@ body {
     flex-direction: column;
     gap: 10px;
     width: 100%;
-    max-width: 350px; /* Ancho máximo para los botones de control */
+    max-width: 350px;
     margin-bottom: 15px;
 }
 
 .msg-resultado-tateti {
     text-align: center;
-    color: #6EE7B7; /* Verde menta para mensajes de éxito/resultado */
+    color: #6EE7B7;
     font-weight: 500;
     margin-top: 15px;
     font-size: 1.1rem;
-    min-height: 1.5em; /* Para evitar saltos de layout */
+    min-height: 1.5em;
 }
 .msg-resultado-tateti.visible {
     display: block;
 }
 
-
-/* Responsive Design */
-@media (min-width: 768px) {
+@media (max-width: 768px) {
     .contenedor-tateti {
-        flex-direction: row; /* Lados en horizontal en pantallas más grandes */
-        align-items: flex-start; /* Alinear al inicio si tienen alturas diferentes */
+        width: 95%;
     }
     .lado-form-tateti {
-        max-width: 380px; /* Ancho fijo para el formulario en desktop */
-        flex-shrink: 0; /* Evitar que se encoja */
-    }
-    .area-juego-container {
-        flex-grow: 1;
-    }
-    .controles-juego-tateti {
-        flex-direction: row; /* Botones en línea */
         max-width: none;
-    }
-    .controles-juego-tateti .btn-tateti {
-        width: auto; /* Ancho automático para botones en línea */
-        flex-grow: 1;
     }
 }
 
 @media (max-width: 480px) {
-    .nav-links {
-        display: none; /* Ocultar links para una futura versión con menú hamburguesa si es necesario */
-    }
-    .nav-logo {
-        font-size: 1.5em;
-    }
     .lado-tateti {
-        padding: 20px;
+        padding: 15px;
     }
     .campo-form-tateti input[type="text"],
     .btn-tateti {
         padding: 10px 12px;
-        font-size: 0.95rem;
+        font-size: 0.9rem;
     }
     .tablero-tateti {
-        gap: 8px;
+        gap: 6px;
     }
 }

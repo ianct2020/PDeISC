@@ -326,3 +326,33 @@ body {
     .timer-section-ppt { font-size: 0.9em; }
     .player-title-hacker-ppt { font-size: 1.1em; }
 }
+/* En css3.css */
+/* ... todos tus estilos anteriores ... */
+
+/* Estilos OPCIONALES para el botón/link "Cambiar Usuario" en la navbar (escritorio) */
+#cambiarUsuarioBtnNav {
+    /* tus estilos aquí si quieres */
+}
+
+#cambiarUsuarioBtnNav:hover {
+    /* tus estilos hover aquí si quieres */
+}
+
+/* ... otros estilos ... */
+
+@media (max-width: 820px) {
+    /* ... otros estilos responsivos que ya tengas para este breakpoint ... */
+
+    .nav-links.active #cambiarUsuarioBtnNav {
+        /* tus estilos para el botón en el menú móvil activo aquí si quieres */
+    }
+}
+
+/* ... o si no tienes un bloque @media (max-width: 820px) ya, puedes crear uno al final: */
+/*
+@media (max-width: 820px) {
+    .nav-links.active #cambiarUsuarioBtnNav {
+
+    }
+}
+*/

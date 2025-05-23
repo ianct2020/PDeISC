@@ -13,18 +13,26 @@
 </head>
 <body>
     <nav class="navbar">
-        <div class="nav-logo">Mis Juegos</div>
-        <ul class="nav-links">
-            <li><a href="index1.html" class="active-link">Inicio</a></li>
-            <li><a href="index2.html">Simón Dice</a></li>
-            <li><a href="index3.html">PPT Hacker</a></li>
-            <li><a href="index4.html">TaTeTi</a></li> 
-        </ul>
-        <div class="nav-user-area">
-            <span id="saludoUsuarioNav"></span>
-            <button id="logoutBtn" class="logout-button hidden">Cambiar Usuario</button>
-        </div>
-    </nav>
+    <div class="nav-logo">Mis Juegos</div>
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <ul class="nav-links">
+        <li><a href="index1.html" class="active-link">Inicio</a></li>
+        <li><a href="index2.html">Simón Dice</a></li>
+        <li><a href="index3.html">PPT Hacker</a></li>
+        <li><a href="index4.html">TaTeTi</a></li>
+        <li class="logout-menu-item hidden">
+            <a href="#" id="logoutMenuLink" role="button">Cambiar Usuario</a>
+        </li>
+    </ul>
+    <div class="nav-user-area">
+        <span id="saludoUsuarioNav"></span>
+        <button id="logoutDesktopBtn" class="logout-button hidden">Cambiar Usuario</button>
+    </div>
+</nav>
 
     <div class="main-container">
         <h1>¡Bienvenido/a al Portal de Juegos!</h1>

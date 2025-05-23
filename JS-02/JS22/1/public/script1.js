@@ -6,27 +6,56 @@ document.addEventListener('DOMContentLoaded', function() {
     const seleccionJuegosContainer = document.getElementById('seleccionJuegosContainer');
     const nombreUsuarioDisplay = document.getElementById('nombreUsuarioDisplay');
     const saludoUsuarioNav = document.getElementById('saludoUsuarioNav');
-    const logoutBtn = document.getElementById('logoutBtn'); // Obtener el botón de logout
+    
+    const logoutDesktopBtn = document.getElementById('logoutDesktopBtn');
+    const logoutMenuLink = document.getElementById('logoutMenuLink');
+    const logoutMenuItem = document.querySelector('.logout-menu-item');
+
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
 
     const NOMBRE_STORAGE_KEY = 'nombreUsuarioGlobalJuegos';
+
+    function handleLogout() {
+        localStorage.removeItem(NOMBRE_STORAGE_KEY);
+        cargarEstadoNombre();
+        if (navLinks && navLinks.classList.contains('open')) {
+            navLinks.classList.remove('open');
+            navToggle.classList.remove('open');
+            navToggle.setAttribute('aria-expanded', 'false');
+        }
+    }
+
+    if (navToggle && navLinks) {
+        navToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('open');
+            navToggle.classList.toggle('open');
+            const isExpanded = navLinks.classList.contains('open');
+            navToggle.setAttribute('aria-expanded', isExpanded);
+        });
+    }
 
     function cargarEstadoNombre() {
         const nombreGuardado = localStorage.getItem(NOMBRE_STORAGE_KEY);
         if (nombreGuardado) {
-            nombreUsuarioDisplay.textContent = nombreGuardado;
+            if (nombreUsuarioDisplay) nombreUsuarioDisplay.textContent = nombreGuardado;
             if (saludoUsuarioNav) saludoUsuarioNav.textContent = `Hola, ${nombreGuardado}`;
-            if (logoutBtn) logoutBtn.classList.remove('hidden'); // Mostrar botón de logout
             
-            entradaNombreContainer.classList.add('hidden');
-            seleccionJuegosContainer.classList.remove('hidden');
+            if (logoutDesktopBtn) logoutDesktopBtn.classList.remove('hidden');
+            if (logoutMenuItem) logoutMenuItem.classList.remove('hidden');
+            
+            if (entradaNombreContainer) entradaNombreContainer.classList.add('hidden');
+            if (seleccionJuegosContainer) seleccionJuegosContainer.classList.remove('hidden');
         } else {
             if (saludoUsuarioNav) saludoUsuarioNav.textContent = "";
-            if (logoutBtn) logoutBtn.classList.add('hidden'); // Ocultar botón de logout
             
-            entradaNombreContainer.classList.remove('hidden');
-            seleccionJuegosContainer.classList.add('hidden');
+            if (logoutDesktopBtn) logoutDesktopBtn.classList.add('hidden');
+            if (logoutMenuItem) logoutMenuItem.classList.add('hidden');
+            
+            if (entradaNombreContainer) entradaNombreContainer.classList.remove('hidden');
+            if (seleccionJuegosContainer) seleccionJuegosContainer.classList.add('hidden');
             if (nombreUsuarioInput) {
-                nombreUsuarioInput.value = ''; // Limpiar input por si acaso
+                nombreUsuarioInput.value = '';
                 nombreUsuarioInput.focus();
             }
         }
@@ -38,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (nombre === "") {
                 mensajeError.textContent = "Por favor, ingresa tu nombre.";
                 if (nombreUsuarioInput) nombreUsuarioInput.focus();
-            } else if (nombre.length < 2) { // Ejemplo de validación extra
+            } else if (nombre.length < 2) {
                 mensajeError.textContent = "El nombre debe tener al menos 2 caracteres.";
                 if (nombreUsuarioInput) nombreUsuarioInput.focus();
             }
@@ -50,64 +79,74 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Event listener para el botón de logout
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', function() {
-            localStorage.removeItem(NOMBRE_STORAGE_KEY);
-            cargarEstadoNombre(); // Recargar estado para mostrar el formulario de nombre
+    if (logoutDesktopBtn) {
+        logoutDesktopBtn.addEventListener('click', handleLogout);
+    }
+    if (logoutMenuLink) {
+        logoutMenuLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            handleLogout();
         });
     }
-
-    // Cargar estado al iniciar la página
-    cargarEstadoNombre();
+    
+    if (document.body.contains(entradaNombreContainer) || document.body.contains(seleccionJuegosContainer)) {
+        cargarEstadoNombre();
+    }
 });
 
-// Función global para ser usada por otras páginas para verificar el nombre
 function verificarNombreUsuario(paginaActual) {
     const nombreGuardado = localStorage.getItem('nombreUsuarioGlobalJuegos');
     const saludoUsuarioNav = document.getElementById('saludoUsuarioNav');
     const nombreUsuarioDisplayPage = document.getElementById('nombreUsuarioDisplayPage');
-    const logoutBtn = document.getElementById('logoutBtn'); // También en otras páginas
+    
+    const logoutDesktopBtn = document.getElementById('logoutDesktopBtn');
+    const logoutMenuItem = document.querySelector('.logout-menu-item');
+
 
     if (nombreGuardado) {
         if (saludoUsuarioNav) saludoUsuarioNav.textContent = `Hola, ${nombreGuardado}`;
-        if (logoutBtn) logoutBtn.classList.remove('hidden'); // Mostrar botón si está en otras páginas
+        if (logoutDesktopBtn) logoutDesktopBtn.classList.remove('hidden');
+        if (logoutMenuItem) logoutMenuItem.classList.remove('hidden');
         if (nombreUsuarioDisplayPage) nombreUsuarioDisplayPage.textContent = nombreGuardado;
         return nombreGuardado;
     } else {
         if (saludoUsuarioNav) saludoUsuarioNav.textContent = "";
-        if (logoutBtn) logoutBtn.classList.add('hidden'); // Ocultar botón
+        if (logoutDesktopBtn) logoutDesktopBtn.classList.add('hidden');
+        if (logoutMenuItem) logoutMenuItem.classList.add('hidden');
 
-        // Solo redirigir si NO estamos en la página de inicio
-        const esPaginaInicio = window.location.pathname.endsWith('index1.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/index.html');
+        const esPaginaInicio = window.location.pathname.endsWith('index1.html') || 
+                               window.location.pathname === '/' || 
+                               window.location.pathname.endsWith('/index.html');
         
         if (!esPaginaInicio) {
             alert("No se encontró un nombre de usuario. Serás redirigido a la página principal para ingresarlo.");
-            window.location.href = 'index1.html'; // Ajusta si tu página principal tiene otro nombre o ruta
+            window.location.href = 'index1.html';
         }
         return null;
     }
 }
 
-// Asegúrate de que el botón de logout en otras páginas también funcione (si existe)
-// Esto es una forma de hacerlo si el botón de logout está en el HTML de todas las páginas
-// y comparten este script o una versión de él.
 document.addEventListener('DOMContentLoaded', function() {
-    // Esta parte es redundante si el script ya está configurado como arriba,
-    // pero si `verificarNombreUsuario` es llamado antes de que el DOM esté cargado para el logoutBtn en otras páginas,
-    // podrías necesitar una lógica similar o asegurar que `verificarNombreUsuario` se llame después.
-    // La lógica actual en `verificarNombreUsuario` ya maneja mostrar/ocultar el botón.
-    const logoutBtnGlobal = document.getElementById('logoutBtn');
-    if (logoutBtnGlobal && !localStorage.getItem('nombreUsuarioGlobalJuegos')) {
-        logoutBtnGlobal.classList.add('hidden');
-    } else if (logoutBtnGlobal && localStorage.getItem('nombreUsuarioGlobalJuegos')) {
-        logoutBtnGlobal.classList.remove('hidden');
-        logoutBtnGlobal.addEventListener('click', function() { // Asegurar listener si no es index1
-            if (!document.getElementById('guardarNombreBtn')) { // Solo si no estamos en la página de login
-                localStorage.removeItem('nombreUsuarioGlobalJuegos');
-                // Redirigir a login o actualizar UI de la página actual
-                window.location.href = 'index1.html'; // O una función más genérica de reseteo de UI
-            }
-        });
+    const esPaginaDeJuegoOIndex = !document.getElementById('entradaNombreContainer') || 
+                                 (document.getElementById('entradaNombreContainer') && !document.getElementById('entradaNombreContainer').classList.contains('hidden'));
+
+    if (!document.getElementById('guardarNombreBtn')) { // Asumimos que si no está el botón guardar, no es la página de login activa
+        verificarNombreUsuario(window.location.pathname);
+        
+        const logoutDesktopBtnGlobal = document.getElementById('logoutDesktopBtn');
+        const logoutMenuLinkGlobal = document.getElementById('logoutMenuLink');
+        
+        function handleGlobalLogout(e) {
+            if(e) e.preventDefault();
+            localStorage.removeItem('nombreUsuarioGlobalJuegos');
+            window.location.href = 'index1.html';
+        }
+
+        if (logoutDesktopBtnGlobal && localStorage.getItem('nombreUsuarioGlobalJuegos')) {
+            logoutDesktopBtnGlobal.addEventListener('click', handleGlobalLogout);
+        }
+        if (logoutMenuLinkGlobal && localStorage.getItem('nombreUsuarioGlobalJuegos')) {
+            logoutMenuLinkGlobal.addEventListener('click', handleGlobalLogout);
+        }
     }
 });

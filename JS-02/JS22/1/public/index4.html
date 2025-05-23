@@ -10,16 +10,19 @@
 <body>
     <nav class="navbar">
         <div class="nav-logo">Mis Juegos</div>
+        <button class="nav-toggle" aria-label="Abrir menú de navegación">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
         <ul class="nav-links">
             <li><a href="index1.html">Inicio</a></li>
             <li><a href="index2.html">Simón Dice</a></li>
             <li><a href="index3.html">PPT Hacker</a></li>
             <li><a href="index4.html" class="active-link">TaTeTi</a></li>
+            <li class="nav-user-greeting-item"><span id="saludoUsuarioNav"></span></li>
+            <li class="nav-user-logout-item"><button id="logoutBtn" class="logout-button hidden" onclick="ejecutarLogout()">Cambiar Usuario</button></li>
         </ul>
-        <div class="nav-user-area">
-            <span id="saludoUsuarioNav"></span>
-            <button id="logoutBtn" class="logout-button hidden" onclick="ejecutarLogout()">Cambiar Usuario</button>
-        </div>
     </nav>
 
     <div class="page-content-tateti">
