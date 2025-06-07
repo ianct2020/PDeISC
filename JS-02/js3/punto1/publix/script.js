@@ -81,32 +81,44 @@ function addNumber() {
 }
 
 /**
- * Crea y descarga un archivo .txt con los números.
+ * Envía los números al servidor para que los guarde en un archivo.
  */
-function saveToFile() {
-    // Convertir el array de números en un string, con cada número en una nueva línea
-    const fileContent = numbers.join('\n');
-    
-    // Crear un objeto Blob, que representa el archivo en memoria
-    const blob = new Blob([fileContent], { type: 'text/plain;charset=utf-8' });
-    
-    // Crear una URL temporal para el Blob
-    const url = URL.createObjectURL(blob);
-    
-    // Crear un enlace <a> temporal para iniciar la descarga
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'numeros_ingresados.txt'; // Nombre del archivo
-    
-    // Simular un clic en el enlace para que el navegador muestre el diálogo de guardado
-    document.body.appendChild(link);
-    link.click();
-    
-    // Limpiar: remover el enlace y la URL temporal de la memoria
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+async function saveToFile() {
+    // Deshabilitar el botón para evitar múltiples clics mientras se procesa
+    saveBtn.disabled = true;
+    messageArea.textContent = 'Guardando en el servidor...';
 
-    messageArea.textContent = 'Archivo generado exitosamente.';
+    try {
+        // Usamos fetch para enviar una petición POST al endpoint que creamos en Node.js
+        const response = await fetch('/guardar-numeros', {
+            method: 'POST', // El tipo de petición
+            headers: {
+                'Content-Type': 'application/json' // Indicamos que enviaremos datos en formato JSON
+            },
+            body: JSON.stringify({ numeros: numbers }) // Convertimos el array a un string JSON y lo ponemos en el cuerpo de la petición
+        });
+
+        // Obtenemos la respuesta del servidor en formato JSON
+        const result = await response.json();
+
+        // Verificamos si la respuesta del servidor fue exitosa (código 200-299)
+        if (response.ok) {
+            messageArea.textContent = result.message; // Mostramos el mensaje de éxito del servidor
+        } else {
+            // Si hubo un error, mostramos el mensaje de error del servidor
+            throw new Error(result.message);
+        }
+
+    } catch (error) {
+        // Si hay un error en la comunicación (ej: servidor caído) o un error del servidor
+        console.error('Error al contactar al servidor:', error);
+        messageArea.textContent = `Error: ${error.message}`;
+    } finally {
+        // Volvemos a habilitar el botón si aún no se ha alcanzado el máximo de números
+        if (numbers.length >= MIN_NUMBERS && numbers.length < MAX_NUMBERS) {
+            saveBtn.disabled = false;
+        }
+    }
 }
 
 
