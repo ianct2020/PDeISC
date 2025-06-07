@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingreso de Números</title>
+    <!-- Enlace a la hoja de estilos CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <main class="container">
+        <header>
+            <h1>Registro de Números</h1>
+            <p>Ingresa entre 10 y 20 números. Se guardarán en un archivo de texto.</p>
+        </header>
+
+        <!-- Formulario para agregar números -->
+        <div class="input-area">
+            <input type="number" id="number-input" placeholder="Escribe un número aquí...">
+            <button id="add-btn">Agregar</button>
+        </div>
+
+        <!-- Área de mensajes para el usuario -->
+        <p id="message-area" class="message"></p>
+
+        <!-- Contenedor donde se mostrarán los números ingresados -->
+        <div class="numbers-display">
+            <h2>Números Ingresados:</h2>
+            <div id="numbers-list-container">
+                <!-- Los números se agregarán aquí con JavaScript -->
+            </div>
+        </div>
+
+        <!-- Botón para guardar el archivo -->
+        <div class="save-area">
+            <button id="save-btn" disabled>Guardar en Archivo (.txt)</button>
+        </div>
+    </main>
+
+    <!-- Enlace al script de JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
