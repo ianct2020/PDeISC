@@ -8,23 +8,24 @@
 <body>
     <nav class="navbar">
     <div class="nav-logo">Mis Juegos</div>
-
-    <input type="checkbox" id="nav-toggle" class="nav-toggle-checkbox">
-    <label for="nav-toggle" class="nav-toggle-label">
-        <span></span>
-    </label>
-
-    <div class="nav-menu-content">
-        <ul class="nav-links">
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="index2.html" class="active-link">Simón Dice</a></li>
-            <li><a href="index3.html">PPT Hacker</a></li>
-            <li><a href="index4.html">Ta Te Ti</a></li> 
-            <div id="saludoUsuarioNav" class="nav-user"></div>
-            <button id="logoutBtn" class="nav-logout-button hidden">Cambiar Usuario</button>
-        </ul>
+    <ul class="nav-links">
+        <li><a href="index1.html">Inicio</a></li>
+        <li><a href="index2.html" class="active-link">Simón Dice</a></li>
+        <li><a href="index3.html">PPT Hacker</a></li>
+        <li><a href="index4.html">Ta Te Ti</a></li>
         
+        
+    </ul>
+    <div class="nav-user-section">
+        <div id="saludoUsuarioNav" class="nav-user">
             </div>
+        <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+            <span class="hamburger-icon line1"></span>
+            <span class="hamburger-icon line2"></span>
+            <span class="hamburger-icon line3"></span>
+        </button>
+    </div>
+</nav>
         <button id="logoutBtn" class="nav-logout-button hidden">Cambiar Usuario</button>
         </div>
 </nav>
