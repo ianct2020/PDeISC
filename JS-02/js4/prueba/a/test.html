@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú de Navegación Responsive</title>
+
+    <style>
+        /* --- ESTILOS CSS COMPLETOS --- */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            padding-top: var(--navbar-height, 60px); /* Espacio para la navbar fija */
+            background-color: #F4F7F9;
+            color: #333333;
+            line-height: 1.6;
+        }
+
+        /* --- Variables de Colores --- */
+        :root {
+            --theme-color-navbar-bg: #1A3A6D;
+            --theme-color-navbar-text: #FFFFFF;
+            --theme-color-navbar-hover-bg: #2c5499;
+            --theme-color-navbar-active-link-bg: #A0D2DB;
+            --theme-color-navbar-active-link-text: #1A3A6D;
+            --navbar-height: 60px;
+        }
+
+        /* --- Estilos Base de la Navbar (Vista de Escritorio) --- */
+        .navbar {
+            background-color: var(--theme-color-navbar-bg);
+            color: var(--theme-color-navbar-text);
+            padding: 0 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            height: var(--navbar-height);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-sizing: border-box;
+        }
+
+        .nav-logo {
+            font-size: 1.8em; 
+            font-weight: bold;
+            color: var(--theme-color-navbar-text);
+            flex-shrink: 0;
+            margin-right: 25px; 
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex; 
+            align-items: center;
+            overflow: hidden; 
+        }
+
+        .nav-links a {
+            color: var(--theme-color-navbar-text);
+            text-decoration: none;
+            font-size: 0.95em;
+            padding: 6px 10px;
+            border-radius: 4px;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            white-space: nowrap;
+            margin: 0 4px;
+        }
+
+        .nav-links a:hover {
+            background-color: var(--theme-color-navbar-hover-bg);
+        }
+
+        .nav-links a.active-link {
+            background-color: var(--theme-color-navbar-active-link-bg);
+            color: var(--theme-color-navbar-active-link-text);
+            font-weight: 500;
+        }
+
+        .nav-user-section {
+            display: flex;
+            align-items: center;
+            margin-left: auto; 
+            flex-shrink: 0;
+        }
+
+        .nav-user {
+            font-size: 0.9em;
+            color: var(--theme-color-navbar-text);
+            white-space: nowrap;
+            margin-right: 10px; 
+        }
+
+        .nav-toggle {
+            display: none; 
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            width: 35px;
+            height: 35px;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .hamburger-icon {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background-color: var(--theme-color-navbar-text);
+            margin: 3px 0;
+            transition: all 0.3s ease-in-out;
+            border-radius: 1px;
+        }
+        .navbar.nav-open .hamburger-icon.line1 { transform: translateY(5px) rotate(45deg); }
+        .navbar.nav-open .hamburger-icon.line2 { opacity: 0; }
+        .navbar.nav-open .hamburger-icon.line3 { transform: translateY(-5px) rotate(-45deg); }
+
+
+        /* --- Media Query para el Comportamiento Responsive (Móvil/Tablet) --- */
+        @media (max-width: 820px) {
+            .navbar {
+                justify-content: space-between; 
+            }
+            .nav-logo {
+                margin-right: 0; 
+                font-size: 1.4em;
+            }
+            .nav-links {
+                display: none; 
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: var(--navbar-height);
+                left: 0;
+                background-color: var(--theme-color-navbar-bg);
+                padding: 0;
+                box-shadow: 0 4px 5px rgba(0,0,0,0.1);
+                border-top: 1px solid var(--theme-color-navbar-hover-bg);
+                z-index: 999;
+            }
+            .nav-links.active {
+                display: flex; 
+            }
+            .nav-links li {
+                margin: 0;
+                width: 100%;
+                text-align: left;
+            }
+            .nav-links a {
+                display: block;
+                padding: 12px 20px;
+                width: 100%;
+                box-sizing: border-box;
+                border-radius: 0;
+                border-bottom: 1px solid var(--theme-color-navbar-hover-bg);
+            }
+            .nav-links li:last-child a {
+                border-bottom: none;
+            }
+
+            .nav-user-section {
+                margin-left: 0;
+            }
+            .nav-user {
+                font-size: 0.8em;
+                margin-right: 8px;
+            }
+            .nav-toggle {
+                display: flex;
+            }
+        }
+        
+        /* Contenido de relleno para demostración */
+        .dummy-content {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .dummy-content h1 {
+            color: #333;
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-logo">Mis Juegos</div>
+        <ul class="nav-links">
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#" class="active-link">Simón Dice</a></li>
+            <li><a href="#">PPT Hacker</a></li>
+            <li><a href="#">Tateti</a></li>
+            <li><a href="#" id="cambiarUsuarioBtnNav">Cambiar Usuario</a></li>
+        </ul>
+        <div class="nav-user-section">
+            <div id="saludoUsuarioNav" class="nav-user">Hola, aaaaaaaaaa</div>
+            <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+                <span class="hamburger-icon line1"></span>
+                <span class="hamburger-icon line2"></span>
+                <span class="hamburger-icon line3"></span>
+            </button>
+        </div>
+    </nav>
+    <div class="dummy-content">
+        <h1>Página de Ejemplo</h1>
+        <p>Este es el contenido de la página. La barra de navegación de arriba es fija y se mantendrá en su lugar mientras haces scroll. En pantallas grandes, verás todos los enlaces. En pantallas más pequeñas (reduce el ancho de la ventana del navegador), los enlaces se ocultarán y aparecerá un menú de "hamburguesa" a la derecha.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet nec, commodo eget, consequat quis, neque. Aliquam faucibus, elit ut dictum aliquet, felis nisl adipiscing sapien, sed malesuada diam lacus eget erat. Cras mollis scelerisque nunc. Nullam arcu. Aliquam erat volutpat. Suspendisse non nisl sit amet velit hendrerit rutrum. Ut leo. Ut Pharetra augue nec augue.</p>
+        <p>Nam elit agna, endrerit sit amet, tincidunt ac, viverra sed, nulla. Donec porta diam eu massa. Quisque diam lorem, interdum vitae, dapibus ac, scelerisque vitae, pede. Donec eget tellus non erat lacinia fermentum. Donec in velit vel ipsum auctor pulvinar. Proin ullamcorper urna et felis. Vestibulum iaculis lacinia est. Proin dictum elementum velit. Fusce euismod consequat ante. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Pellentesque sed dolor. Aliquam congue fermentum nisl. Mauris accumsan nulla vel diam. Sed in lacus ut enim adipiscing aliquet. Nulla venenatis. In pede mi, aliquet sit amet, euismod in, auctor ut, ligula. Aliquam dapibus tincidunt metus. Praesent justo dolor, lobortis quis, lobortis dignissim, pulvinar ac, lorem. Vestibulum sed ante. Donec sagittis euismod purus.</p>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Código para el menú de navegación responsive
+            const navToggle = document.querySelector('.nav-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            const mainNavbar = document.querySelector('.navbar');
+
+            if (navToggle && navLinks && mainNavbar) {
+                navToggle.addEventListener('click', () => {
+                    // Alterna la clase 'active' para mostrar/ocultar el menú
+                    navLinks.classList.toggle('active');
+
+                    // Alterna la clase 'nav-open' para la animación del ícono (X)
+                    mainNavbar.classList.toggle('nav-open');
+
+                    // Actualiza el atributo ARIA para accesibilidad
+                    const isExpanded = navLinks.classList.contains('active');
+                    navToggle.setAttribute('aria-expanded', isExpanded);
+                });
+            }
+
+            // Aquí podrías agregar la lógica para el botón "Cambiar Usuario" si quisieras
+            const cambiarUsuarioBtn = document.getElementById('cambiarUsuarioBtnNav');
+            if (cambiarUsuarioBtn) {
+                cambiarUsuarioBtn.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    alert('Has hecho clic en "Cambiar Usuario".');
+                    // Aquí iría tu lógica real para cambiar de usuario.
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
