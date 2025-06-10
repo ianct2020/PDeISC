@@ -1,149 +1,222 @@
-// --- Selección de Elementos del DOM ---
-const numberInput = document.getElementById('number-input');
-const addBtn = document.getElementById('add-btn');
-const saveBtn = document.getElementById('save-btn');
-const numbersListContainer = document.getElementById('numbers-list-container');
-const messageArea = document.getElementById('message-area');
+// asegurar dom cargado 
+document.addEventListener('DOMContentLoaded', () => {
 
-// --- Variables Globales ---
-const numbers = []; // Array para almacenar los números ingresados
-const MIN_NUMBERS = 10;
-const MAX_NUMBERS = 20;
+    // referencias dom
+    // ingreso de números
+    const numeroInput = document.getElementById('numeroInput');
+    const agregarBtn = document.getElementById('agregarBtn');
+    const listaNumerosIngresados = document.getElementById('listaNumerosIngresados');
+    const contadorIngresados = document.getElementById('contadorIngresados');
+    const guardarIngresoBtn = document.getElementById('guardarIngresoBtn');
 
-// --- Funciones ---
+    // cargar y filtrar
+    const archivoInput = document.getElementById('archivoInput');
+    const resultadosArea = document.getElementById('resultadosArea');
+    const utilesCount = document.getElementById('utilesCount');
+    const noUtilesCount = document.getElementById('noUtilesCount');
+    const porcentajeUtiles = document.getElementById('porcentajeUtiles');
+    const listaNumerosFiltrados = document.getElementById('listaNumerosFiltrados');
+    const guardarFiltroBtn = document.getElementById('guardarFiltroBtn');
+    const mensajeError = document.getElementById('mensajeError');
 
-/**
- * Actualiza la interfaz de usuario (botones y mensajes) según el estado actual.
- */
-function updateUI() {
-    // Actualizar mensaje con la cantidad de números
-    messageArea.textContent = `Números ingresados: ${numbers.length} de ${MAX_NUMBERS}.`;
+    // variables de estado 
+    let numerosIngresados = [];
+    let numerosFiltrados = [];
 
-    // Habilitar/deshabilitar el botón de agregar
-    if (numbers.length >= MAX_NUMBERS) {
-        addBtn.disabled = true;
-        numberInput.disabled = true;
-        messageArea.textContent = `Límite de ${MAX_NUMBERS} números alcanzado.`;
-    } else {
-        addBtn.disabled = false;
-        numberInput.disabled = false;
-    }
+    // funciones ingreso de números
 
-    // Habilitar/deshabilitar el botón de guardar
-    if (numbers.length >= MIN_NUMBERS) {
-        saveBtn.disabled = false;
-    } else {
-        saveBtn.disabled = true;
-    }
-}
+    /* agrega un número a la lista de ingresados
+     */
+    const agregarNumero = () => {
+        const valor = numeroInput.value.trim();
+        if (valor === '') {
+            mostrarError("Por favor, introduce un número.");
+            return;
+        }
 
-/**
- * Renderiza la lista de números en la pantalla.
- */
-function renderNumbers() {
-    // Limpiar el contenedor actual
-    numbersListContainer.innerHTML = '';
-    
-    // Crear y añadir un elemento por cada número en el array
-    numbers.forEach(num => {
-        const numberElement = document.createElement('div');
-        numberElement.className = 'number-item';
-        numberElement.textContent = num;
-        numbersListContainer.appendChild(numberElement);
-    });
-}
+        if (numerosIngresados.length >= 20) {
+            mostrarError("Ya has alcanzado el máximo de 20 números.");
+            return;
+        }
 
-/**
- * Maneja la lógica para agregar un nuevo número.
- */
-function addNumber() {
-    // Obtener y validar el valor del input
-    const value = numberInput.value;
-    if (value === '') {
-        messageArea.textContent = 'Por favor, ingresa un número.';
-        return;
-    }
+        const numero = Number(valor);
+        numerosIngresados.push(numero);
+        actualizarListaIngresados();
+        numeroInput.value = '';
+        numeroInput.focus();
+    };
 
-    const numberValue = parseInt(value, 10);
-    
-    // Añadir el número al array
-    numbers.push(numberValue);
-
-    // Limpiar el campo de entrada
-    numberInput.value = '';
-
-    // Actualizar la vista
-    renderNumbers();
-    updateUI();
-
-    // Devolver el foco al input
-    numberInput.focus();
-}
-
-/**
- * Envía los números al servidor para que los guarde en un archivo.
- */
-async function saveToFile() {
-    // Deshabilitar el botón para evitar múltiples clics mientras se procesa
-    saveBtn.disabled = true;
-    messageArea.textContent = 'Guardando en el servidor...';
-
-    try {
-        // Usamos fetch para enviar una petición POST al endpoint que creamos en Node.js
-        const response = await fetch('/guardar-numeros', {
-            method: 'POST', // El tipo de petición
-            headers: {
-                'Content-Type': 'application/json' // Indicamos que enviaremos datos en formato JSON
-            },
-            body: JSON.stringify({ numeros: numbers }) // Convertimos el array a un string JSON y lo ponemos en el cuerpo de la petición
+    /* actualiza con la lista de números ingresados.
+     */
+    const actualizarListaIngresados = () => {
+        listaNumerosIngresados.innerHTML = ''; // limpia la lista
+        numerosIngresados.forEach(num => {
+            const li = document.createElement('li');
+            li.textContent = num;
+            listaNumerosIngresados.appendChild(li);
         });
 
-        // Obtenemos la respuesta del servidor en formato JSON
-        const result = await response.json();
+        // actualiza el contador
+        contadorIngresados.textContent = numerosIngresados.length;
 
-        // Verificamos si la respuesta del servidor fue exitosa (código 200-299)
-        if (response.ok) {
-            messageArea.textContent = result.message; // Mostramos el mensaje de éxito del servidor
+        // habilita o deshabilita el botón de guardar
+        if (numerosIngresados.length >= 10 && numerosIngresados.length <= 20) {
+            guardarIngresoBtn.disabled = false;
         } else {
-            // Si hubo un error, mostramos el mensaje de error del servidor
-            throw new Error(result.message);
+            guardarIngresoBtn.disabled = true;
+        }
+    };
+    
+    /*genera y descarga un archivo .txt con los números ingresados.
+     */
+    const guardarArchivoIngresados = () => {
+        const contenido = numerosIngresados.join('\n');
+        descargarArchivo(contenido, 'numeros_ingresados.txt');
+    };
+
+    //funciones cargar y filtrar
+
+    /**
+      maneja la selección de un archivo por el usuario.
+      @param {Event} event  el evento de cambio del input de archivo
+     */
+    const manejarSeleccionArchivo = (event) => {
+        const archivo = event.target.files[0];
+        if (!archivo) {
+            return;
         }
 
-    } catch (error) {
-        // Si hay un error en la comunicación (ej: servidor caído) o un error del servidor
-        console.error('Error al contactar al servidor:', error);
-        messageArea.textContent = `Error: ${error.message}`;
-    } finally {
-        // Volvemos a habilitar el botón si aún no se ha alcanzado el máximo de números
-        if (numbers.length >= MIN_NUMBERS && numbers.length < MAX_NUMBERS) {
-            saveBtn.disabled = false;
+        if (archivo.type !== 'text/plain') {
+            mostrarError("Por favor, sube un archivo con formato .txt");
+            return;
         }
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const contenido = e.target.result;
+            procesarContenidoArchivo(contenido);
+        };
+        reader.onerror = () => {
+            mostrarError("Error al leer el archivo.");
+        };
+        reader.readAsText(archivo);
+    };
+
+    /**
+     * procesa el contenido de texto del archivo, filtra y muestra los resultados.
+     * @param {string} contenido - el contenido de texto del archivo.
+     */
+    const procesarContenidoArchivo = (contenido) => {
+        const lineas = contenido.split('\n').filter(linea => linea.trim() !== '');
+        if (lineas.length === 0) {
+            mostrarError("El archivo está vacío o no contiene números válidos.");
+            return;
+        }
+
+        let numerosUtiles = [];
+        let numerosNoUtiles = [];
+
+        lineas.forEach(linea => {
+            const numStr = linea.trim();
+            if (!isNaN(numStr) && numStr.length > 0) {
+                 // filtra si el primer y último caracter son iguales
+                if (numStr.charAt(0) === numStr.charAt(numStr.length - 1)) {
+                    numerosUtiles.push(Number(numStr));
+                } else {
+                    numerosNoUtiles.push(Number(numStr));
+                }
+            }
+        });
+        
+        // ordena los números  ascendente
+        numerosUtiles.sort((a, b) => a - b);
+        numerosFiltrados = numerosUtiles; // guarda para la descarga
+
+        actualizarResultadosUI(numerosUtiles, numerosNoUtiles);
+    };
+    
+    /**
+     * actualiza la UI con los resultados del filtrado.
+     * @param {number[]} utiles - array de números útiles.
+     * @param {number[]} noUtiles - array de números no útiles.
+     */
+    const actualizarResultadosUI = (utiles, noUtiles) => {
+        resultadosArea.classList.remove('hidden');
+        mensajeError.classList.add('hidden'); // oculta errores previos
+
+        // actualiza contadores
+        utilesCount.textContent = utiles.length;
+        noUtilesCount.textContent = noUtiles.length;
+
+        // calcula y muestra el porcentaje
+        const total = utiles.length + noUtiles.length;
+        const porcentaje = total > 0 ? ((utiles.length / total) * 100).toFixed(2) : 0;
+        porcentajeUtiles.textContent = `${porcentaje}%`;
+
+        // muestra la lista de números filtrados
+        listaNumerosFiltrados.innerHTML = '';
+        if(utiles.length > 0) {
+            utiles.forEach(num => {
+                const li = document.createElement('li');
+                li.textContent = num;
+                listaNumerosFiltrados.appendChild(li);
+            });
+            guardarFiltroBtn.disabled = false;
+        } else {
+            listaNumerosFiltrados.innerHTML = '<li>No se encontraron números que cumplan el criterio.</li>';
+            guardarFiltroBtn.disabled = true;
+        }
+    };
+    
+    /**
+     * genera y descarga un archivo .txt con los números filtrados.
+     */
+    const guardarArchivoFiltrado = () => {
+        const contenido = numerosFiltrados.join('\n');
+        descargarArchivo(contenido, 'numeros_filtrados.txt');
+    };
+
+
+    // --- Funciones de Utilidad ---
+    
+    /**
+     * función genérica para crear y descargar un archivo.
+     * @param {string} contenido - contenido del archivo.
+     * @param {string} nombreArchivo - nombre para el archivo descargado.
+     */
+    function descargarArchivo(contenido, nombreArchivo) {
+        const blob = new Blob([contenido], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = nombreArchivo;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
     }
-}
+    
+    /**
+     * muestra un mensaje de error temporalmente.
+     * @param {string} texto  el mensaje de error a mostrar.
+     */
+    const mostrarError = (texto) => {
+        mensajeError.textContent = texto;
+        mensajeError.classList.remove('hidden');
+        setTimeout(() => {
+            mensajeError.classList.add('hidden');
+        }, 3000); // el mensaje desaparece después de 3 segundos
+    };
 
-
-// --- Asignación de Eventos ---
-
-// Evento para el botón "Agregar"
-addBtn.addEventListener('click', addNumber);
-
-// Evento para la tecla "Enter" en el campo de número
-numberInput.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter') {
-        // Prevenir que el formulario se envíe (si lo hubiera)
-        event.preventDefault(); 
-        // Si el botón de agregar está activo, ejecuta la función
-        if (!addBtn.disabled) {
-            addNumber();
+    //  asignación Eventos 
+    agregarBtn.addEventListener('click', agregarNumero);
+    numeroInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            agregarNumero();
         }
-    }
+    });
+
+    guardarIngresoBtn.addEventListener('click', guardarArchivoIngresados);
+    archivoInput.addEventListener('change', manejarSeleccionArchivo);
+    guardarFiltroBtn.addEventListener('click', guardarArchivoFiltrado);
 });
-
-// Evento para el botón "Guardar"
-saveBtn.addEventListener('click', saveToFile);
-
-
-// --- Inicialización ---
-// Establecer el estado inicial de la UI al cargar la página
-updateUI();
-messageArea.textContent = 'Ingresa al menos 10 números para poder guardar.';

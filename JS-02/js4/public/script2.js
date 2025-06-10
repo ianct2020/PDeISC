@@ -211,3 +211,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     setButtonsClickable(false);
 });
+// --- Inicio: Código para el nuevo menú de navegación responsive ---
+document.addEventListener('DOMContentLoaded', () => {
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const mainNavbar = document.querySelector('.navbar');
+
+    if (navToggle && navLinks && mainNavbar) {
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mainNavbar.classList.toggle('nav-open');
+
+            const isExpanded = navLinks.classList.contains('active');
+            navToggle.setAttribute('aria-expanded', isExpanded);
+        });
+    }
+
+    // La lógica para el botón "Cambiar Usuario" ya está manejada
+    // en tu función cargarEstadoNombre() que busca el ID "logoutBtn".
+    // El nuevo HTML ya usa este ID, por lo que no se necesita código adicional aquí
+    // para la funcionalidad de logout, tu script existente se hará cargo.
+});
+// --- Fin: Código para el nuevo menú de navegación responsive ---

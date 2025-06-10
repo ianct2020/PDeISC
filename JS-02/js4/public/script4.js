@@ -267,3 +267,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 }); // Fin del DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Código para el menú de navegación responsive
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const mainNavbar = document.querySelector('.navbar');
+
+    if (navToggle && navLinks && mainNavbar) {
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mainNavbar.classList.toggle('nav-open');
+
+            const isExpanded = navLinks.classList.contains('active');
+            navToggle.setAttribute('aria-expanded', isExpanded);
+        });
+    }
+
+    // Lógica para el botón "Cambiar Usuario" (opcional)
+    const cambiarUsuarioBtn = document.getElementById('cambiarUsuarioBtnNav');
+    if (cambiarUsuarioBtn) {
+        cambiarUsuarioBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            alert('Has hecho clic en "Cambiar Usuario".');
+            // Aquí iría tu lógica real para cambiar de usuario.
+        });
+    }
+});

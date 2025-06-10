@@ -1,15 +1,15 @@
-// --- Evento principal para asegurar que el DOM esté cargado ---
+// asegurar dom cargado 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- Referencias a elementos del DOM ---
-    // Sección 1: Ingreso de números
+    // referencias dom
+    // ingreso de números
     const numeroInput = document.getElementById('numeroInput');
     const agregarBtn = document.getElementById('agregarBtn');
     const listaNumerosIngresados = document.getElementById('listaNumerosIngresados');
     const contadorIngresados = document.getElementById('contadorIngresados');
     const guardarIngresoBtn = document.getElementById('guardarIngresoBtn');
 
-    // Sección 2: Carga y filtrado
+    // cargar y filtrar
     const archivoInput = document.getElementById('archivoInput');
     const resultadosArea = document.getElementById('resultadosArea');
     const utilesCount = document.getElementById('utilesCount');
@@ -19,14 +19,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const guardarFiltroBtn = document.getElementById('guardarFiltroBtn');
     const mensajeError = document.getElementById('mensajeError');
 
-    // --- Variables de estado ---
+    // variables de estado 
     let numerosIngresados = [];
     let numerosFiltrados = [];
 
-    // --- Funciones de la Sección 1: Ingreso de Números ---
+    // funciones ingreso de números
 
-    /**
-     * Agrega un número a la lista de ingresados.
+    /* agrega un número a la lista de ingresados
      */
     const agregarNumero = () => {
         const valor = numeroInput.value.trim();
@@ -47,21 +46,20 @@ document.addEventListener('DOMContentLoaded', () => {
         numeroInput.focus();
     };
 
-    /**
-     * Actualiza la UI con la lista de números ingresados.
+    /* actualiza con la lista de números ingresados.
      */
     const actualizarListaIngresados = () => {
-        listaNumerosIngresados.innerHTML = ''; // Limpia la lista
+        listaNumerosIngresados.innerHTML = ''; // limpia la lista
         numerosIngresados.forEach(num => {
             const li = document.createElement('li');
             li.textContent = num;
             listaNumerosIngresados.appendChild(li);
         });
 
-        // Actualiza el contador
+        // actualiza el contador
         contadorIngresados.textContent = numerosIngresados.length;
 
-        // Habilita o deshabilita el botón de guardar
+        // habilita o deshabilita el botón de guardar
         if (numerosIngresados.length >= 10 && numerosIngresados.length <= 20) {
             guardarIngresoBtn.disabled = false;
         } else {
@@ -69,19 +67,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
     
-    /**
-     * Genera y descarga un archivo .txt con los números ingresados.
+    /*genera y descarga un archivo .txt con los números ingresados.
      */
     const guardarArchivoIngresados = () => {
         const contenido = numerosIngresados.join('\n');
         descargarArchivo(contenido, 'numeros_ingresados.txt');
     };
 
-    // --- Funciones de la Sección 2: Carga y Filtrado ---
+    //funciones cargar y filtrar
 
     /**
-     * Maneja la selección de un archivo por el usuario.
-     * @param {Event} event - El evento de cambio del input de archivo.
+      maneja la selección de un archivo por el usuario.
+      @param {Event} event  el evento de cambio del input de archivo
      */
     const manejarSeleccionArchivo = (event) => {
         const archivo = event.target.files[0];
@@ -106,8 +103,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     /**
-     * Procesa el contenido de texto del archivo, filtra y muestra los resultados.
-     * @param {string} contenido - El contenido de texto del archivo.
+     * procesa el contenido de texto del archivo, filtra y muestra los resultados.
+     * @param {string} contenido - el contenido de texto del archivo.
      */
     const procesarContenidoArchivo = (contenido) => {
         const lineas = contenido.split('\n').filter(linea => linea.trim() !== '');
@@ -122,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
         lineas.forEach(linea => {
             const numStr = linea.trim();
             if (!isNaN(numStr) && numStr.length > 0) {
-                 // Filtra si el primer y último caracter son iguales
+                 // filtra si el primer y último caracter son iguales
                 if (numStr.charAt(0) === numStr.charAt(numStr.length - 1)) {
                     numerosUtiles.push(Number(numStr));
                 } else {
@@ -131,32 +128,32 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         
-        // Ordena los números útiles de forma ascendente
+        // ordena los números  ascendente
         numerosUtiles.sort((a, b) => a - b);
-        numerosFiltrados = numerosUtiles; // Guarda para la descarga
+        numerosFiltrados = numerosUtiles; // guarda para la descarga
 
         actualizarResultadosUI(numerosUtiles, numerosNoUtiles);
     };
     
     /**
-     * Actualiza la UI con los resultados del filtrado.
-     * @param {number[]} utiles - Array de números útiles.
-     * @param {number[]} noUtiles - Array de números no útiles.
+     * actualiza la UI con los resultados del filtrado.
+     * @param {number[]} utiles - array de números útiles.
+     * @param {number[]} noUtiles - array de números no útiles.
      */
     const actualizarResultadosUI = (utiles, noUtiles) => {
         resultadosArea.classList.remove('hidden');
-        mensajeError.classList.add('hidden'); // Oculta errores previos
+        mensajeError.classList.add('hidden'); // oculta errores previos
 
-        // Actualiza contadores
+        // actualiza contadores
         utilesCount.textContent = utiles.length;
         noUtilesCount.textContent = noUtiles.length;
 
-        // Calcula y muestra el porcentaje
+        // calcula y muestra el porcentaje
         const total = utiles.length + noUtiles.length;
         const porcentaje = total > 0 ? ((utiles.length / total) * 100).toFixed(2) : 0;
         porcentajeUtiles.textContent = `${porcentaje}%`;
 
-        // Muestra la lista de números filtrados
+        // muestra la lista de números filtrados
         listaNumerosFiltrados.innerHTML = '';
         if(utiles.length > 0) {
             utiles.forEach(num => {
@@ -172,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     
     /**
-     * Genera y descarga un archivo .txt con los números filtrados.
+     * genera y descarga un archivo .txt con los números filtrados.
      */
     const guardarArchivoFiltrado = () => {
         const contenido = numerosFiltrados.join('\n');
@@ -183,9 +180,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Funciones de Utilidad ---
     
     /**
-     * Función genérica para crear y descargar un archivo.
-     * @param {string} contenido - Contenido del archivo.
-     * @param {string} nombreArchivo - Nombre para el archivo descargado.
+     * función genérica para crear y descargar un archivo.
+     * @param {string} contenido - contenido del archivo.
+     * @param {string} nombreArchivo - nombre para el archivo descargado.
      */
     function descargarArchivo(contenido, nombreArchivo) {
         const blob = new Blob([contenido], { type: 'text/plain;charset=utf-8' });
@@ -200,18 +197,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     /**
-     * Muestra un mensaje de error temporalmente.
-     * @param {string} texto - El mensaje de error a mostrar.
+     * muestra un mensaje de error temporalmente.
+     * @param {string} texto  el mensaje de error a mostrar.
      */
     const mostrarError = (texto) => {
         mensajeError.textContent = texto;
         mensajeError.classList.remove('hidden');
         setTimeout(() => {
             mensajeError.classList.add('hidden');
-        }, 3000); // El mensaje desaparece después de 3 segundos
+        }, 3000); // el mensaje desaparece después de 3 segundos
     };
 
-    // --- Asignación de Eventos ---
+    //  asignación Eventos 
     agregarBtn.addEventListener('click', agregarNumero);
     numeroInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
