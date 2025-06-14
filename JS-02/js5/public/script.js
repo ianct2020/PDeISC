@@ -1,6 +1,3 @@
-// script.js - Lógica del Frontend (Todo en uno)
-
-// --- CAMBIO IMPORTANTE: La clase ahora vive aquí ---
 class CZooAnimal {
     constructor(IdAnimal, nombre, JaulaNumero, IdTypeAnimal, peso) {
         this.IdAnimal = IdAnimal;
