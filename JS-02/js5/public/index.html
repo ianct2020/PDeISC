@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Animales del Zoológico</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🦓 Gestor de Animales del Zoológico</h1>
+            <p>Aplicación web para la administración y consulta de animales.</p>
+        </header>
+
+        <main class="main-layout">
+            <div class="form-and-queries">
+                <section class="card">
+                    <h2>Añadir Nuevo Animal</h2>
+                    <form id="animalForm" novalidate>
+                        <div class="form-group">
+                            <label for="nombre">Nombre del Animal</label>
+                            <input type="text" id="nombre" required minlength="2">
+                            <div class="error-message" id="nombreError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="jaula">Número de Jaula</label>
+                            <input type="number" id="jaula" min="1" required>
+                            <div class="error-message" id="jaulaError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="tipo">Tipo de Animal</label>
+                            <select id="tipo" required>
+                                <option value="1">Felino</option>
+                                <option value="2">Ave</option>
+                                <option value="3">Reptil</option>
+                                <option value="4">Otro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="peso">Peso (kg)</label>
+                            <input type="number" id="peso" step="0.1" min="0" required>
+                            <div class="error-message" id="pesoError"></div>
+                        </div>
+                        <button type="submit" class="btn">Agregar Animal</button>
+                    </form>
+                </section>
+                <section class="card">
+                    <h2>Consultas Específicas</h2>
+                    <div class="results">
+                         <div class="result-item">
+                            <span class="label">b) Animales en Jaula 5 (peso &lt; 3 kg)</span>
+                            <span id="resultB" class="value">0</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="label">c) Felinos entre Jaulas 2 y 5</span>
+                            <span id="resultC" class="value">0</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="label">d) Animal en Jaula 4 (peso &lt; 120 kg)</span>
+                            <span id="resultD" class="value">Ninguno</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <section class="card table-card">
+                <h2>Listado Completo de Animales</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Jaula N°</th>
+                                <th>Tipo</th>
+                                <th>Peso</th>
+                            </tr>
+                        </thead>
+                        <tbody id="animalTableBody"></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>Desarrollado con HTML, CSS, JavaScript y Node.js</p>
+        </footer>
+    </div>
+    
+    <!-- Ya no necesita type="module" -->
+    <script src="script.js"></script>
+</body>
+</html>
