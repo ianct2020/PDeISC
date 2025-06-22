@@ -14,9 +14,9 @@ class CZooAnimal {
     constructor(IdAnimal, nombre, JaulaNumero, IdTypeAnimal, peso) {
         this.IdAnimal = IdAnimal;
         this.nombre = nombre;
-        this.JaulaNumero = parseInt(JaulaNumero); // convierte a número entero
-        this.IdTypeAnimal = parseInt(IdTypeAnimal); // convierte a número entero
-        this.peso = parseFloat(peso); // convierte a número decimal
+        this.JaulaNumero = parseInt(JaulaNumero);
+        this.IdTypeAnimal = parseInt(IdTypeAnimal);
+        this.peso = parseFloat(peso);
     }
 }
 
@@ -30,122 +30,85 @@ document.addEventListener('DOMContentLoaded', () => {
     const animalTypes = { 1: 'Felino', 2: 'Ave', 3: 'Reptil', 4: 'Otro' };
     
     // referencias a elementos del dom que se usarán frecuentemente
-    const form = document.getElementById('animalForm'); // formulario para agregar animales
-    const tableBody = document.getElementById('animalTableBody'); // cuerpo de la tabla donde se muestran los animales
-    const resultB = document.getElementById('resultB'); // elemento para mostrar resultado de consulta b
-    const resultC = document.getElementById('resultC'); // elemento para mostrar resultado de consulta c
-    const resultD = document.getElementById('resultD'); // elemento para mostrar resultado de consulta d
+    const form = document.getElementById('animalForm');
+    const generateReportBtn = document.getElementById('generateReportBtn');
 
     // referencias a los campos de entrada del formulario
-    const nombreInput = document.getElementById('nombre'); // campo para el nombre
-    const jaulaInput = document.getElementById('jaula'); // campo para el número de jaula
-    const pesoInput = document.getElementById('peso'); // campo para el peso
+    const nombreInput = document.getElementById('nombre');
+    const jaulaInput = document.getElementById('jaula');
+    const pesoInput = document.getElementById('peso');
+    const tipoInput = document.getElementById('tipo');
 
     /**
      * agrega datos iniciales de animales al sistema
-     * crea varios animales predefinidos para poblar la tabla
      */
     function addInitialData() {
         const initialData = [
-            { id: 1, nombre: 'Simba', jaula: 2, tipo: 1, peso: 150 }, // león
-            { id: 2, nombre: 'Kaa', jaula: 4, tipo: 3, peso: 110 },   // vibora
-            { id: 3, nombre: 'Tico', jaula: 5, tipo: 2, peso: 2.5 },  // ave pequeña
-            { id: 4, nombre: 'Rajah', jaula: 3, tipo: 1, peso: 180 },  // tigre
-            { id: 5, nombre: 'Zazú', jaula: 5, tipo: 2, peso: 1.2 },  // ave pequeña
-            { id: 6, nombre: 'Puma', jaula: 5, tipo: 1, peso: 90 },   // puma
+            { id: 1, nombre: 'Simba', jaula: 2, tipo: 1, peso: 150 },
+            { id: 2, nombre: 'Kaa', jaula: 4, tipo: 3, peso: 110 },
+            { id: 3, nombre: 'Tico', jaula: 5, tipo: 2, peso: 2.5 },
+            { id: 4, nombre: 'Rajah', jaula: 3, tipo: 1, peso: 180 },
+            { id: 5, nombre: 'Zazú', jaula: 5, tipo: 2, peso: 1.2 },
         ];
-        // convierte cada objeto de datos en una instancia de czooAnimal y lo agrega al array
         initialData.forEach(d => {
             zooAnimals.push(new CZooAnimal(d.id, d.nombre, d.jaula, d.tipo, d.peso));
         });
     }
-
+    
     /**
-     * actualiza toda la interfaz de usuario
-     * llama a las funciones que actualizan la tabla y las consultas
+     * genera un reporte completo en una nueva pestaña usando document.write.
      */
-    function updateDisplay() {
-        updateTable();
-        runQueries();
-    }
+    function generateReport() {
+        // b) mostrar la cantidad de animales de la Jaula 5 que el peso sea menor a 3 kg.
+        const resultB = zooAnimals.filter(a => a.JaulaNumero === 5 && a.peso < 3).length;
+        
+        // c) listar cantidad de animales de tipo felinos que están entre las jaulas 2 a 5.
+        const resultC = zooAnimals.filter(a => a.IdTypeAnimal === 1 && a.JaulaNumero >= 2 && a.JaulaNumero <= 5).length;
+        
+        // d) listar el nombre del animal de la Jaula 4 que el peso sea menor a 120.
+        const animalsD = zooAnimals.filter(a => a.JaulaNumero === 4 && a.peso < 120);
+        const resultD = animalsD.length > 0 ? animalsD.map(a => a.nombre).join(', ') : 'Ninguno';
 
-    /**
-     * actualiza la tabla de animales en la interfaz
-     * muestra todos los animales registrados en el sistema
-     */
-    function updateTable() {
-        tableBody.innerHTML = ''; // limpia la tabla
-        
-        // si no hay animales, muestra un mensaje indicándolo
-        if (zooAnimals.length === 0) {
-            tableBody.innerHTML = `<tr><td colspan="5" class="empty-table">No hay animales registrados.</td></tr>`;
-            return;
-        }
-        
-        // crea una fila en la tabla para cada animal
+        let reportHTML = `
+            <!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+            <title>Reporte del Zoológico</title>
+            <link rel="stylesheet" href="styles.css">
+            </head><body><div class="container"><header><h1>Reporte de Animales</h1></header>
+            <main><section class="card"><h2>Consultas Específicas</h2>
+            <p><strong>b) Cantidad en Jaula 5 con peso &lt; 3 kg:</strong> ${resultB}</p>
+            <p><strong>c) Cantidad de felinos entre Jaulas 2-5:</strong> ${resultC}</p>
+            <p><strong>d) Nombre de animal en Jaula 4 con peso &lt; 120kg:</strong> ${resultD}</p>
+            </section><section class="card"><h2>Tabla de Animales</h2>
+            <table class="report-table">
+            <thead><tr><th>ID</th><th>Nombre</th><th>Jaula N°</th><th>Tipo</th><th>Peso (kg)</th></tr></thead>
+            <tbody>`;
+
         zooAnimals.forEach(animal => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${animal.IdAnimal}</td>
-                <td>${animal.nombre}</td>
-                <td>${animal.JaulaNumero}</td>
-                <td>${animalTypes[animal.IdTypeAnimal]}</td>
-                <td>${animal.peso} kg</td>
-            `;
-            tableBody.appendChild(row);
+            reportHTML += `<tr><td>${animal.IdAnimal}</td><td>${animal.nombre}</td><td>${animal.JaulaNumero}</td><td>${animalTypes[animal.IdTypeAnimal]}</td><td>${animal.peso}</td></tr>`;
         });
-    }
-
-    /**
-     * ejecuta las consultas requeridas y actualiza los resultados en la interfaz
-     * realiza tres consultas específicas sobre los datos de animales
-     */
-    function runQueries() {
-        // consulta b: cuenta animales en jaula 5 con peso menor a 3 kg
-        resultB.textContent = zooAnimals.filter(a => a.JaulaNumero === 5 && a.peso < 3).length;
         
-        // consulta c: cuenta felinos (tipo 1) entre las jaulas 2 y 5 (inclusive)
-        resultC.textContent = zooAnimals.filter(a => a.IdTypeAnimal === 1 && a.JaulaNumero >= 2 && a.JaulaNumero <= 5).length;
-        
-        // consulta d: muestra nombres de animales en jaula 4 con peso menor a 120 kg
-        const animalsInCage4 = zooAnimals.filter(a => a.JaulaNumero === 4 && a.peso < 120);
-        if (animalsInCage4.length > 0) {
-            resultD.textContent = animalsInCage4.map(animal => animal.nombre).join(', ');
-        } else {
-            resultD.textContent = 'Ninguno';
-        }
-    }
+        reportHTML += `</tbody></table></section></main></div></body></html>`;
 
-    /**
-     * muestra un mensaje de error para un campo específico
-     * @param {string} inputId - id del campo de entrada con error
-     * @param {string} message - mensaje de error a mostrar
-     */
+        // se abre una nueva pestaña
+        const reportWindow = window.open();
+        // se escribe el contenido en el documento de la nueva pestaña
+        reportWindow.document.open();
+        reportWindow.document.write(reportHTML); //USO DOCUMENT WRITE :D :D :D :D :D :D
+        reportWindow.document.close();
+    }
+    
     function showError(inputId, message) {
         document.getElementById(inputId + 'Error').textContent = message;
     }
 
-    /**
-     * limpia todos los mensajes de error en el formulario
-     */
     function clearErrors() {
         document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
     }
 
-    /**
-     * valida los datos del formulario antes de crear un nuevo animal
-     * @returns {boolean} - true si todos los datos son válidos, false en caso contrario
-     */
-    function validateForm() {
-        clearErrors(); // limpia errores previos
+    function validateForm() { //verificaciones
+        clearErrors();
         let isValid = true; 
-        
-        // obtiene y prepara los valores de los campos
         const nombreValue = nombreInput.value.trim();
-        const jaulaValue = jaulaInput.value;
-        const pesoValue = pesoInput.value;
-
-        // valida el nombre: debe tener al menos 2 caracteres y no contener números
         if (nombreValue.length < 2) {
             showError('nombre', 'El nombre debe tener al menos 2 caracteres.');
             isValid = false;
@@ -153,55 +116,34 @@ document.addEventListener('DOMContentLoaded', () => {
             showError('nombre', 'El nombre no puede contener números.');
             isValid = false;
         }
-
-        // valida la jaula: debe ser un número positivo
-        if (!jaulaValue || parseInt(jaulaValue) < 1) {
+        if (!jaulaInput.value || parseInt(jaulaInput.value) < 1) {
             showError('jaula', 'El número de jaula es obligatorio y debe ser mayor a 0.');
             isValid = false;
         }
-
-        // valida el peso: debe ser un número positivo
-        if (!pesoValue || parseFloat(pesoValue) < 0) {
+        if (!pesoInput.value || parseFloat(pesoInput.value) < 0) {
             showError('peso', 'El peso es obligatorio y no puede ser negativo.');
             isValid = false;
         }
-        
         return isValid;
     }
 
-    /**
-     * manejador del evento de envío del formulario
-     * crea un nuevo animal si los datos son válidos
-     */
-    form.addEventListener('submit', (event) => {
-        event.preventDefault(); // evita que el formulario se envíe de forma tradicional
-
-        // solo procede si los datos son válidos
+    form.addEventListener('submit', (event) => { //para avisar que se agrego el animal
+        event.preventDefault();
         if (validateForm()) {
-            // genera un nuevo id único para el animal (el máximo actual + 1)
             const newId = zooAnimals.length > 0 ? Math.max(...zooAnimals.map(a => a.IdAnimal)) + 1 : 1;
-            
-            // crea un nuevo objeto animal con los datos del formulario
-            const newAnimal = new CZooAnimal(
-                newId, 
-                nombreInput.value, 
-                jaulaInput.value, 
-                document.getElementById('tipo').value, 
-                pesoInput.value
-            );
-            
-            // agrega el nuevo animal al array
+            const newAnimal = new CZooAnimal(newId, nombreInput.value, jaulaInput.value, tipoInput.value, pesoInput.value);
             zooAnimals.push(newAnimal);
             
-            // actualiza la interfaz para mostrar el nuevo animal
-            updateDisplay();
+            alert('Animal agregado con éxito. Presiona "Mostrar Reporte" para ver la lista actualizada.'); 
             
-            // limpia el formulario para permitir una nueva entrada
             form.reset();
+            nombreInput.focus();
         }
     });
 
-    // inicialización de la aplicación
-    addInitialData(); // carga los datos iniciales
-    updateDisplay(); // actualiza la interfaz por primera vez
+    if (generateReportBtn) {
+        generateReportBtn.addEventListener('click', generateReport);
+    }
+
+    addInitialData();
 });
