@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procesador de Números</title>
+    <link rel="stylesheet" href="style.css">
+    <!--.fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <main class="container">
+        <h1>Procesador de Números</h1>
+
+        <!--innngreso y guardado de números -->
+        <section class="card">
+            <h2>Paso 1: Ingresar y Guardar Números</h2>
+            <p>Ingresa entre 10 y 20 números. Se mostrarán a continuación.</p>
+            
+            <div class="input-group">
+                <input type="number" id="numeroInput" placeholder="Escribe un número...">
+                <button id="agregarBtn">Agregar</button>
+            </div>
+
+            <div class="display-area">
+                <h3>Números Ingresados (<span id="contadorIngresados">0</span>/20):</h3>
+                <ul id="listaNumerosIngresados">
+                    <!-- agregan aca los numeros -->
+                </ul>
+            </div>
+            
+            <button id="guardarIngresoBtn" class="primary-btn" disabled>Guardar en Archivo (.txt)</button>
+        </section>
+
+        <!--  carga y filtrado  -->
+        <section class="card">
+            <h2>Paso 2: Cargar y Filtrar Archivo</h2>
+            <p>Sube el archivo .txt para filtrar los números que empiezan y terminan con el mismo dígito.</p>
+            
+            <div class="input-group">
+                <input type="file" id="archivoInput" accept=".txt">
+            </div>
+
+            <div id="resultadosArea" class="hidden">
+                <h3>Resultados del Filtrado</h3>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h4>Útiles</h4>
+                        <p id="utilesCount">0</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>No Útiles</h4>
+                        <p id="noUtilesCount">0</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>% Útiles</h4>
+                        <p id="porcentajeUtiles">0%</p>
+                    </div>
+                </div>
+
+                <div class="display-area">
+                    <h4>Números Filtrados (ordenados):</h4>
+                    <ul id="listaNumerosFiltrados">
+                        <!--números filtrados aca-->
+                    </ul>
+                </div>
+                
+                <button id="guardarFiltroBtn" class="primary-btn" disabled>Guardar Resultado (.txt)</button>
+            </div>
+             <p id="mensajeError" class="error-msg hidden"></p>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
