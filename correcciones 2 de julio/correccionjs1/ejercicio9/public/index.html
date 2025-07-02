@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo forEach() con Express</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Demostración de <code>forEach()</code></h1>
+
+        <div id="alerta" class="alerta oculto"></div>
+
+        <div class="card">
+            <h2>1. Saludos a Nombres</h2>
+            <p>Agrega nombres a la lista y luego procesa para ver un saludo para cada uno.</p>
+            <form id="form-nombres">
+                <input type="text" id="nombre-input" placeholder="Ingresa un nombre" autocomplete="off">
+                <button type="submit">Agregar Nombre</button>
+            </form>
+            <h4>Nombres agregados:</h4>
+            <ul id="lista-nombres"></ul>
+            <button type="button" id="procesar-nombres" class="btn-procesar">Procesar Saludos</button>
+            <h4>Resultados:</h4>
+            <div id="resultado-nombres" class="resultado"></div>
+        </div>
+
+        <div class="card">
+            <h2>2. Doble de un Número</h2>
+            <p>Agrega números y luego procesa para ver el doble de cada uno.</p>
+            <form id="form-numeros">
+                <input type="text" id="numero-input" placeholder="Ingresa un número" autocomplete="off">
+                <button type="submit">Agregar Número</button>
+            </form>
+            <h4>Números agregados:</h4>
+            <ul id="lista-numeros"></ul>
+            <button type="button" id="procesar-numeros" class="btn-procesar">Procesar Dobles</button>
+            <h4>Resultados:</h4>
+            <div id="resultado-numeros" class="resultado"></div>
+        </div>
+
+        <div class="card">
+            <h2>3. Lista de Personas (Nombre y Edad)</h2>
+            <p>Agrega personas con su nombre y edad para mostrarlos en una lista.</p>
+            <form id="form-personas">
+                <input type="text" id="persona-nombre-input" placeholder="Nombre de la persona" autocomplete="off">
+                <input type="text" id="persona-edad-input" placeholder="Edad" autocomplete="off">
+                <button type="submit">Agregar Persona</button>
+            </form>
+            <h4>Personas agregadas:</h4>
+            <ul id="lista-personas"></ul>
+            <button type="button" id="procesar-personas" class="btn-procesar">Procesar Personas</button>
+            <h4>Resultados:</h4>
+            <div id="resultado-personas" class="resultado"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

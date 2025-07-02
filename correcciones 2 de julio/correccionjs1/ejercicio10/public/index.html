@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios con map()</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <h1>Ejercicios con la función <code>map()</code></h1>
+    </header>
+
+    <main>
+        <div id="custom-alert" class="alert hidden">
+            <p id="alert-message"></p>
+            <button id="alert-close">&times;</button>
+        </div>
+
+        <section class="card">
+            <h2>1. Multiplicar números por 3</h2>
+            <form id="form-multiplicar" novalidate>
+                <div class="input-group">
+                    <input type="text" id="input-numero" placeholder="Ingresa un número" inputmode="numeric">
+                    <button type="submit" class="btn-add">Agregar</button>
+                </div>
+            </form>
+            <div class="data-display">
+                <p>Números a procesar:</p>
+                <ul id="lista-numeros"></ul>
+            </div>
+            <button id="btn-procesar-multiplicar" class="btn-process">Procesar y Enviar</button>
+            <div class="result-display">
+                <p>Resultado:</p>
+                <pre id="resultado-multiplicar"></pre>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>2. Convertir nombres a mayúsculas</h2>
+            <form id="form-mayusculas" novalidate>
+                <div class="input-group">
+                    <input type="text" id="input-nombre" placeholder="Ingresa un nombre">
+                    <button type="submit" class="btn-add">Agregar</button>
+                </div>
+            </form>
+            <div class="data-display">
+                <p>Nombres a procesar:</p>
+                <ul id="lista-nombres"></ul>
+            </div>
+            <button id="btn-procesar-mayusculas" class="btn-process">Procesar y Enviar</button>
+            <div class="result-display">
+                <p>Resultado:</p>
+                <pre id="resultado-mayusculas"></pre>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>3. Agregar 21% de IVA a precios</h2>
+            <form id="form-iva" novalidate>
+                <div class="input-group">
+                    <input type="text" id="input-precio" placeholder="Ingresa un precio" inputmode="decimal">
+                    <button type="submit" class="btn-add">Agregar</button>
+                </div>
+            </form>
+            <div class="data-display">
+                <p>Precios a procesar:</p>
+                <ul id="lista-precios"></ul>
+            </div>
+            <button id="btn-procesar-iva" class="btn-process">Procesar y Enviar</button>
+            <div class="result-display">
+                <p>Resultado:</p>
+                <pre id="resultado-iva"></pre>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

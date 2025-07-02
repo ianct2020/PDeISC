@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios con indexOf() - Modo Interactivo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div id="custom-alert" class="alert">
+        <span id="alert-message"></span>
+    </div>
+
+    <main class="container">
+        <h1>Ejercicios con JavaScript: `indexOf()`</h1>
+
+        <section class="card">
+            <h2>1. Encontrar la palabra "perro"</h2>
+            <p>Ingresa palabras una por una. Presiona <strong>Enter</strong> o haz clic en <strong>Añadir</strong>.</p>
+            <form id="form-dog">
+                <div class="input-group">
+                    <input type="text" id="input-dog" placeholder="Escribe una palabra..." autocomplete="off">
+                    <button type="button" id="add-dog-btn" class="add-btn">Añadir</button>
+                </div>
+                <ul id="list-dog" class="item-list"></ul>
+                <button type="submit" class="process-btn">Buscar "perro" en la lista</button>
+            </form>
+            <div id="result-dog" class="result-area"></div>
+        </section>
+
+        <section class="card">
+            <h2>2. Verificar si existe el número 50</h2>
+            <p>Ingresa números uno por uno. Presiona <strong>Enter</strong> o haz clic en <strong>Añadir</strong>.</p>
+            <form id="form-50">
+                <div class="input-group">
+                    <input type="text" id="input-50" placeholder="Escribe un número..." autocomplete="off">
+                    <button type="button" id="add-50-btn" class="add-btn">Añadir</button>
+                </div>
+                <ul id="list-50" class="item-list"></ul>
+                <button type="submit" class="process-btn">Buscar el 50 en la lista</button>
+            </form>
+            <div id="result-50" class="result-area"></div>
+        </section>
+
+        <section class="card">
+            <h2>3. Encontrar la ciudad "Madrid"</h2>
+            <p>Ingresa ciudades una por una. Presiona <strong>Enter</strong> o haz clic en <strong>Añadir</strong>.</p>
+            <form id="form-madrid">
+                <div class="input-group">
+                    <input type="text" id="input-madrid" placeholder="Escribe una ciudad..." autocomplete="off">
+                    <button type="button" id="add-madrid-btn" class="add-btn">Añadir</button>
+                </div>
+                <ul id="list-madrid" class="item-list"></ul>
+                <button type="submit" class="process-btn">Buscar "Madrid" en la lista</button>
+            </form>
+            <div id="result-madrid" class="result-area"></div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

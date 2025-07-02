@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Full-Stack</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+    <div id="custom-alert" class="alert hidden"></div>
+
+    <main class="container">
+        <h1>stanga aprobame</h1>
+
+        <section class="card">
+            <h2><span class="emoji">🍎</span> Frutas</h2>
+            <form id="form-frutas" data-type="fruta">
+                <input type="text" id="fruta-input" placeholder="Mínimo 3 letras" required pattern="[a-zA-Z\s]{3,}" title="Solo letras, mínimo 3.">
+                <button type="submit">Agregar</button>
+            </form>
+            <div class="resultado">
+                <p><strong>Lista actual:</strong></p>
+                <code id="resultado-frutas">[]</code>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2><span class="emoji">🧑‍🤝‍🧑</span> Amigos</h2>
+            <form id="form-amigos" data-type="amigo">
+                <input type="text" id="amigo-input" placeholder="Mínimo 3 letras" required pattern="[a-zA-Z\s]{3,}" title="Solo letras, mínimo 3.">
+                <button type="submit">Agregar</button>
+            </form>
+            <div class="resultado">
+                <p><strong>Lista actual:</strong></p>
+                <code id="resultado-amigos">[]</code>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2><span class="emoji">🔢</span> Números</h2>
+            <form id="form-numeros" data-type="numero">
+                <input type="number" id="numero-input" placeholder="Debe ser mayor al último" required>
+                <button type="submit">Agregar</button>
+            </form>
+            <div class="resultado">
+                <p><strong>Lista actual:</strong></p>
+                <code id="resultado-numeros">[]</code>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="/script.js"></script>
+</body>
+</html>

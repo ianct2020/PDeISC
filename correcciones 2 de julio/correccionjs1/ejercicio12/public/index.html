@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios con Reduce()</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Ejercicios con la función <code>reduce()</code></h1>
+
+        <div id="custom-alert" class="alert">
+            <span id="alert-message"></span>
+            <button id="alert-close">&times;</button>
+        </div>
+
+        <div class="card">
+            <h2>1. Suma de Array de Números</h2>
+            <form id="form-suma">
+                <p>Agrega al menos 2 números para sumarlos.</p>
+                <div class="input-group">
+                    <input type="number" id="input-suma" placeholder="Ingresa un número" step="any">
+                    <button type="button" id="btn-add-suma">Agregar</button>
+                </div>
+                <ul id="lista-suma" class="item-list"></ul>
+                <button type="submit" class="btn-calculate">Calcular Suma Total</button>
+                <p class="result">Resultado: <span id="resultado-suma"></span></p>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2>2. Multiplicación de Array de Números</h2>
+            <form id="form-multiplicacion">
+                <p>Agrega al menos 2 números para multiplicarlos.</p>
+                <div class="input-group">
+                    <input type="number" id="input-multiplicacion" placeholder="Ingresa un número" step="any">
+                    <button type="button" id="btn-add-multiplicacion">Agregar</button>
+                </div>
+                <ul id="lista-multiplicacion" class="item-list"></ul>
+                <button type="submit" class="btn-calculate">Calcular Multiplicación Total</button>
+                <p class="result">Resultado: <span id="resultado-multiplicacion"></span></p>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2>3. Suma de Precios de Productos</h2>
+            <form id="form-precios">
+                <p>Agrega al menos 2 productos con su precio.</p>
+                <div class="input-group">
+                    <input type="number" id="input-precio" placeholder="Ingresa un precio" min="0" step="0.01">
+                    <button type="button" id="btn-add-precio">Agregar Producto</button>
+                </div>
+                <ul id="lista-precios" class="item-list"></ul>
+                <button type="submit" class="btn-calculate">Calcular Precio Total</button>
+                <p class="result">Total: $<span id="resultado-precios"></span></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

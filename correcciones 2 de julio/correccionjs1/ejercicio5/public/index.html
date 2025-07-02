@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demostración de Splice()</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Método splice() en JavaScript</h1>
+        
+        <section class="status-container">
+            <h2>Paso 1: Construí tu Array</h2>
+            <form id="formAgregarLetra">
+                <label for="inputLetra">Ingresá elementos (solo letras):</label>
+                <input type="text" id="inputLetra" placeholder="Ej: Manzana" autocomplete="off" required>
+                <button type="submit">Agregar al Array</button>
+            </form>
+            <h3 style="margin-top: 20px;">Estado actual del Array:</h3>
+            <div id="arrayDisplay" class="array-display"></div>
+        </section>
+
+        <section class="operations-container">
+            
+            <div class="operation-card">
+                <h3>Eliminar 2 elementos desde la posición 1</h3>
+                <p><code>array.splice(1, 2)</code></p>
+                <form id="formEliminar">
+                    <button type="submit" id="btnEliminar">Ejecutar Eliminación</button>
+                </form>
+            </div>
+
+            <div class="operation-card">
+                <h3>Insertar un nombre en la 2da posición</h3>
+                <p><code>array.splice(1, 0, 'nuevo')</code></p>
+                <form id="formInsertar">
+                    <input type="text" id="inputInsertar" placeholder="Nuevo nombre" required>
+                    <button type="submit">Ejecutar Inserción</button>
+                </form>
+            </div>
+
+            <div class="operation-card">
+                <h3>Reemplazar 2 elementos</h3>
+                <p><code>array.splice(pos, 2, 'elem1', 'elem2')</code></p>
+                <form id="formReemplazar">
+                    <input type="number" id="inputReemplazarPosicion" placeholder="Posición de inicio" required>
+                    <input type="text" id="inputReemplazarNuevo1" placeholder="Primer elemento nuevo" required>
+                    <input type="text" id="inputReemplazarNuevo2" placeholder="Segundo elemento nuevo" required>
+                    <button type="submit">Ejecutar Reemplazo</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <div id="custom-alert" class="custom-alert"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

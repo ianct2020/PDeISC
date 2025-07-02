@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo de shift() con JS y Node.js</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Demostración del método <code>shift()</code></h1>
+    </header>
+
+    <main class="container">
+        <div id="alerta-personalizada" class="alerta oculto">
+            <span id="alerta-mensaje"></span>
+            <button onclick="ocultarAlerta()">&times;</button>
+        </div>
+
+        <section class="card">
+            <h2>1. Quitar el primer número de un array</h2>
+            <form id="form-numeros">
+                <input type="text" id="input-numero" placeholder="Ingresa un número entero" inputmode="numeric">
+                <button type="submit">Agregar Número</button>
+            </form>
+            <button id="btn-quitar-numero" class="btn-procesar">Quitar Primer Número (shift)</button>
+            <div class="resultado">
+                <h3>Array de Números Actual:</h3>
+                <ul id="lista-numeros" class="lista-datos">
+                    </ul>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>2. Eliminar el primer mensaje de un chat</h2>
+            <form id="form-mensajes">
+                <input type="text" id="input-mensaje" placeholder="Escribe un mensaje de chat">
+                <button type="submit">Enviar Mensaje</button>
+            </form>
+            <button id="btn-quitar-mensaje" class="btn-procesar">Leer Primer Mensaje (shift)</button>
+            <div class="resultado">
+                <h3>Mensajes en el Chat:</h3>
+                <ul id="lista-mensajes" class="lista-datos">
+                     </ul>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>3. Simular una cola de atención al cliente</h2>
+            <form id="form-clientes">
+                <input type="text" id="input-cliente" placeholder="Nombre del cliente">
+                <button type="submit">Agregar Cliente a la Cola</button>
+            </form>
+            <button id="btn-atender-cliente" class="btn-procesar">Atender Siguiente Cliente (shift)</button>
+            <div class="resultado">
+                <h3>Cola de Clientes:</h3>
+                <ol id="lista-clientes" class="lista-datos">
+                    </ol>
+            </div>
+        </section>
+
+    </main>
+    
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demostración de slice() con Enter y Botón</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <h1>Ejercicios con JavaScript: <code>slice()</code></h1>
+
+    <main>
+        <section class="ejercicio-container">
+            <h2>1. Copiar los primeros 3 elementos de un array de números</h2>
+            <form id="form-numeros" novalidate>
+                <label for="input-numeros">Ingresá un número y presioná "Enter" o "Agregar":</label>
+                <div class="input-container">
+                    <input type="text" id="input-numeros" placeholder="Ej: 10">
+                    <button type="button" id="btn-agregar-numero" class="btn-agregar">Agregar</button>
+                </div>
+                <div class="tags-container" id="tags-numeros"></div>
+                <button type="submit">Procesar Array de Números</button>
+            </form>
+            <div class="resultado-container">
+                <p>Tu Array Original Enviado:</p>
+                <div id="display-numeros-original" class="array-display"></div>
+                <p>Resultado de <code>slice(0, 3)</code>:</p>
+                <div id="display-numeros-resultado" class="array-display"></div>
+            </div>
+        </section>
+
+        <section class="ejercicio-container">
+            <h2>2. Copia parcial de un array de películas</h2>
+            <form id="form-peliculas" novalidate>
+                <label for="input-peliculas">Ingresá una película y presioná "Enter" o "Agregar":</label>
+                <div class="input-container">
+                    <input type="text" id="input-peliculas" placeholder="Ej: Shrek">
+                    <button type="button" id="btn-agregar-pelicula" class="btn-agregar">Agregar</button>
+                </div>
+                <div class="tags-container" id="tags-peliculas"></div>
+                <button type="submit">Procesar Array de Películas</button>
+            </form>
+            <div class="resultado-container">
+                <p>Tu Array Original Enviado:</p>
+                <div id="display-peliculas-original" class="array-display"></div>
+                <p>Resultado de <code>slice(2, 5)</code>:</p>
+                <div id="display-peliculas-resultado" class="array-display"></div>
+            </div>
+        </section>
+
+        <section class="ejercicio-container">
+            <h2>3. Crear un array nuevo con los últimos 3 elementos</h2>
+            <form id="form-ultimos" novalidate>
+                <label for="input-ultimos">Ingresá un elemento y presioná "Enter" o "Agregar":</label>
+                <div class="input-container">
+                    <input type="text" id="input-ultimos" placeholder="Ej: Manzana">
+                    <button type="button" id="btn-agregar-ultimo" class="btn-agregar">Agregar</button>
+                </div>
+                <div class="tags-container" id="tags-ultimos"></div>
+                <button type="submit">Procesar Array de Elementos</button>
+            </form>
+            <div class="resultado-container">
+                <p>Tu Array Original Enviado:</p>
+                <div id="display-ultimos-original" class="array-display"></div>
+                <p>Resultado de <code>slice(-3)</code>:</p>
+                <div id="display-ultimos-resultado" class="array-display"></div>
+            </div>
+        </section>
+    </main>
+
+    <div id="custom-alert"></div>
+    <script src="script.js"></script>
+</body>
+</html>

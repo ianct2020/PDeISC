@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demostración de pop()</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <main>
+        <h1>funcion <code>pop()</code> </h1>
+
+        <div id="alerta" class="alerta"></div>
+
+        <section class="card">
+            <h2>1. Eliminar el último animal</h2>
+            <p>Agrega nombres de animales. Luego, presiona el botón para eliminar el último que agregaste.</p>
+            <form id="form-animales">
+                <label for="input-animal">Nombre del Animal:</label>
+                <input type="text" id="input-animal" placeholder="Ej: León" autocomplete="off">
+                <button type="submit">Agregar Animal</button>
+            </form>
+            <button id="btn-pop-animal" class="btn-pop">Eliminar Último Animal</button>
+            <h3>Lista de Animales:</h3>
+            <div id="lista-animales" class="lista-display">La lista está vacía.</div>
+        </section>
+
+        <section class="card">
+            <h2>2. Quitar producto de la lista de compras</h2>
+            <p>Agrega productos a tu lista de compras. El método <code>pop()</code> te dirá cuál fue el último producto eliminado.</p>
+            <form id="form-compras">
+                <label for="input-producto">Producto:</label>
+                <input type="text" id="input-producto" placeholder="Ej: Manzanas" autocomplete="off">
+                <button type="submit">Agregar Producto</button>
+            </form>
+            <button id="btn-pop-compras" class="btn-pop">Quitar Último Producto</button>
+            <h3>Lista de Compras:</h3>
+            <div id="lista-compras" class="lista-display">La lista está vacía.</div>
+        </section>
+        
+        <section class="card">
+            <h2>3. Usar <code>while</code> y <code>pop()</code> para vaciar un array</h2>
+            <p>Agrega elementos y luego presiona el botón para vaciar toda la lista usando un bucle <code>while</code> con <code>pop()</code>.</p>
+            <form id="form-vaciar">
+                <label for="input-elemento">Cualquier Elemento:</label>
+                <input type="text" id="input-elemento" placeholder="Ej: Cosa 1" autocomplete="off">
+                <button type="submit">Agregar Elemento</button>
+            </form>
+            <button id="btn-vaciar-array" class="btn-pop">Vaciar la Lista</button>
+            <h3>Array de Elementos:</h3>
+            <div id="lista-vaciar" class="lista-display">El array está vacío.</div>
+        </section>
+
+    </main>
+    
+    <script src="script.js"></script>
+</body>
+</html>

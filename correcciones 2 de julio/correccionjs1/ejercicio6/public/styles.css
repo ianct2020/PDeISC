@@ -1,0 +1,190 @@
+/* public/styles.css */
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2c3e50;
+    --background-color: #ecf0f1;
+    --success-color: #2ecc71;
+    --error-color: #e74c3c;
+    --white: #ffffff;
+    --gray: #bdc3c7;
+    --light-gray: #f0f0f0;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--secondary-color);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+
+h1 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+main {
+    width: 100%;
+    max-width: 800px;
+}
+
+.ejercicio-container {
+    background-color: var(--white);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+label {
+    font-weight: bold;
+}
+
+/* --- NUEVO CONTENEDOR PARA INPUT Y BOTÓN AGREGAR --- */
+.input-container {
+    display: flex;
+    gap: 0.5rem;
+}
+
+input[type="text"] {
+    flex-grow: 1; /* El input ocupa el espacio restante */
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--gray);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.btn-agregar {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    border: none;
+    padding: 0.8rem 1rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    white-space: nowrap; /* Evita que el texto se parta */
+    transition: background-color 0.3s ease;
+}
+
+.btn-agregar:hover {
+    background-color: #34495e;
+}
+/* --- FIN NUEVOS ESTILOS --- */
+
+button[type="submit"] {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: flex-start;
+    margin-top: 0.5rem;
+}
+
+button[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+.resultado-container {
+    margin-top: 1.5rem;
+}
+
+.resultado-container p {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.array-display {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-top: 0.5rem;
+    font-family: 'Courier New', Courier, monospace;
+    min-height: 40px;
+    word-wrap: break-word;
+}
+
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid var(--light-gray);
+    border-radius: 4px;
+    min-height: 40px;
+    background-color: var(--light-gray);
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 0.3rem 0.7rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+}
+
+.remove-btn {
+    background: none;
+    border: none;
+    color: var(--white);
+    margin-left: 0.5rem;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+#custom-alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 1rem 1.5rem;
+    border-radius: 5px;
+    color: var(--white);
+    font-weight: bold;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-50px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#custom-alert.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#custom-alert.error {
+    background-color: var(--error-color);
+}
+
+#custom-alert.success {
+    background-color: var(--success-color);
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invertir con reverse()</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Demostración del Método <code>reverse()</code></h1>
+        <p>En Letras y Números: usa <strong>Enter</strong> para agregar a la lista. En Texto: escribe y presiona el botón.</p>
+    </header>
+
+    <div id="alert-container" class="alert"></div>
+
+    <main class="container">
+
+        <section class="card">
+            <h2>1. Invertir una Lista de Letras</h2>
+            <p>Ingresa una letra y presiona <strong>Enter</strong>. Agrega al menos 3.</p>
+            <form id="letters-form">
+                <input type="text" id="letters-input" placeholder="Ej: a (y presiona Enter)" autocomplete="off">
+                <div class="pending-list-container">
+                    <h4>Items para procesar:</h4>
+                    <ul id="letters-pending-list" class="pending-list"></ul>
+                </div>
+                <button type="submit">Revertir Lista de Letras</button>
+            </form>
+            <div class="results">
+                <h3>Resultados Finales:</h3>
+                <div id="letters-results"></div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>2. Invertir una Lista de Números</h2>
+            <p>Ingresa un número y presiona <strong>Enter</strong>. Agrega al menos 2.</p>
+            <form id="numbers-form">
+                <input type="text" id="numbers-input" placeholder="Ej: 123 (y presiona Enter)" autocomplete="off">
+                <div class="pending-list-container">
+                    <h4>Items para procesar:</h4>
+                    <ul id="numbers-pending-list" class="pending-list"></ul>
+                </div>
+                <button type="submit">Revertir Lista de Números</button>
+            </form>
+            <div class="results">
+                <h3>Resultados Finales:</h3>
+                <div id="numbers-results"></div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>3. Invertir un Texto (letra a letra)</h2>
+            <p>Ingresa un texto y presiona el botón para invertirlo.</p>
+            <form id="string-form">
+                <input type="text" id="string-input" placeholder="Ej: Hola Mundo" autocomplete="off">
+                <button type="submit">Invertir Texto</button>
+            </form>
+            <div class="results">
+                <h3>Resultados Finales:</h3>
+                <div id="string-results"></div>
+            </div>
+        </section>
+    </main>
+    
+    <script src="script.js"></script>
+</body>
+</html>
